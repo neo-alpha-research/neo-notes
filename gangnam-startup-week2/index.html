@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --bg: #F2F4F6;
+      --surface: #FFFFFF;
+      --surface-sub: #F9FAFB;
+      --border: #E5E8EB;
+      --border-soft: #F2F4F6;
+      --text-primary: #191F28;
+      --text-secondary: #333D4B;
+      --text-muted: #6B7684;
+      --text-caption: #8B95A1;
+      --toss-blue: #3182F6;
+      --toss-blue-dark: #1B64DA;
+      --toss-blue-bg: #E8F3FF;
+      --mint-green: #00B884;
+      --mint-green-bg: #E5F9F3;
+      --indigo: #6366F1;
+      --indigo-bg: #EEF2FF;
+      --orange: #FF8A00;
+      --orange-bg: #FFF4E5;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.68;
+      padding: 32px 16px 96px;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    /* Hero Header */
+    .hero-card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 32px 28px 26px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(0, 27, 55, 0.04);
+      border: 1px solid rgba(0, 27, 55, 0.04);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--toss-blue-bg);
+      color: var(--toss-blue-dark);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 25px;
+      font-weight: 800;
+      line-height: 1.36;
+      color: var(--text-primary);
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding-top: 14px;
+      border-top: 1px solid var(--border-soft);
+    }
+    .meta-row strong {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* Action Card */
+    .action-card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(0, 27, 55, 0.03);
+      border: 1px solid rgba(0, 27, 55, 0.04);
+    }
+    .action-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .action-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+    .action-sub {
+      font-size: 12px;
+      color: var(--text-caption);
+    }
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 600px) {
+      .btn-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 21px;
+      }
+      .hero-card {
+        padding: 24px 20px;
+      }
+    }
+    button.act-btn {
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 14px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: all 0.15s ease;
+      letter-spacing: -0.01em;
+    }
+    button.act-btn:active {
+      transform: scale(0.98);
+    }
+    .btn-primary {
+      background: var(--toss-blue);
+      color: #FFFFFF;
+    }
+    .btn-primary:hover {
+      background: var(--toss-blue-dark);
+    }
+    .btn-secondary {
+      background: var(--toss-blue-bg);
+      color: var(--toss-blue-dark);
+    }
+    .btn-secondary:hover {
+      background: #D6E8FF;
+    }
+    .btn-tertiary {
+      background: var(--bg);
+      color: var(--text-secondary);
+    }
+    .btn-tertiary:hover {
+      background: #E5E8EB;
+    }
+
+    /* Segmented Tab Bar */
+    .segmented-control {
+      display: flex;
+      background: #E5E8EB;
+      padding: 4px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+    .seg-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .seg-btn.active {
+      background: var(--surface);
+      color: var(--text-primary);
+      box-shadow: 0 2px 8px rgba(0, 27, 55, 0.08);
+    }
+
+    /* Content Cards */
+    .card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 28px 26px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(0, 27, 55, 0.03);
+      border: 1px solid rgba(0, 27, 55, 0.04);
+    }
+    .section-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 5px 10px;
+      border-radius: 7px;
+      margin-bottom: 12px;
+    }
+    .badge-blue {
+      background: var(--toss-blue-bg);
+      color: var(--toss-blue-dark);
+    }
+    .badge-mint {
+      background: var(--mint-green-bg);
+      color: #008A63;
+    }
+    .badge-indigo {
+      background: var(--indigo-bg);
+      color: #4338CA;
+    }
+    .badge-orange {
+      background: var(--orange-bg);
+      color: #C05621;
+    }
+
+    h2 {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin: 18px 0 8px;
+    }
+    p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    /* Quote Banner */
+    .quote-box {
+      background: var(--surface-sub);
+      border-left: 4px solid var(--toss-blue);
+      padding: 16px 20px;
+      border-radius: 0 14px 14px 0;
+      margin: 14px 0;
+      font-size: 15px;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Level List */
+    .level-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .level-item {
+      background: var(--surface-sub);
+      border-radius: 12px;
+      padding: 14px 18px;
+      border: 1px solid var(--border-soft);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .level-tag {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: #E5E8EB;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .level-item.active-level .level-tag {
+      background: var(--toss-blue);
+      color: #FFFFFF;
+    }
+    .level-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* Practice Steps */
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 14px 0;
+    }
+    .step-item {
+      background: var(--surface-sub);
+      border-radius: 14px;
+      padding: 18px 20px;
+      border: 1px solid var(--border-soft);
+    }
+    .step-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .step-num {
+      width: 22px;
+      height: 22px;
+      background: var(--mint-green);
+      color: #FFFFFF;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Interactive Checklist */
+    .chk-container {
+      margin-top: 10px;
+    }
+    .chk-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .chk-badge {
+      font-size: 12px;
+      font-weight: 800;
+      background: var(--mint-green-bg);
+      color: #008A63;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .chk-item {
+      background: var(--surface-sub);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: all 0.15s ease;
+    }
+    .chk-item:hover {
+      border-color: var(--border);
+    }
+    .chk-item input[type="checkbox"] {
+      margin-top: 4px;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--toss-blue);
+    }
+    .chk-label {
+      flex: 1;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+    .chk-sub {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+    .chk-item.checked {
+      background: #F8FAFC;
+    }
+    .chk-item.checked .chk-label {
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    /* Markdown raw box */
+    pre.raw-md {
+      background: var(--surface-sub);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 20px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(40px);
+      background: rgba(25, 31, 40, 0.94);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 30px;
+      box-shadow: 0 8px 24px rgba(0, 27, 55, 0.18);
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 9999;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: var(--text-caption);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero Header -->
+    <div class="hero-card">
+      <div class="eyebrow">강남구 초기창업자 과정 2주차 복습 & 실습 워크시트</div>
+      <h1>수강생 복습노트와 실무 적용 질문</h1>
+      <p class="hero-desc">
+        지난주 강의에서 배운 방식을 복습하고, 제 1인 비즈니스에 직접 대입해 본 실천 과정과 동기 대표님들이 오늘 3주차 실습에서 바로 써보실 수 있는 적용 질문을 정리했습니다.
+      </p>
+      <div class="meta-row">
+        <div><strong>일시</strong> 2026. 10. 06 강의 복습</div>
+        <div><strong>작성</strong> 수강생 Neo (1인 빌더)</div>
+        <div><strong>근거</strong> 강의 녹취 기반 정리본</div>
+      </div>
+    </div>
+
+    <!-- One-click Action Card -->
+    <div class="action-card">
+      <div class="action-header">
+        <span class="action-title">원클릭 복사 및 다운로드</span>
+        <span class="action-sub">필요한 형식으로 가져가서 사용하세요</span>
+      </div>
+      <div class="btn-grid">
+        <button class="act-btn btn-secondary" onclick="copyPlain()">
+          📄 일반 문서 복사
+        </button>
+        <button class="act-btn btn-primary" onclick="copyObsidian()">
+          📋 옵시디언 마크다운 복사
+        </button>
+        <button class="act-btn btn-tertiary" onclick="downloadMd()">
+          📥 .md 다운로드
+        </button>
+      </div>
+    </div>
+
+    <!-- Segmented Control -->
+    <div class="segmented-control">
+      <button id="tab-read-btn" class="seg-btn active" onclick="switchTab('read')">
+        일반 문서로 편하게 읽기
+      </button>
+      <button id="tab-md-btn" class="seg-btn" onclick="switchTab('md')">
+        옵시디언 마크다운 원문 보기
+      </button>
+    </div>
+
+    <!-- TAB 1: General Reading View -->
+    <div id="view-read">
+      <!-- Section 1: Lecture Summary -->
+      <div class="card">
+        <span class="section-badge badge-blue">1. 강의 요지</span>
+        <h2>녹취 기반 정리본 핵심 요약</h2>
+        
+        <div class="quote-box">
+          "채팅창이 아니라 폴더입니다."
+        </div>
+        <p>
+          웹 채팅창에서 대화가 길어지면 이전 맥락을 잊는 <strong>컨텍스트 압축(Compaction)</strong> 현상이 발생합니다. 이를 극복하려면 회의와 대화를 녹음해 마크다운(<code>.md</code>) 파일로 저장하고, 정해진 규칙에 따라 폴더에 축적하는 작업 환경이 중요합니다.
+        </p>
+
+        <h3>AI 활용 단계 자가점검 (여섯 수준)</h3>
+        <p style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">
+          우리 회사는 지금 어느 단계에 있는지 점검해 볼 수 있는 기준입니다:
+        </p>
+        <div class="level-list">
+          <div class="level-item">
+            <span class="level-tag">Lv.0</span>
+            <div class="level-text">필요할 때마다 채팅창을 새로 열고 배경 설명부터 다시 하는 단계</div>
+          </div>
+          <div class="level-item active-level">
+            <span class="level-tag">Lv.1</span>
+            <div class="level-text">회의·고객·결정이 한 폴더에 파일로 쌓이고 있는 단계 (당일 실습 목표)</div>
+          </div>
+          <div class="level-item active-level">
+            <span class="level-tag">Lv.2</span>
+            <div class="level-text">"우리는 이렇게 일한다"는 기준 문서가 있고 AI가 이를 읽고 답하는 단계</div>
+          </div>
+          <div class="level-item">
+            <span class="level-tag">Lv.3</span>
+            <div class="level-text">매주 같은 일을 짧은 지시서 한 줄로 넘기는 단계 (자동 리포트)</div>
+          </div>
+          <div class="level-item">
+            <span class="level-tag">Lv.4</span>
+            <div class="level-text">외부에서 접속되는 주소가 있고 내 숫자를 출처와 함께 말할 수 있는 단계</div>
+          </div>
+          <div class="level-item">
+            <span class="level-tag">Lv.5</span>
+            <div class="level-text">정해진 시각에 자동 실행되고, 팀이 채널에서 함께 활용하는 단계</div>
+          </div>
+        </div>
+
+        <h3>사람의 개입과 승인 원칙</h3>
+        <p>
+          에이전트 루프만 돌려서는 저절로 완성되지 않으며, 사람의 문제의식이 처음에 <strong>트리거(Trigger)</strong>하고 최종적으로 <strong>승인(Approve)</strong>하며 끌고 가야 합니다. 기술보다 선행되어야 하는 것은 현장의 도메인 암묵지를 문서로 정리하는 일입니다.
+        </p>
+      </div>
+
+      <!-- Section 2: Personal Practice -->
+      <div class="card">
+        <span class="section-badge badge-mint">2. 제가 실제로 해본 과정</span>
+        <h2>수강생 실천 기록 (내 사업 적용)</h2>
+        <p>
+          강의를 들은 후 제 1인 비즈니스 업무에 대입해 실제로 적용해 본 4가지 과정입니다:
+        </p>
+
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-title">
+              <span class="step-num">1</span> 기록을 파일로 남기기 (Lv.1)
+            </div>
+            <div class="step-desc">
+              채팅창에 매번 상황을 길게 타이핑하던 방식을 줄이고, 일상 메모와 강연 녹취 요약을 원문 파일(<code>.md</code>)로 로컬 폴더에 먼저 보존하기 시작했습니다.
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-title">
+              <span class="step-num">2</span> 일하는 기준을 짧게 문서화하기 (Lv.2)
+            </div>
+            <div class="step-desc">
+              AI에게 막연하게 작성을 맡기지 않고, '수치 인용 원칙', '금지 단어', '출력 서식'을 담은 한 페이지짜리 기준 문서를 먼저 작성해 AI에게 읽혔습니다.
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-title">
+              <span class="step-num">3</span> 사람의 시작과 최종 승인 경계 두기
+            </div>
+            <div class="step-desc">
+              전 과정을 무조건 전자동화하려 하지 않고, 자료 수집과 초안 작성까지만 AI를 활용하고 최종 배포와 중요한 결정은 사람이 직접 확인·승인하도록 선을 그었습니다.
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-title">
+              <span class="step-num">4</span> 기본기부터 차근차근 다지기
+            </div>
+            <div class="step-desc">
+              고도화된 자율 시스템을 성급하게 만들기보다, 폴더에 파일 쌓기와 기준 문서 만들기라는 기본기부터 안정화하는 과정으로 이해하고 집중했습니다.
+            </div>
+          </div>
+        </div>
+        <p style="font-size:12px; color:var(--text-caption); margin-top:8px;">
+          (※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)
+        </p>
+      </div>
+
+      <!-- Section 3: Questions for Peers -->
+      <div class="card">
+        <div class="chk-header">
+          <span class="section-badge badge-orange" style="margin-bottom:0;">3. 제가 만든 적용 질문</span>
+          <span id="chk-count-badge" class="chk-badge">0 / 3 완료</span>
+        </div>
+        <h2>동기 대표님들을 위한 실습 워크시트</h2>
+        <p>
+          오늘 3주차 실습을 진행하시면서 각자의 사업에 대입해 보실 수 있도록 제가 덧붙인 3가지 질문입니다. 체크박스를 누르시면 진행 상태가 저장됩니다:
+        </p>
+
+        <div class="chk-container">
+          <div class="chk-item" id="item-chk1" onclick="toggleChk('chk1')">
+            <input type="checkbox" id="chk1" onchange="saveChk()" onclick="event.stopPropagation()" />
+            <div class="chk-label" id="lbl-chk1">
+              질문 1. 오늘 우리 회사에서 파일로 남길 단 1개의 기록은 무엇인가요?
+              <div class="chk-sub">예: 오늘 고객 미팅 녹취본, 대표자의 사업 아이디어 메모, 개발 요구사항 등</div>
+            </div>
+          </div>
+
+          <div class="chk-item" id="item-chk2" onclick="toggleChk('chk2')">
+            <input type="checkbox" id="chk2" onchange="saveChk()" onclick="event.stopPropagation()" />
+            <div class="chk-label" id="lbl-chk2">
+              질문 2. 우리 회사가 일하는 방식(규칙) 1가지를 글로 쓴다면 무엇인가요?
+              <div class="chk-sub">예: 고객 응대 3원칙, 서비스 가격 산정 기준, 마케팅 문구 작성 원칙 등</div>
+            </div>
+          </div>
+
+          <div class="chk-item" id="item-chk3" onclick="toggleChk('chk3')">
+            <input type="checkbox" id="chk3" onchange="saveChk()" onclick="event.stopPropagation()" />
+            <div class="chk-label" id="lbl-chk3">
+              질문 3. AI에게 맡길 초안 작업과, 내가 직접 눈으로 확인할 최종 판단은 무엇인가요?
+              <div class="chk-sub">예: AI는 자료 요약 및 초안 작성 담당 / 대표자는 사실 확인 및 최종 전송 승인 담당</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Obsidian Raw Markdown View -->
+    <div id="view-md" style="display:none;">
+      <div class="card">
+        <span class="section-badge badge-indigo">Obsidian Markdown</span>
+        <h2>옵시디언(Obsidian) 마크다운 원문</h2>
+        <p style="font-size:14px; color:var(--text-muted); margin-bottom:14px;">
+          상단의 <strong>[📋 옵시디언 마크다운 복사]</strong> 버튼을 누른 뒤 옵시디언 새 노트에 붙여넣으시면 YAML 프론트매터, 단계 목록, 체크박스가 그대로 적용됩니다.
+        </p>
+        <pre class="raw-md" id="md-raw-box"></pre>
+      </div>
+    </div>
+
+    <div class="footer">
+      강남구 초기창업자 과정 2주차 복습 · 수강생 실전 적용 기록 및 워크시트
+    </div>
+  </div>
+
+  <div id="toast" class="toast">복사되었습니다</div>
+
+  <script>
+    const OBSIDIAN_MD = `---
+title: "강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문"
+date: 2026-10-13
+category: AI Native Company / Startup Workflow
+tags:
+  - Startup
+  - AINative
+  - Obsidian
+  - GangnamStartup
+  - TrainingNote
+source: "2026-10-06 강남구 초기창업자 과정 2주차 강의 녹취 요약 + 수강생 실전 적용 기록"
+---
+
+# 강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문
+
+> **문서 안내:**
+> 본 문서는 지난주 강남구 초기창업자 과정 2주차 강의에서 배운 핵심 방식을 복습하고, 제 사업에 직접 대입해 본 실천 과정과 동기 대표님들이 오늘 실습에 활용하실 수 있는 적용 질문을 정리한 자료입니다.
+
+---
+
+## 1. 강의 요지 (녹취 기반 정리본 기준)
+
+- **전사(Transcription) 기반 폴더 적재와 컨텍스트 한계 극복:**
+  - 회의와 대화를 녹음하고 마크다운(\`.md\`) 파일로 정리해 지정 폴더에 축적하는 구조의 중요성.
+  - 웹 채팅창에서 대화가 길어지면 이전 맥락을 잊는 '컨텍스트 압축(Compaction)' 현상이 발생하므로, 파일과 폴더 기반의 작업 환경이 유리함.
+  - 핵심 메시지: *"채팅창이 아니라 폴더입니다."*
+
+- **AI 활용 단계 자가점검 (여섯 수준):**
+  - **Lv.0**: 필요할 때마다 채팅창을 새로 열고 배경 설명부터 다시 하는 단계
+  - **Lv.1**: 회의·고객·결정이 한 폴더에 파일로 쌓이고 있는 단계
+  - **Lv.2**: "우리는 이렇게 일한다"는 기준 문서가 있고 AI가 이를 읽고 답하는 단계
+  - **Lv.3**: 매주 같은 일을 짧은 지시서 한 줄로 넘기는 단계 (자동 리포트)
+  - **Lv.4**: 외부에서 접속되는 주소가 있고 내 숫자를 출처와 함께 말할 수 있는 단계
+  - **Lv.5**: 정해진 시각에 자동 실행되고, 팀이 채널에서 함께 활용하는 단계
+
+- **사람의 개입과 승인 원칙:**
+  - 에이전트 루프만 돌려서는 완성되지 않으며, 사람의 문제의식이 처음에 **트리거(Trigger)**하고 최종적으로 **승인(Approve)**해야 함.
+  - 기술보다 중요한 것은 현장의 도메인 암묵지를 명문화하는 작업.
+
+---
+
+## 2. 제가 실제로 해본 과정 (수강생 실천 기록)
+
+강의를 들은 후 제 1인 비즈니스 환경에 대입해 실제로 적용해 본 4가지 과정입니다.
+
+1. **기록을 파일로 남기기 (Lv.1 적용):**
+   - 웹 채팅창에 매번 상황을 길게 설명하던 방식을 줄이고, 일상 메모와 외부 강연 기록을 원문 파일(\`.md\`)로 로컬 폴더에 먼저 저장했습니다.
+2. **일하는 기준을 짧게 문서화하기 (Lv.2 적용):**
+   - AI에게 막연하게 작성을 맡기지 않고, '수치 인용 원칙', '금지 단어', '출력 서식'을 담은 한 페이지짜리 기준 문서를 먼저 작성해 AI에게 읽혔습니다.
+3. **사람의 시작과 최종 승인 경계 두기:**
+   - 전 과정을 무조건 자동화하려 하지 않고, 자료 수집과 초안 정리까지만 AI를 활용하고 최종 배포와 결정은 사람이 직접 검토·승인하도록 선을 그었습니다.
+4. **기본기부터 차근차근 다지기:**
+   - 고도화된 자율 시스템을 성급하게 만들기보다, 폴더에 파일 쌓기와 기준 문서 만들기라는 기본기부터 안정화하는 과정으로 이해하고 집중했습니다.
+
+*(※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)*
+
+---
+
+## 3. 제가 만든 적용 질문 (동기 대표님들을 위한 실습 워크시트)
+
+오늘 3주차 실습을 진행하시면서 각자의 사업에 대입해 보실 수 있도록 제가 덧붙인 3가지 질문입니다.
+
+- [ ] **질문 1. 오늘 우리 회사에서 파일로 남길 단 1개의 기록은 무엇인가요?**
+  *(예: 오늘 고객과의 미팅 녹취본, 대표자의 핵심 사업 아이디어 메모, 개발 요구사항 등)*
+- [ ] **질문 2. 우리 회사가 일하는 방식(규칙) 1가지를 글로 쓴다면 무엇인가요?**
+  *(예: 고객 응대 3원칙, 우리 서비스의 가격 산정 기준, 마케팅 문구 시 필수 준수 사항 등)*
+- [ ] **질문 3. AI에게 맡길 초안 작업과, 내가 직접 눈으로 확인할 최종 판단은 무엇인가요?**
+  *(예: AI는 자료 요약 및 초안 작성 담당 / 대표자는 사실 확인 및 최종 전송 승인 담당)*
+
+---
+
+## 그대로 옮긴 강사 핵심 메시지
+
+> *"채팅창이 아니라 폴더입니다."*
+> 
+> *"인간 대 AI의 경쟁이 아니라, AI를 쓰는 인간과 나머지의 경쟁으로 바뀌게 될 것입니다."*
+`;
+
+    const PLAIN_TXT = `[강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문]
+일시: 2026. 10. 06 강의 복습 | 작성: 수강생 Neo (1인 비즈니스 빌더)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. 강의 요지 (녹취 기반 정리본 기준)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• 전사 기반 폴더 적재와 컨텍스트 한계 극복
+  - 아침 회의와 대화를 녹음하고 마크다운(.md)으로 정리해 폴더에 축적하는 작업의 중요성.
+  - 웹 채팅창의 대화가 길어지면 이전 맥락을 잊는 '컨텍스트 압축'이 발생하므로, 파일과 로컬 폴더 기반 작업이 유리함.
+  - 핵심 메시지: "채팅창이 아니라 폴더입니다."
+
+• AI 활용 단계 자가점검 (여섯 수준)
+  - Lv.0: 필요할 때마다 채팅창을 새로 열고 배경 설명부터 다시 하는 단계
+  - Lv.1: 회의·고객·결정이 한 폴더에 파일로 쌓이고 있는 단계
+  - Lv.2: "우리는 이렇게 일한다"는 기준 문서가 있고 AI가 이를 읽고 답하는 단계
+  - Lv.3: 매주 같은 일을 짧은 지시서 한 줄로 넘기는 단계 (자동 리포트)
+  - Lv.4: 외부에서 접속되는 주소가 있고 내 숫자를 출처와 함께 말할 수 있는 단계
+  - Lv.5: 정해진 시각에 자동 실행되고, 팀이 채널에서 함께 활용하는 단계
+
+• 사람의 개입과 승인 원칙
+  - 에이전트 루프만 돌려서는 완성되지 않으며, 사람의 문제의식이 처음에 트리거(Trigger)하고 최종적으로 승인(Approve)해야 함.
+  - 기술 자체보다 현장의 도메인 암묵지를 문서화하는 작업이 선행되어야 함.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. 제가 실제로 해본 과정 (수강생 실천 기록)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1) 기록을 파일로 남기기 (Lv.1 적용):
+   - 웹 채팅창에 매번 길게 설명하던 방식을 줄이고, 일상 메모와 강연 기록을 로컬 폴더에 원문 파일(.md)로 먼저 저장했습니다.
+2) 일하는 기준을 짧게 문서화하기 (Lv.2 적용):
+   - AI에게 막연하게 작성을 맡기지 않고, '수치 인용 원칙', '금지 단어', '출력 서식'을 담은 한 페이지짜리 기준 문서를 먼저 작성해 AI에게 읽혔습니다.
+3) 사람의 시작과 최종 승인 경계 두기:
+   - 전 과정을 무조건 자동화하려 하지 않고, 자료 수집과 초안 작성까지만 AI를 활용하고 최종 배포와 결정은 사람이 직접 확인하도록 선을 그었습니다.
+4) 기본기부터 차근차근 다지기:
+   - 고도화된 자율 시스템을 성급하게 만들기보다, 폴더에 파일 쌓기와 기준 문서 만들기라는 기본기부터 안정화하는 과정으로 이해하고 집중했습니다.
+   (※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. 제가 만든 적용 질문 (동기 대표님들을 위한 실습 워크시트)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[ ] 질문 1. 오늘 우리 회사에서 파일로 남길 단 1개의 기록은 무엇인가요?
+    (예: 오늘 고객 미팅 녹취본, 대표자의 사업 아이디어 메모, 개발 요구사항 등)
+
+[ ] 질문 2. 우리 회사가 일하는 방식(규칙) 1가지를 글로 쓴다면 무엇인가요?
+    (예: 고객 응대 3원칙, 서비스 가격 산정 기준, 마케팅 문구 작성 원칙 등)
+
+[ ] 질문 3. AI에게 맡길 초안 작업과, 내가 직접 눈으로 확인할 최종 판단은 무엇인가요?
+    (예: AI는 자료 요약 및 초안 작성 담당 / 대표자는 사실 확인 및 최종 전송 승인 담당)
+`;
+
+    document.getElementById('md-raw-box').textContent = OBSIDIAN_MD;
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function copyText(txt, label) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(txt).then(() => showToast(label));
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = txt;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(label);
+      }
+    }
+
+    function copyObsidian() {
+      copyText(OBSIDIAN_MD, '✓ 옵시디언 마크다운 원문이 복사되었습니다');
+    }
+
+    function copyPlain() {
+      copyText(PLAIN_TXT, '✓ 일반 문서 요약본이 복사되었습니다');
+    }
+
+    function downloadMd() {
+      const blob = new Blob([OBSIDIAN_MD], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = '2026-10-13_강남구초기창업자_2주차_수강생_복습노트_및_적용질문.md';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('✓ .md 파일 다운로드가 시작되었습니다');
+    }
+
+    function switchTab(mode) {
+      const readView = document.getElementById('view-read');
+      const mdView = document.getElementById('view-md');
+      const readBtn = document.getElementById('tab-read-btn');
+      const mdBtn = document.getElementById('tab-md-btn');
+      if (mode === 'read') {
+        readView.style.display = 'block';
+        mdView.style.display = 'none';
+        readBtn.classList.add('active');
+        mdBtn.classList.remove('active');
+      } else {
+        readView.style.display = 'none';
+        mdView.style.display = 'block';
+        readBtn.classList.remove('active');
+        mdBtn.classList.add('active');
+      }
+    }
+
+    function toggleChk(id) {
+      const el = document.getElementById(id);
+      el.checked = !el.checked;
+      saveChk();
+    }
+
+    function updateChkUI() {
+      let count = 0;
+      ['chk1', 'chk2', 'chk3'].forEach(id => {
+        const el = document.getElementById(id);
+        const item = document.getElementById('item-' + id);
+        if (el.checked) {
+          count++;
+          item.classList.add('checked');
+        } else {
+          item.classList.remove('checked');
+        }
+      });
+      document.getElementById('chk-count-badge').textContent = count + ' / 3 완료';
+    }
+
+    function saveChk() {
+      ['chk1', 'chk2', 'chk3'].forEach(id => {
+        localStorage.setItem('gangnam_startup_' + id, document.getElementById(id).checked ? '1' : '0');
+      });
+      updateChkUI();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      ['chk1', 'chk2', 'chk3'].forEach(id => {
+        if (localStorage.getItem('gangnam_startup_' + id) === '1') {
+          document.getElementById(id).checked = true;
+        }
+      });
+      updateChkUI();
+    });
+  </script>
+</body>
+</html>
