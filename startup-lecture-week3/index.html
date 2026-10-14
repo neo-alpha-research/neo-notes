@@ -6,7 +6,7 @@
   <title>강남구 초기 창업자 과정 3주차 - 사내 지식 기반(LLM Wiki) 구축과 AI 에이전트 협업 실무 강의 정리 | Neo Note</title>
   <meta name="robots" content="noindex, nofollow" />
   <meta property="og:title" content="강남구 초기 창업자 과정 3주차 - 사내 지식 기반(LLM Wiki) 구축과 AI 에이전트 협업 실무 강의 정리 | Neo Note" />
-  <meta property="og:description" content="단순 검색형 RAG의 단편성을 넘어, 사내 문서와 암묵지를 LLM이 읽고 살아있는 백과사전으로 갱신하는 &#x27;LLM Wiki&#x27; 아키텍처를 세우고, 규칙 간 충돌을 대표자가 중재하며 불필요한 규칙을 솎아내는 &#x27;지식 린트(Lint)&#x27;로 AI 네이티브 조직을 운영한다." />
+  <meta property="og:description" content="질문할 때마다 조각만 찾는 단순 검색형 RAG(금붕어 기억)를 넘어, 사내 문서와 업무 기준을 AI가 읽고 살아있는 백과사전으로 갱신하는 &#x27;LLM Wiki&#x27; 체계를 세우고, 규정 충돌을 대표가 최종 판정하며 불필요한 규칙을 솎아내는 &#x27;문서 옷장 정리(지식 린트)&#x27;로 1인 및 초기 스타트업을 단단하게 운영한다." />
   <meta property="og:type" content="article" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
@@ -23,12 +23,10 @@
       --toss-blue: #3182F6;
       --toss-blue-dark: #1B64DA;
       --toss-blue-bg: #E8F3FF;
-      --mint-green: #00B884;
-      --mint-green-bg: #E5F9F3;
-      --indigo: #6366F1;
-      --indigo-bg: #EEF2FF;
-      --orange: #FF8A00;
-      --orange-bg: #FFF4E5;
+      --mint-green: #00C471;
+      --mint-green-bg: #E5F9F0;
+      --slate-gray: #4E5968;
+      --slate-gray-bg: #F2F4F6;
     }
     * {
       box-sizing: border-box;
@@ -71,7 +69,7 @@
       margin-bottom: 14px;
     }
     h1 {
-      font-size: 25px;
+      font-size: 24px;
       font-weight: 800;
       line-height: 1.36;
       color: var(--text-primary);
@@ -132,7 +130,7 @@
         grid-template-columns: 1fr;
       }
       h1 {
-        font-size: 21px;
+        font-size: 20px;
       }
       .hero-card {
         padding: 24px 20px;
@@ -142,14 +140,14 @@
       cursor: pointer;
       border: none;
       border-radius: 12px;
-      padding: 14px 14px;
+      padding: 13px 12px;
       font-family: inherit;
       font-size: 14px;
       font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
+      gap: 6px;
       transition: all 0.15s ease;
       letter-spacing: -0.01em;
     }
@@ -222,21 +220,18 @@
       border-radius: 7px;
       margin-bottom: 12px;
     }
+    /* 3색 정제 팔레트 */
     .badge-blue {
       background: var(--toss-blue-bg);
       color: var(--toss-blue-dark);
     }
     .badge-mint {
       background: var(--mint-green-bg);
-      color: #008A63;
+      color: #007A45;
     }
-    .badge-indigo {
-      background: var(--indigo-bg);
-      color: #4338CA;
-    }
-    .badge-orange {
-      background: var(--orange-bg);
-      color: #C05621;
+    .badge-neutral {
+      background: var(--slate-gray-bg);
+      color: var(--slate-gray);
     }
 
     h2 {
@@ -263,9 +258,9 @@
     .quote-box {
       background: var(--surface-sub);
       border-left: 4px solid var(--toss-blue);
-      padding: 16px 18px;
-      border-radius: 4px 14px 14px 4px;
-      margin: 14px 0 16px;
+      padding: 14px 16px;
+      border-radius: 4px 12px 12px 4px;
+      margin: 12px 0 14px;
       font-size: 14px;
       color: var(--text-secondary);
       line-height: 1.65;
@@ -274,11 +269,28 @@
       color: var(--toss-blue-dark);
     }
 
-    /* Comparison & Table */
+    /* Folder tree snippet box */
+    .folder-tree-box {
+      background: #F9FAFB;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 14px 0;
+    }
+
+    /* Comparison Table (데스크톱 기본 / 모바일 2단 변환) */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
     .comparison-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 16px 0;
       font-size: 14px;
     }
     .comparison-table th, .comparison-table td {
@@ -293,6 +305,52 @@
     }
     .comparison-table td {
       color: var(--text-secondary);
+    }
+
+    /* 모바일 가로폭 압박 해소: 3열 -> 2열 블록형 변환 */
+    @media (max-width: 600px) {
+      .comparison-table {
+        display: block;
+        border: none;
+      }
+      .comparison-table thead {
+        display: none;
+      }
+      .comparison-table tbody, .comparison-table tr, .comparison-table td {
+        display: block;
+        width: 100%;
+      }
+      .comparison-table tr {
+        margin-bottom: 14px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        background: #FFFFFF;
+        box-shadow: 0 2px 8px rgba(0, 27, 55, 0.02);
+      }
+      .comparison-table td {
+        border: none;
+        border-bottom: 1px solid var(--border-soft);
+        padding: 10px 14px;
+        font-size: 13.5px;
+      }
+      .comparison-table td:first-child {
+        background: var(--toss-blue-bg);
+        color: var(--toss-blue-dark);
+        font-weight: 800;
+        font-size: 13.5px;
+        border-bottom: 1px solid #D6E8FF;
+      }
+      .comparison-table td:nth-child(2)::before {
+        content: "단순 검색(RAG): ";
+        font-weight: 700;
+        color: var(--text-muted);
+      }
+      .comparison-table td:nth-child(3)::before {
+        content: "축적형(LLM Wiki): ";
+        font-weight: 800;
+        color: var(--toss-blue);
+      }
     }
 
     /* Checklist Items */
@@ -314,12 +372,12 @@
       transition: all 0.15s ease;
     }
     .chk-item:hover {
-      border-color: var(--toss-blue);
+      border-color: var(--mint-green);
       background: #F8FAFD;
     }
     .chk-item.checked {
-      background: var(--toss-blue-bg);
-      border-color: var(--toss-blue);
+      background: var(--mint-green-bg);
+      border-color: var(--mint-green);
     }
     .chk-box {
       appearance: none;
@@ -336,8 +394,8 @@
       transition: all 0.15s ease;
     }
     .chk-box:checked {
-      background: var(--toss-blue);
-      border-color: var(--toss-blue);
+      background: var(--mint-green);
+      border-color: var(--mint-green);
     }
     .chk-box:checked::after {
       content: "";
@@ -408,9 +466,9 @@
 
     <!-- Hero Card -->
     <div class="hero-card">
-      <div class="eyebrow">AI Native Company / AX Workflow — 실무 강의 정리</div>
+      <div class="eyebrow">⏱️ 읽는 시간 3분 · 강남구 초기창업자 3주차 수강생 복습노트</div>
       <h1>강남구 초기 창업자 과정 3주차 - 사내 지식 기반(LLM Wiki) 구축과 AI 에이전트 협업 실무 강의 정리</h1>
-      <p class="hero-desc">단순 검색형 RAG의 단편성을 넘어, 사내 문서와 암묵지를 LLM이 읽고 살아있는 백과사전으로 갱신하는 &#x27;LLM Wiki&#x27; 아키텍처를 세우고, 규칙 간 충돌을 대표자가 중재하며 불필요한 규칙을 솎아내는 &#x27;지식 린트(Lint)&#x27;로 AI 네이티브 조직을 운영한다.</p>
+      <p class="hero-desc">질문할 때마다 조각만 찾는 단순 검색형 RAG(금붕어 기억)를 넘어, 사내 문서와 업무 기준을 AI가 읽고 살아있는 백과사전으로 갱신하는 &#x27;LLM Wiki&#x27; 체계를 세우고, 규정 충돌을 대표가 최종 판정하며 불필요한 규칙을 솎아내는 &#x27;문서 옷장 정리(지식 린트)&#x27;로 1인 및 초기 스타트업을 단단하게 운영한다.</p>
       <div class="meta-row">
         <span>일시: <strong>2026-10-14</strong></span>
         <span>작성자: <strong>수강생 Neo</strong></span>
@@ -418,21 +476,21 @@
       </div>
     </div>
 
-    <!-- Action Bar -->
+    <!-- Top Action Card (직관적 버튼 워딩) -->
     <div class="action-card">
       <div class="action-header">
-        <span class="action-title">원클릭 복사 &amp; 다운로드</span>
-        <span class="action-sub">노션, 메모장, 옵시디언 등 편한 도구에 바로 복사해 활용하세요</span>
+        <span class="action-title">원클릭 복사 &amp; 파일 저장</span>
+        <span class="action-sub">노션, 카카오톡, 옵시디언 등 편한 도구에 바로 복사해 활용하세요</span>
       </div>
       <div class="btn-grid">
         <button class="act-btn btn-secondary" onclick="copyPlain()">
-          📄 일반 문서 복사
+          📄 카톡·노션용 복사
         </button>
         <button class="act-btn btn-primary" onclick="copyObsidian()">
-          📋 옵시디언 마크다운 복사
+          📋 옵시디언(.md) 복사
         </button>
         <button class="act-btn btn-tertiary" onclick="downloadMd()">
-          📥 .md 다운로드
+          📥 파일(.md) 저장
         </button>
       </div>
     </div>
@@ -453,73 +511,102 @@
         <p>---</p>
       </div>
 
-      <!-- Section: 1. 강의 핵심 요지 (박정근 강사 발언 중심) -->
+      <!-- Section: 1. 강의 요지 (사내 문서고와 살아있는 업무 매뉴얼) -->
       <div class="card">
-        <div class="section-badge badge-indigo">1. 강의 핵심 요지 (박정근 강사 발언 중심)</div>
-        <h2>1. 강의 핵심 요지 (박정근 강사 발언 중심)</h2>
-        <h3>1) 지식 적재의 진화: RAG vs LLM Wiki (안드레이 카파시 아키텍처)</h3><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>단순 검색형 RAG(Retrieval-Augmented Generation)의 한계:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 질문이 들어올 때마다 파편화된 조각 문서를 매번 새로 찾아오는 &#x27;구글 검색&#x27; 방식.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 질의 시점에만 일회성으로 청크를 인출하므로, 사내 지식이 유기적으로 누적·발전하지 못하고 매번 원점에서 맴도는 &#x27;금붕어 기억&#x27;의 한계에 부딪힘.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>LLM Wiki(지식 축적형 위키)의 본질:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 새로운 정보(회의록, 고객 피드백, 시장 데이터)가 폴더에 유입되면, LLM이 수석 사서처럼 기존 지식 체계(위키 문서들)를 읽고, 문맥에 맞게 내용을 통합·수정·축적(Compounding Artifact)하는 모델.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 시간이 지날수록 기업 고유의 살아있는 백과사전으로 진화함.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>최적의 아키텍처 결합:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 지식은 LLM Wiki 형태로 유기적으로 컴파일하여 폴더에 축적하고, 실시간 질의응답은 그 위키 문서를 기반으로 RAG 조회를 수행하는 이중화 구조가 가장 안정적임.</p><h3>2) 옵시디언(Obsidian)과 LLM의 역할 관계</h3><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>안드레이 카파시(Andrej Karpathy)의 명제:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• <em>&quot;옵시디언은 IDE(통합 개발 환경)이고, LLM은 프로그래머(개발자)이며, 위키(마크다운 문서들)는 코드베이스(소스코드)이다.&quot;</em></p><p style="margin-left: 12px; margin-bottom: 8px;">• 마크다운 문서가 수십 개에서 수백·수천 개로 증가하면 인간의 작업 기억 용량을 초과함. 따라서 옵시디언의 폴더 트리와 지식 그래프 뷰를 통해 지식의 연결망을 시각적으로 조망하고 IDE처럼 통제해야 함.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>게리 탄(Gary Tan, Y Combinator CEO)의 관점:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• <em>&quot;잘 정리된 마크다운 문서 하나가 우리 회사의 직원 한 명이다 (A markdown file is an employee).&quot;</em></p><p style="margin-left: 12px; margin-bottom: 8px;">• 명문화된 마크다운 문서가 늘어날수록 회사의 AI 에이전트 직원 수가 늘어나는 것과 동일한 효과를 냄.</p><h3>3) &#x27;모아 컴퍼니&#x27; 실습과 충돌 감지 및 사람의 중재 (Human-in-the-Loop)</h3><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>SOP(표준 운영 절차) 생성과 확장:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 가상의 반려동물 간식 기업 &#x27;모아 컴퍼니&#x27;를 모델로, 실제 업무 규정과 CS 가이드를 마크다운 SOP 문서로 구체화하는 실습 진행.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>규칙 간 충돌(Conflict)의 필연성:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 회사가 성장하고 문서가 누적되면 구버전 정책과 신버전 정책의 충돌이 반드시 발생함 (예: 이전 상품 가격 35,000원 vs 최근 인상된 가격 50,000원, 서로 다른 환불 기한 등).</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>대표자(인간)의 최종 중재(Arbitration) 의무:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• AI는 텍스트를 대조하여 충돌 지점을 감지하고 태그(<code>[CHECK]</code>, <code>[CONFLICT]</code>)를 붙여줄 수 있지만, <strong>&quot;어느 것이 우리 회사의 진짜 표준인가&quot;를 판정하는 일은 절대 AI에게 위임할 수 없으며 오직 창업가/대표(사람)만이 결정할 수 있음.</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 중재된 결정은 일회성 채팅 답변으로 흘려보내지 않고, 즉시 공식 규칙(Rule) 문서와 스킬 규격으로 코드화·자산화해야 함.</p><h3>4) 지식 린트(Knowledge Lint): 보풀 제거와 규칙 정제</h3><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>&#x27;린트(Lint)&#x27;의 어원과 개념:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 오래 입은 니트나 스웨터의 보풀(Lint)을 떼어내듯, 낡고 엉켜서 거추장스러워진 실밥을 깔끔하게 솎아내는 작업.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>AI 지식 베이스에서의 린트 필요성:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 시스템이 커져 파일이 10개에서 100개, 500개로 늘어날수록 사문화된 규칙, 과거의 낡은 메모, 상충되는 지침이 쌓여 AI의 할루시네이션(환각)을 증폭시킴.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 주기적으로 불필요한 규칙을 솎아내고(보풀 제거), 일관성을 유지하는 &#x27;지식 린트&#x27; 루틴이 있어야만 모델의 추론 정확도와 업무 신뢰도가 유지됨.</p><h3>5) 아마존의 &#x27;고객 집착(Customer Obsession)&#x27;과 프롬프트 태도</h3><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>일하는 목적의 본질:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• &quot;내가 왜 이 작업을 하는가? 이것이 내부 동료나 외부 고객에게 어떤 실질적 가치를 주는가?&quot;를 명확히 정의하는 일에서 모든 업무 설계가 출발함.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>예의 바르고 논리적인 완전한 문장의 프롬프트:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• AI를 장난감이나 단순한 심부름꾼으로 하대하지 않고, 회사의 &#x27;고위 임원&#x27;이나 &#x27;전문 멘토&#x27;를 대하듯 공손하고 논리적인 완전한 문장으로 질문해야 함.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 질문자가 생각을 정돈하여 완전한 문장으로 쓸 때 스스로의 사고가 명료해지며, LLM 또한 최상위 품질의 구조화된 추론을 출력하게 됨.</p><p>---</p>
+        <div class="section-badge badge-blue">1. 강의 핵심 요지</div>
+        <h2>1. 강의 요지 (사내 문서고와 살아있는 업무 매뉴얼)</h2>
+        <h3>1) 단순 검색(RAG)을 넘어 &#x27;살아있는 사내 백과사전(LLM Wiki)&#x27;으로</h3><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>단순 검색형 RAG(Retrieval-Augmented Generation)의 한계:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 질문할 때마다 폴더에서 파편화된 조각 문서를 매번 새로 찾아오는 &#x27;구글 검색&#x27; 방식입니다.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 질의가 끝나면 맥락이 사라져 사내 지식이 유기적으로 누적되지 못하고 매번 제자리에서 맴도는 <strong>&#x27;금붕어 기억&#x27;</strong>의 한계에 부딪힙니다.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>축적형 LLM Wiki의 본질:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 새로운 정보(회의록, 고객 피드백, 시장 데이터)가 폴더에 들어오면, AI가 <strong>수석 사서이자 전담 비서</strong>처럼 기존 업무 매뉴얼을 읽고, 문맥에 맞게 내용을 스스로 통합·수정·축적(Compounding Artifact)하는 모델입니다.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 시간이 지날수록 우리 회사만의 살아있는 백과사전이자 지침서로 진화합니다.</p><h3>2) 문서고(옵시디언)와 AI 비서(LLM)의 역할 분담</h3><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>안드레이 카파시(Andrej Karpathy)의 핵심 비유:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• <em>&quot;옵시디언(폴더)은 사내 문서고이고, AI(LLM)는 수석 비서이며, 위키(마크다운 문서들)는 살아있는 업무 매뉴얼이다.&quot;</em> (개발로 치면 IDE·개발자·코드베이스의 관계)</p><p style="margin-left: 12px; margin-bottom: 8px;">• 마크다운 문서가 수십 개에서 수백 개로 늘어나면 대표 혼자 머릿속으로 다 외울 수 없습니다. 옵시디언의 폴더 트리와 지식 그래프를 통해 문서 간의 연결망을 시각적으로 조망하고 통제해야 합니다.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>게리 탄(Gary Tan, Y Combinator CEO)의 관점:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• <em>&quot;잘 만든 업무 지침서(.md) 1장이 24시간 일하는 전담 직원 1명이다 (A markdown file is an employee).&quot;</em></p><p style="margin-left: 12px; margin-bottom: 8px;">• 문서화된 업무 매뉴얼이 늘어날수록 회사의 24시간 AI 직원 수가 늘어나는 것과 동일한 경영 효과를 냅니다.</p><h3>3) 문서 간 규칙 충돌과 대표자의 최종 판정 (AI 교통정리)</h3><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>규칙 간 충돌(Conflict)의 필연성:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 회사가 성장하고 문서가 쌓이면 과거 규정과 신규 규정의 충돌이 반드시 발생합니다 (예: 이전 상품 가격 35,000원 vs 인상된 가격 50,000원, 서로 다른 환불 기한 등).</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>대표자(사람)의 최종 의사결정 의무 (Human-in-the-Loop):</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• AI는 텍스트를 대조해 충돌 지점을 찾고 태그(<code>[CHECK]</code>, <code>[CONFLICT]</code>)를 달아줄 수는 있지만, <strong>&quot;어느 것이 우리 회사의 진짜 표준인가&quot;를 확정하는 일은 결코 AI에게 미룰 수 없으며 오직 대표자 본인의 몫</strong>입니다.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 판정된 기준은 일회성 채팅으로 날리지 않고, 즉시 공식 업무 지침서(SOP) 파일로 확정해 폴더에 저장해야 합니다.</p><h3>4) 문서 옷장 정리(지식 린트) — 낡은 규정과 중복 메모 솎아내기</h3><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>&#x27;린트(Lint)&#x27;의 쉬운 개념:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 오래 입은 니트나 스웨터의 보풀(Lint)을 떼어내듯, 낡고 엉켜서 거추장스러워진 실밥을 깔끔하게 정리하는 옷장 대청소 작업입니다.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>AI 업무 환경에서 문서 린트가 필수인 이유:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 파일이 10개에서 50개, 100개로 늘어날수록 사문화된 옛날 규정, 폐기된 기획안이 쌓여 AI에게 혼선을 주고 거짓말(할루시네이션)을 유발합니다.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 정기적으로 불필요한 규칙을 솎아내고(보풀 제거), 정본만 남기는 <strong>&#x27;주간 문서 옷장 정리&#x27;</strong> 루틴이 있어야만 AI 비서의 답변 정확도가 유지됩니다.</p><h3>5) 아마존의 &#x27;고객 집착&#x27;과 프롬프트 태도</h3><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>일하는 목적의 본질:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• &quot;내가 왜 이 작업을 하는가? 이것이 고객(내부 동료나 외부 사용자)에게 어떤 실질적 가치를 주는가?&quot;를 명확히 정의하는 일에서 모든 AI 업무 설계가 출발합니다.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>예의 바르고 완전한 문장의 프롬프트:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• AI를 장난감이나 심부름꾼이 아니라 회사의 &#x27;고위 임원이나 전문 멘토&#x27;로 대우하며 정중하고 논리적인 완전한 문장으로 질문해야 합니다. 질문자가 생각을 가다듬어 완전한 문장을 쓰는 과정에서 스스로의 사고가 먼저 정돈되기 때문입니다.</p><p>---</p>
       </div>
 
-      <!-- Section: 2. 핵심 관점 대조표 -->
+      <!-- Section: 2. 현장 핵심 어록 (박정근 강사) -->
       <div class="card">
-        <div class="section-badge badge-mint">2. 핵심 관점 대조표</div>
-        <h2>2. 핵심 관점 대조표</h2>
-        <table class="comparison-table">
+        <div class="section-badge badge-neutral">강사 핵심 어록</div>
+        <h2>2. 현장 핵심 어록 (박정근 강사)</h2>
+        <div class="quote-box"><em>&quot;옵시디언(폴더)은 사내 문서고이고, AI는 수석 비서이며, 위키 문서는 살아있는 업무 매뉴얼입니다.&quot;</em></div><div class="quote-box"></div><div class="quote-box"><em>&quot;잘 만든 업무 지침서(.md) 1장이 우리 회사의 24시간 일하는 직원 1명입니다.&quot;</em></div><div class="quote-box"></div><div class="quote-box"><em>&quot;문서 간의 모순과 충돌을 감지하는 건 AI가 돕더라도, 기준을 확정하는 최종 교통정리는 결국 대표자 본인의 몫입니다.&quot;</em></div><div class="quote-box"></div><div class="quote-box"><em>&quot;지식 베이스가 커질수록 스웨터 보풀을 떼어내듯 옛날 규정을 솎아내는 &#x27;린트(Lint)&#x27; 작업을 해주지 않으면 AI는 길을 잃습니다.&quot;</em></div><div class="quote-box"></div><div class="quote-box"><em>&quot;AI를 다룰 때 예의 바르고 논리적인 완전한 문장을 쓰는 이유는, 그 과정에서 질문자 자신의 생각이 먼저 명료해지기 때문입니다.&quot;</em></div><p>---</p>
+      </div>
+
+      <!-- Section: 3. 핵심 관점 대조 (단순 검색 vs 살아있는 사내 매뉴얼) -->
+      <div class="card">
+        <div class="section-badge badge-blue">핵심 관점 대조</div>
+        <h2>3. 핵심 관점 대조 (단순 검색 vs 살아있는 사내 매뉴얼)</h2>
+        <div class="table-wrap">
+<table class="comparison-table">
   <thead>
-    <tr><th>비교 항목</th><th>RAG (단순 검색 증강)</th><th>LLM Wiki (축적형 사내 백과사전)</th></tr>
+    <tr><th>비교 항목</th><th>단순 검색형 (RAG)</th><th>축적형 백과사전 (LLM Wiki)</th></tr>
   </thead>
   <tbody>
-    <tr><td><strong>기본 작동 비유</strong></td><td>구글 검색 (매 질문마다 파편 검색)</td><td>수석 사서의 백과사전 편찬 (누적 갱신)</td></tr>
-<tr><td><strong>지식 기억 형태</strong></td><td>단편적 청크 인출 (금붕어 기억)</td><td>유기적으로 연결된 살아있는 마크다운 문서 체계</td></tr>
-<tr><td><strong>지식의 축적성</strong></td><td>질문 시점에만 일회성 조합 후 소멸</td><td>새 정보 유입 시 기존 문서에 자동 반영·복리 축적</td></tr>
-<tr><td><strong>시스템 내 역할</strong></td><td>AI가 검색 결과를 요약·나열</td><td>카파시 모델: Obsidian(IDE) - LLM(개발자) - Wiki(코드)</td></tr>
-<tr><td><strong>규칙 충돌 해결</strong></td><td>검색 유사도 상위 문서 무비판 인용</td><td>충돌 지점 감지(<code>[CHECK]</code>) ➔ 대표자가 기준 확정(중재)</td></tr>
-<tr><td><strong>유지 관리 루틴</strong></td><td>임베딩 벡터 재계산 위주</td><td><strong>지식 린트(Knowledge Lint)</strong>: 보풀 제거, 낡은 규칙 솎아내기</td></tr>
+    <tr><td data-label="비교 항목"><strong>기본 작동 비유</strong></td><td data-label="단순 검색형 (RAG)">구글 검색 (질문마다 파편 조각 검색)</td><td data-label="축적형 백과사전 (LLM Wiki)">수석 사서의 백과사전 편찬 (누적 갱신)</td></tr>
+<tr><td data-label="비교 항목"><strong>기억 형태</strong></td><td data-label="단순 검색형 (RAG)">단편적 조각 인출 (금붕어 기억)</td><td data-label="축적형 백과사전 (LLM Wiki)">유기적으로 연결된 살아있는 업무 지침서</td></tr>
+<tr><td data-label="비교 항목"><strong>지식 축적</strong></td><td data-label="단순 검색형 (RAG)">질문 끝나는 순간 일회성 소멸</td><td data-label="축적형 백과사전 (LLM Wiki)">새 정보 유입 시 기존 문서에 자동 반영·축적</td></tr>
+<tr><td data-label="비교 항목"><strong>역할 분담</strong></td><td data-label="단순 검색형 (RAG)">AI가 검색 결과 요약·나열</td><td data-label="축적형 백과사전 (LLM Wiki)">문서고(Obsidian) - 비서(AI) - 매뉴얼(위키)</td></tr>
+<tr><td data-label="비교 항목"><strong>충돌 해결</strong></td><td data-label="단순 검색형 (RAG)">검색 유사도 높은 문서 무비판 인용</td><td data-label="축적형 백과사전 (LLM Wiki)">충돌 지점 감지(<code>[CHECK]</code>) ➔ 대표자 최종 판정</td></tr>
+<tr><td data-label="비교 항목"><strong>유지 관리</strong></td><td data-label="단순 검색형 (RAG)">벡터 재계산 위주</td><td data-label="축적형 백과사전 (LLM Wiki)"><strong>지식 린트</strong>: 낡은 규정 솎아내기, 보풀 제거</td></tr>
 
   </tbody>
-</table><p>---</p>
+</table>
+</div><p>---</p>
       </div>
 
-      <!-- Section: 3. 내 사업에 바로 적용할 3대 실천 체크리스트 -->
+      <!-- Section: 4. 수강생 실천 기록 (내 업무 적용 4단계) -->
+      <div class="card">
+        <div class="section-badge badge-mint">2. 수강생 실천 기록</div>
+        <h2>4. 수강생 실천 기록 (내 업무 적용 4단계)</h2>
+        <p>강의에서 배운 방식을 제 실제 1인 빌더 업무에 대입해 보며 실천한 4가지 과정입니다.</p><p>1. <strong>기록을 로컬 폴더에 체계적으로 적재하기 (Lv.1 적용):</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 회의와 강연 메모, 외부 학습 기록을 마크다운 파일(.md)로 로컬 폴더에 먼저 모았습니다.</p><p>2. <strong>일하는 기준(SOP) 문서화로 에이전트 연결하기 (Lv.2 적용):</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• &#x27;수치 인용 원칙&#x27;, &#x27;금지 표현&#x27;, &#x27;결과물 서식&#x27;을 담은 한 페이지짜리 기준 문서를 작성해 AI들이 읽고 일관되게 협업하도록 구성했습니다.</p><p>3. <strong>충돌 발생 시 대표자의 최종 판정 및 표준화:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 정책 충돌이나 모호한 기준이 생겼을 때 AI에게 결정을 미루지 않고, 사람이 직접 최종 표준을 정해 공식 규칙 파일에 즉시 반영했습니다.</p><p>4. <strong>정기적인 &#x27;지식 린트(옷장 정리)&#x27; 루틴 가동:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 주간 점검 루틴을 두어 사문화된 규칙이나 낡은 메모를 솎아내고(보풀 제거), 지식 베이스의 무결성을 지속적으로 유지하고 있습니다.</p><div class="quote-box"><strong>💡 바로 따라 해보는 추천 사내 폴더 구조 (예시 4줄):</strong></div><div class="quote-box">```text</div><div class="quote-box">📁 00_임시메모/        (강의 녹취, 번뜩이는 아이디어 일단 모아두기)</div><div class="quote-box">📁 10_사내표준_SOP/   ➔ 📄 고객_환불규정_최종정본.md (대표가 판정한 기준 1장)</div><div class="quote-box">📁 20_진행프로젝트/    (실제 진행 중인 사업별 기획 및 산출물)</div><div class="quote-box">📁 99_보관함_Archive/ (린트 대청소 후 보관 처리된 옛날 메모·구버전 규정)</div><div class="quote-box">```</div><p><em>(※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)</em></p><p>---</p>
+      </div>
+
+      <!-- Section: 5. 실습 워크시트 (내 사업 대입 3대 질문) -->
       <div class="card">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-          <div class="section-badge badge-orange" style="margin-bottom: 0;">실습 워크시트</div>
-          <span id="chk-count-badge" style="font-size: 12px; font-weight: 800; color: var(--toss-blue); background: var(--toss-blue-bg); padding: 4px 10px; border-radius: 8px;">0 / 3 완료</span>
+          <div class="section-badge badge-mint" style="margin-bottom: 0;">3. 실습 워크시트</div>
+          <span id="chk-count-badge" style="font-size: 12px; font-weight: 800; color: var(--mint-green); background: var(--mint-green-bg); padding: 4px 10px; border-radius: 8px;">0 / 2 완료</span>
         </div>
-        <h2>3. 내 사업에 바로 적용할 3대 실천 체크리스트</h2>
-        <p>오늘 강의 내용을 바탕으로 각자의 사업에 대입해 보실 수 있는 실습 질문입니다. 직접 체크해 보세요.</p>
+        <h2>5. 실습 워크시트 (내 사업 대입 3대 질문)</h2>
+        <p>오늘 강의 내용을 바탕으로 대표님의 사업에 지금 바로 대입해 볼 수 있는 3가지 실천 약속입니다. 직접 체크해 보세요.</p>
         <div class="chk-group">
           
           <div class="chk-item" id="item-chk1" onclick="toggleChk('chk1')">
             <input type="checkbox" class="chk-box" id="chk1" onclick="event.stopPropagation(); saveChk();" />
             <div class="chk-content">
-              <div class="chk-title">질문 1. 우리 회사의 업무 문서 중 충돌하는 규정(가격, 환불, 응대) 1개를 찾아 정본(SSOT)으로 단일화했는가?**</div>
-              <div class="chk-sub">AI가 찾아준 충돌 표시를 바탕으로, 대표자가 직접 최종 기준을 판정하고 문서에 반영하기</div>
+              <div class="chk-title">질문 1. 노션·카톡·구글독스에 흩어져 버전이 헷갈리는 우리 회사 핵심 규정 1가지(예: 환불·견적·응대 기준)가 무엇인지 떠올렸는가?**</div>
+              <div class="chk-sub">여러 문서 간의 충돌 지점을 찾고, 대표자가 직접 최종 기준 1장을 확정하기</div>
             </div>
           </div>
           <div class="chk-item" id="item-chk2" onclick="toggleChk('chk2')">
             <input type="checkbox" class="chk-box" id="chk2" onclick="event.stopPropagation(); saveChk();" />
             <div class="chk-content">
-              <div class="chk-title">질문 2. 자주 쓰는 프롬프트나 업무 절차를 일회성 채팅으로 날리지 않고 마크다운 규칙(SOP) 파일로 만들어 폴더에 저장했는가?**</div>
-              <div class="chk-sub">게리 탄의 명제: 잘 정리된 마크다운 문서 1개 = 24시간 일하는 AI 직원 1명</div>
-            </div>
-          </div>
-          <div class="chk-item" id="item-chk3" onclick="toggleChk('chk3')">
-            <input type="checkbox" class="chk-box" id="chk3" onclick="event.stopPropagation(); saveChk();" />
-            <div class="chk-content">
-              <div class="chk-title">질문 3. 사문화된 지침과 중복 메모를 솎아내는 &#x27;지식 린트(보풀 제거)&#x27; 정기 루틴을 마련했는가?**</div>
-              <div class="chk-sub">문서가 늘어날수록 발생하는 지식 오염과 할루시네이션을 방지하기 위한 정기 클린업 루틴 가동</div>
+              <div class="chk-title">질문 2. AI에게 매번 똑같이 설명하느라 지치는 반복 업무 1개를 골라, 오늘 안에 &#x27;업무 지침서 1장&#x27;으로 적어두기로 정했는가?**</div>
+              <div class="chk-sub">게리 탄의 명제: 잘 만든 업무 지침서 1장 = 24시간 일하는 전담 직원 1명</div>
             </div>
           </div>
         </div>
+        <!-- 3/3 달성 시 나타나는 부드러운 축하 및 복사 안내 박스 -->
+        <div id="chk-complete-box" style="display: none; background: #E5F9F0; border: 1px solid #00C471; border-radius: 14px; padding: 16px 18px; margin-top: 16px; font-size: 14px; color: #007A45; line-height: 1.6;">
+          <strong>🎉 3가지 적용 포인트를 모두 찾으셨네요!</strong><br />
+          아래 복사 버튼을 눌러 대표님의 노트(노션·옵시디언)에 바로 붙여넣고 오늘부터 시작해 보세요.
+        </div>
       </div>
 
-      <!-- Section: 4. 현장 핵심 어록 (박정근 강사) -->
-      <div class="card">
-        <div class="section-badge badge-blue">4. 현장 핵심 어록 (박정근 강사)</div>
-        <h2>4. 현장 핵심 어록 (박정근 강사)</h2>
-        <div class="quote-box"><em>&quot;옵시디언은 IDE이고, LLM은 프로그래머이며, 위키 문서는 코드베이스입니다.&quot;</em></div><div class="quote-box"></div><div class="quote-box"><em>&quot;마크다운 문서 하나가 우리 회사의 직원 한 명입니다.&quot;</em></div><div class="quote-box"></div><div class="quote-box"><em>&quot;규칙 간의 모순과 충돌을 감지하는 건 AI가 돕더라도, 기준을 확정하는 최종 판정은 결국 대표자 본인의 몫입니다.&quot;</em></div><div class="quote-box"></div><div class="quote-box"><em>&quot;지식 베이스가 커질수록 스웨터의 보풀을 떼어내듯 낡은 규칙을 솎아내는 &#x27;린트(Lint)&#x27; 작업을 해주지 않으면 AI는 길을 잃습니다.&quot;</em></div><div class="quote-box"></div><div class="quote-box"><em>&quot;AI를 다룰 때 예의 바르고 논리적인 완전한 문장을 쓰는 이유는, 그 과정에서 질문자 자신의 생각이 먼저 정돈되기 때문입니다.&quot;</em></div>
+      <!-- Bottom Action Card (클라이맥스 체크 후 마무리 소장 유도) -->
+      <div class="action-card" style="margin-top: 24px; text-align: center;">
+        <div style="font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+          방금 점검한 내용을 대표님 노트에 가져가세요
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          노션, 카카오톡, 옵시디언 등 편한 도구에 원클릭으로 붙여넣고 오늘부터 시작할 수 있습니다.
+        </p>
+        <div class="btn-grid">
+          <button class="act-btn btn-secondary" onclick="copyPlain()">
+            📄 카톡·노션용 복사
+          </button>
+          <button class="act-btn btn-primary" onclick="copyObsidian()">
+            📋 옵시디언(.md) 복사
+          </button>
+          <button class="act-btn btn-tertiary" onclick="downloadMd()">
+            📥 파일(.md) 저장
+          </button>
+        </div>
       </div>
+
     </div>
 
     <!-- Markdown View -->
@@ -539,11 +626,11 @@
 
   <script>
     // json.dumps() 기반 안전한 무결점 데이터 주입 (Triple-Sync 컴파일)
-    const OBSIDIAN_MD = "---\nnote_id: training-note-20261014-week3-1\ntitle: \"강남구 초기 창업자 과정 3주차 - 사내 지식 기반(LLM Wiki) 구축과 AI 에이전트 협업 실무 강의 정리\"\nartifact_type: training_note\nknowledge_scope: external_lecture\ncanonical_status: staging\ndate: 2026-10-14\nupdated_at_kst: 2026-10-14T22:00:00+09:00\nstatus: processed\ncategory: AI Native Company / AX Workflow\ntags:\n  - Startup\n  - AINative\n  - Obsidian\n  - LLMWiki\n  - SOP\n  - KnowledgeLint\n  - TrainingNote\nspeaker_stated_in_transcript: \"박정근 (강사) / 보조강사: 벤자민(연상민)\"\nsource_refs:\n  - path: D:/Obsidian/내 회사 허브/00_Inbox/초기 창업자 강의 3주차 - 1.md\n    evidence_state: lecture_transcript_summary_20261014_v1\n---\n\n# 2026-10-14 강남구 초기 창업자 과정 (3주차): 사내 지식 기반(LLM Wiki) 구축 및 AI 협업 실무\n\n> [!abstract] 핵심 한 줄 요약\n> 단순 검색형 RAG의 단편성을 넘어, 사내 문서와 암묵지를 LLM이 읽고 살아있는 백과사전으로 갱신하는 'LLM Wiki' 아키텍처를 세우고, 규칙 간 충돌을 대표자가 중재하며 불필요한 규칙을 솎아내는 '지식 린트(Lint)'로 AI 네이티브 조직을 운영한다.\n\n> **문서 성격 및 원본성 고지:**\n> - 본 문서는 외부 강연 기록(`artifact_type: training_note`)으로, 당일 현장 녹취 중 **강사님(박정근 강사, 참석자 1)**의 핵심 강의 발언만을 선별하여 구조화한 정리본입니다.\n> - 청중 간의 잡담, 아이스브레이킹, 참석자 개별 질문 등 비핵심 담화는 배제하고 본 강의의 이론적 프레임워크와 실습 지침만을 충실히 반영했습니다.\n> - 강연에서 언급된 외부 이론 및 기업 사례(안드레이 카파시, 게리 탄, 아마존 리더십 원칙 등)는 교육용 모델이며, Neo 시스템의 내부 운영 실측치와 엄격히 구분됩니다.\n\n---\n\n## 1. 강의 핵심 요지 (박정근 강사 발언 중심)\n\n### 1) 지식 적재의 진화: RAG vs LLM Wiki (안드레이 카파시 아키텍처)\n- **단순 검색형 RAG(Retrieval-Augmented Generation)의 한계:**\n  - 질문이 들어올 때마다 파편화된 조각 문서를 매번 새로 찾아오는 '구글 검색' 방식.\n  - 질의 시점에만 일회성으로 청크를 인출하므로, 사내 지식이 유기적으로 누적·발전하지 못하고 매번 원점에서 맴도는 '금붕어 기억'의 한계에 부딪힘.\n- **LLM Wiki(지식 축적형 위키)의 본질:**\n  - 새로운 정보(회의록, 고객 피드백, 시장 데이터)가 폴더에 유입되면, LLM이 수석 사서처럼 기존 지식 체계(위키 문서들)를 읽고, 문맥에 맞게 내용을 통합·수정·축적(Compounding Artifact)하는 모델.\n  - 시간이 지날수록 기업 고유의 살아있는 백과사전으로 진화함.\n- **최적의 아키텍처 결합:**\n  - 지식은 LLM Wiki 형태로 유기적으로 컴파일하여 폴더에 축적하고, 실시간 질의응답은 그 위키 문서를 기반으로 RAG 조회를 수행하는 이중화 구조가 가장 안정적임.\n\n### 2) 옵시디언(Obsidian)과 LLM의 역할 관계\n- **안드레이 카파시(Andrej Karpathy)의 명제:**\n  - *\"옵시디언은 IDE(통합 개발 환경)이고, LLM은 프로그래머(개발자)이며, 위키(마크다운 문서들)는 코드베이스(소스코드)이다.\"*\n  - 마크다운 문서가 수십 개에서 수백·수천 개로 증가하면 인간의 작업 기억 용량을 초과함. 따라서 옵시디언의 폴더 트리와 지식 그래프 뷰를 통해 지식의 연결망을 시각적으로 조망하고 IDE처럼 통제해야 함.\n- **게리 탄(Gary Tan, Y Combinator CEO)의 관점:**\n  - *\"잘 정리된 마크다운 문서 하나가 우리 회사의 직원 한 명이다 (A markdown file is an employee).\"*\n  - 명문화된 마크다운 문서가 늘어날수록 회사의 AI 에이전트 직원 수가 늘어나는 것과 동일한 효과를 냄.\n\n### 3) '모아 컴퍼니' 실습과 충돌 감지 및 사람의 중재 (Human-in-the-Loop)\n- **SOP(표준 운영 절차) 생성과 확장:**\n  - 가상의 반려동물 간식 기업 '모아 컴퍼니'를 모델로, 실제 업무 규정과 CS 가이드를 마크다운 SOP 문서로 구체화하는 실습 진행.\n- **규칙 간 충돌(Conflict)의 필연성:**\n  - 회사가 성장하고 문서가 누적되면 구버전 정책과 신버전 정책의 충돌이 반드시 발생함 (예: 이전 상품 가격 35,000원 vs 최근 인상된 가격 50,000원, 서로 다른 환불 기한 등).\n- **대표자(인간)의 최종 중재(Arbitration) 의무:**\n  - AI는 텍스트를 대조하여 충돌 지점을 감지하고 태그(`[CHECK]`, `[CONFLICT]`)를 붙여줄 수 있지만, **\"어느 것이 우리 회사의 진짜 표준인가\"를 판정하는 일은 절대 AI에게 위임할 수 없으며 오직 창업가/대표(사람)만이 결정할 수 있음.**\n  - 중재된 결정은 일회성 채팅 답변으로 흘려보내지 않고, 즉시 공식 규칙(Rule) 문서와 스킬 규격으로 코드화·자산화해야 함.\n\n### 4) 지식 린트(Knowledge Lint): 보풀 제거와 규칙 정제\n- **'린트(Lint)'의 어원과 개념:**\n  - 오래 입은 니트나 스웨터의 보풀(Lint)을 떼어내듯, 낡고 엉켜서 거추장스러워진 실밥을 깔끔하게 솎아내는 작업.\n- **AI 지식 베이스에서의 린트 필요성:**\n  - 시스템이 커져 파일이 10개에서 100개, 500개로 늘어날수록 사문화된 규칙, 과거의 낡은 메모, 상충되는 지침이 쌓여 AI의 할루시네이션(환각)을 증폭시킴.\n  - 주기적으로 불필요한 규칙을 솎아내고(보풀 제거), 일관성을 유지하는 '지식 린트' 루틴이 있어야만 모델의 추론 정확도와 업무 신뢰도가 유지됨.\n\n### 5) 아마존의 '고객 집착(Customer Obsession)'과 프롬프트 태도\n- **일하는 목적의 본질:**\n  - \"내가 왜 이 작업을 하는가? 이것이 내부 동료나 외부 고객에게 어떤 실질적 가치를 주는가?\"를 명확히 정의하는 일에서 모든 업무 설계가 출발함.\n- **예의 바르고 논리적인 완전한 문장의 프롬프트:**\n  - AI를 장난감이나 단순한 심부름꾼으로 하대하지 않고, 회사의 '고위 임원'이나 '전문 멘토'를 대하듯 공손하고 논리적인 완전한 문장으로 질문해야 함.\n  - 질문자가 생각을 정돈하여 완전한 문장으로 쓸 때 스스로의 사고가 명료해지며, LLM 또한 최상위 품질의 구조화된 추론을 출력하게 됨.\n\n---\n\n## 2. 핵심 관점 대조표\n\n| 비교 항목 | RAG (단순 검색 증강) | LLM Wiki (축적형 사내 백과사전) |\n| :--- | :--- | :--- |\n| **기본 작동 비유** | 구글 검색 (매 질문마다 파편 검색) | 수석 사서의 백과사전 편찬 (누적 갱신) |\n| **지식 기억 형태** | 단편적 청크 인출 (금붕어 기억) | 유기적으로 연결된 살아있는 마크다운 문서 체계 |\n| **지식의 축적성** | 질문 시점에만 일회성 조합 후 소멸 | 새 정보 유입 시 기존 문서에 자동 반영·복리 축적 |\n| **시스템 내 역할** | AI가 검색 결과를 요약·나열 | 카파시 모델: Obsidian(IDE) - LLM(개발자) - Wiki(코드) |\n| **규칙 충돌 해결** | 검색 유사도 상위 문서 무비판 인용 | 충돌 지점 감지(`[CHECK]`) ➔ 대표자가 기준 확정(중재) |\n| **유지 관리 루틴** | 임베딩 벡터 재계산 위주 | **지식 린트(Knowledge Lint)**: 보풀 제거, 낡은 규칙 솎아내기 |\n\n---\n\n## 3. 내 사업에 바로 적용할 3대 실천 체크리스트\n\n- [ ] **1. 우리 회사의 업무 문서 중 충돌하는 규정(가격, 환불, 응대) 1개를 찾아 정본(SSOT)으로 단일화했는가?**\n  *(AI가 찾아준 충돌 표시를 바탕으로, 대표자가 직접 최종 기준을 판정하고 문서에 반영하기)*\n- [ ] **2. 자주 쓰는 프롬프트나 업무 절차를 일회성 채팅으로 날리지 않고 마크다운 규칙(SOP) 파일로 만들어 폴더에 저장했는가?**\n  *(게리 탄의 명제: 잘 정리된 마크다운 문서 1개 = 24시간 일하는 AI 직원 1명)*\n- [ ] **3. 사문화된 지침과 중복 메모를 솎아내는 '지식 린트(보풀 제거)' 정기 루틴을 마련했는가?**\n  *(문서가 늘어날수록 발생하는 지식 오염과 할루시네이션을 방지하기 위한 정기 클린업 루틴 가동)*\n\n---\n\n## 4. 현장 핵심 어록 (박정근 강사)\n\n> *\"옵시디언은 IDE이고, LLM은 프로그래머이며, 위키 문서는 코드베이스입니다.\"*\n> \n> *\"마크다운 문서 하나가 우리 회사의 직원 한 명입니다.\"*\n> \n> *\"규칙 간의 모순과 충돌을 감지하는 건 AI가 돕더라도, 기준을 확정하는 최종 판정은 결국 대표자 본인의 몫입니다.\"*\n> \n> *\"지식 베이스가 커질수록 스웨터의 보풀을 떼어내듯 낡은 규칙을 솎아내는 '린트(Lint)' 작업을 해주지 않으면 AI는 길을 잃습니다.\"*\n> \n> *\"AI를 다룰 때 예의 바르고 논리적인 완전한 문장을 쓰는 이유는, 그 과정에서 질문자 자신의 생각이 먼저 정돈되기 때문입니다.\"*\n";
-    const PLAIN_TXT = "[강남구 초기 창업자 과정 3주차 - 사내 지식 기반(LLM Wiki) 구축과 AI 에이전트 협업 실무 강의 정리]\n작성자: 수강생 Neo\n일시: 2026-10-14\n출처: 강의 녹취 기반 정리본 및 수강생 실무 적용 기록\n============================================================\n\n2026-10-14 강남구 초기 창업자 과정 (3주차): 사내 지식 기반(LLM Wiki) 구축 및 AI 협업 실무\n\n\n문서 성격 및 원본성 고지:\n- 본 문서는 외부 강연 기록(artifact_type: training_note)으로, 당일 현장 녹취 중 강사님(박정근 강사, 참석자 1)의 핵심 강의 발언만을 선별하여 구조화한 정리본입니다.\n- 청중 간의 잡담, 아이스브레이킹, 참석자 개별 질문 등 비핵심 담화는 배제하고 본 강의의 이론적 프레임워크와 실습 지침만을 충실히 반영했습니다.\n- 강연에서 언급된 외부 이론 및 기업 사례(안드레이 카파시, 게리 탄, 아마존 리더십 원칙 등)는 교육용 모델이며, Neo 시스템의 내부 운영 실측치와 엄격히 구분됩니다.\n\n---\n\n1. 강의 핵심 요지 (박정근 강사 발언 중심)\n\n1) 지식 적재의 진화: RAG vs LLM Wiki (안드레이 카파시 아키텍처)\n- 단순 검색형 RAG(Retrieval-Augmented Generation)의 한계:\n  - 질문이 들어올 때마다 파편화된 조각 문서를 매번 새로 찾아오는 '구글 검색' 방식.\n  - 질의 시점에만 일회성으로 청크를 인출하므로, 사내 지식이 유기적으로 누적·발전하지 못하고 매번 원점에서 맴도는 '금붕어 기억'의 한계에 부딪힘.\n- LLM Wiki(지식 축적형 위키)의 본질:\n  - 새로운 정보(회의록, 고객 피드백, 시장 데이터)가 폴더에 유입되면, LLM이 수석 사서처럼 기존 지식 체계(위키 문서들)를 읽고, 문맥에 맞게 내용을 통합·수정·축적(Compounding Artifact)하는 모델.\n  - 시간이 지날수록 기업 고유의 살아있는 백과사전으로 진화함.\n- 최적의 아키텍처 결합:\n  - 지식은 LLM Wiki 형태로 유기적으로 컴파일하여 폴더에 축적하고, 실시간 질의응답은 그 위키 문서를 기반으로 RAG 조회를 수행하는 이중화 구조가 가장 안정적임.\n\n2) 옵시디언(Obsidian)과 LLM의 역할 관계\n- 안드레이 카파시(Andrej Karpathy)의 명제:\n  - *\"옵시디언은 IDE(통합 개발 환경)이고, LLM은 프로그래머(개발자)이며, 위키(마크다운 문서들)는 코드베이스(소스코드)이다.\"*\n  - 마크다운 문서가 수십 개에서 수백·수천 개로 증가하면 인간의 작업 기억 용량을 초과함. 따라서 옵시디언의 폴더 트리와 지식 그래프 뷰를 통해 지식의 연결망을 시각적으로 조망하고 IDE처럼 통제해야 함.\n- 게리 탄(Gary Tan, Y Combinator CEO)의 관점:\n  - *\"잘 정리된 마크다운 문서 하나가 우리 회사의 직원 한 명이다 (A markdown file is an employee).\"*\n  - 명문화된 마크다운 문서가 늘어날수록 회사의 AI 에이전트 직원 수가 늘어나는 것과 동일한 효과를 냄.\n\n3) '모아 컴퍼니' 실습과 충돌 감지 및 사람의 중재 (Human-in-the-Loop)\n- SOP(표준 운영 절차) 생성과 확장:\n  - 가상의 반려동물 간식 기업 '모아 컴퍼니'를 모델로, 실제 업무 규정과 CS 가이드를 마크다운 SOP 문서로 구체화하는 실습 진행.\n- 규칙 간 충돌(Conflict)의 필연성:\n  - 회사가 성장하고 문서가 누적되면 구버전 정책과 신버전 정책의 충돌이 반드시 발생함 (예: 이전 상품 가격 35,000원 vs 최근 인상된 가격 50,000원, 서로 다른 환불 기한 등).\n- 대표자(인간)의 최종 중재(Arbitration) 의무:\n  - AI는 텍스트를 대조하여 충돌 지점을 감지하고 태그([CHECK], [CONFLICT])를 붙여줄 수 있지만, \"어느 것이 우리 회사의 진짜 표준인가\"를 판정하는 일은 절대 AI에게 위임할 수 없으며 오직 창업가/대표(사람)만이 결정할 수 있음.\n  - 중재된 결정은 일회성 채팅 답변으로 흘려보내지 않고, 즉시 공식 규칙(Rule) 문서와 스킬 규격으로 코드화·자산화해야 함.\n\n4) 지식 린트(Knowledge Lint): 보풀 제거와 규칙 정제\n- '린트(Lint)'의 어원과 개념:\n  - 오래 입은 니트나 스웨터의 보풀(Lint)을 떼어내듯, 낡고 엉켜서 거추장스러워진 실밥을 깔끔하게 솎아내는 작업.\n- AI 지식 베이스에서의 린트 필요성:\n  - 시스템이 커져 파일이 10개에서 100개, 500개로 늘어날수록 사문화된 규칙, 과거의 낡은 메모, 상충되는 지침이 쌓여 AI의 할루시네이션(환각)을 증폭시킴.\n  - 주기적으로 불필요한 규칙을 솎아내고(보풀 제거), 일관성을 유지하는 '지식 린트' 루틴이 있어야만 모델의 추론 정확도와 업무 신뢰도가 유지됨.\n\n5) 아마존의 '고객 집착(Customer Obsession)'과 프롬프트 태도\n- 일하는 목적의 본질:\n  - \"내가 왜 이 작업을 하는가? 이것이 내부 동료나 외부 고객에게 어떤 실질적 가치를 주는가?\"를 명확히 정의하는 일에서 모든 업무 설계가 출발함.\n- 예의 바르고 논리적인 완전한 문장의 프롬프트:\n  - AI를 장난감이나 단순한 심부름꾼으로 하대하지 않고, 회사의 '고위 임원'이나 '전문 멘토'를 대하듯 공손하고 논리적인 완전한 문장으로 질문해야 함.\n  - 질문자가 생각을 정돈하여 완전한 문장으로 쓸 때 스스로의 사고가 명료해지며, LLM 또한 최상위 품질의 구조화된 추론을 출력하게 됨.\n\n---\n\n2. 핵심 관점 대조표\n\n| 비교 항목 | RAG (단순 검색 증강) | LLM Wiki (축적형 사내 백과사전) |\n| :--- | :--- | :--- |\n| 기본 작동 비유 | 구글 검색 (매 질문마다 파편 검색) | 수석 사서의 백과사전 편찬 (누적 갱신) |\n| 지식 기억 형태 | 단편적 청크 인출 (금붕어 기억) | 유기적으로 연결된 살아있는 마크다운 문서 체계 |\n| 지식의 축적성 | 질문 시점에만 일회성 조합 후 소멸 | 새 정보 유입 시 기존 문서에 자동 반영·복리 축적 |\n| 시스템 내 역할 | AI가 검색 결과를 요약·나열 | 카파시 모델: Obsidian(IDE) - LLM(개발자) - Wiki(코드) |\n| 규칙 충돌 해결 | 검색 유사도 상위 문서 무비판 인용 | 충돌 지점 감지([CHECK]) ➔ 대표자가 기준 확정(중재) |\n| 유지 관리 루틴 | 임베딩 벡터 재계산 위주 | 지식 린트(Knowledge Lint): 보풀 제거, 낡은 규칙 솎아내기 |\n\n---\n\n3. 내 사업에 바로 적용할 3대 실천 체크리스트\n\n- [ ] 1. 우리 회사의 업무 문서 중 충돌하는 규정(가격, 환불, 응대) 1개를 찾아 정본(SSOT)으로 단일화했는가?\n  *(AI가 찾아준 충돌 표시를 바탕으로, 대표자가 직접 최종 기준을 판정하고 문서에 반영하기)*\n- [ ] 2. 자주 쓰는 프롬프트나 업무 절차를 일회성 채팅으로 날리지 않고 마크다운 규칙(SOP) 파일로 만들어 폴더에 저장했는가?\n  *(게리 탄의 명제: 잘 정리된 마크다운 문서 1개 = 24시간 일하는 AI 직원 1명)*\n- [ ] 3. 사문화된 지침과 중복 메모를 솎아내는 '지식 린트(보풀 제거)' 정기 루틴을 마련했는가?\n  *(문서가 늘어날수록 발생하는 지식 오염과 할루시네이션을 방지하기 위한 정기 클린업 루틴 가동)*\n\n---\n\n4. 현장 핵심 어록 (박정근 강사)\n\n*\"옵시디언은 IDE이고, LLM은 프로그래머이며, 위키 문서는 코드베이스입니다.\"*\n*\"마크다운 문서 하나가 우리 회사의 직원 한 명입니다.\"*\n*\"규칙 간의 모순과 충돌을 감지하는 건 AI가 돕더라도, 기준을 확정하는 최종 판정은 결국 대표자 본인의 몫입니다.\"*\n*\"지식 베이스가 커질수록 스웨터의 보풀을 떼어내듯 낡은 규칙을 솎아내는 '린트(Lint)' 작업을 해주지 않으면 AI는 길을 잃습니다.\"*\n*\"AI를 다룰 때 예의 바르고 논리적인 완전한 문장을 쓰는 이유는, 그 과정에서 질문자 자신의 생각이 먼저 정돈되기 때문입니다.\"*";
+    const OBSIDIAN_MD = "---\nnote_id: training-note-20261014-week3-1\ntitle: \"강남구 초기 창업자 과정 3주차 - 사내 지식 기반(LLM Wiki) 구축과 AI 에이전트 협업 실무 강의 정리\"\nartifact_type: training_note\nknowledge_scope: external_lecture\ncanonical_status: staging\ndate: 2026-10-14\nupdated_at_kst: 2026-10-14T23:05:00+09:00\nstatus: processed\ncategory: AI Native Company / AX Workflow\ntags:\n  - Startup\n  - AINative\n  - Obsidian\n  - LLMWiki\n  - SOP\n  - KnowledgeLint\n  - TrainingNote\nspeaker_stated_in_transcript: \"박정근 (강사) / 보조강사: 벤자민(연상민)\"\nsource_refs:\n  - path: D:/Obsidian/내 회사 허브/00_Inbox/초기 창업자 강의 3주차 - 1.md\n    evidence_state: lecture_transcript_summary_20261014_v2\n---\n\n# 2026-10-14 강남구 초기 창업자 과정 (3주차): 사내 지식 기반(LLM Wiki) 구축 및 AI 협업 실무\n\n> [!abstract] 핵심 한 줄 요약\n> 질문할 때마다 조각만 찾는 단순 검색형 RAG(금붕어 기억)를 넘어, 사내 문서와 업무 기준을 AI가 읽고 살아있는 백과사전으로 갱신하는 'LLM Wiki' 체계를 세우고, 규정 충돌을 대표가 최종 판정하며 불필요한 규칙을 솎아내는 '문서 옷장 정리(지식 린트)'로 1인 및 초기 스타트업을 단단하게 운영한다.\n\n> **문서 성격 및 원본성 고지:**\n> - 본 문서는 외부 강연 기록(`artifact_type: training_note`)으로, 당일 현장 녹취 중 **강사님(박정근 강사, 참석자 1)**의 핵심 강의 발언만을 선별하여 비개발자 대표님 눈높이로 구조화한 복습 노트입니다.\n> - 청중 간의 잡담, 아이스브레이킹, 참석자 개별 질문 등 비핵심 담화는 배제하고 본 강의의 핵심 프레임워크와 실습 지침만을 충실히 반영했습니다.\n\n---\n\n## 1. 강의 요지 (사내 문서고와 살아있는 업무 매뉴얼)\n\n### 1) 단순 검색(RAG)을 넘어 '살아있는 사내 백과사전(LLM Wiki)'으로\n- **단순 검색형 RAG(Retrieval-Augmented Generation)의 한계:**\n  - 질문할 때마다 폴더에서 파편화된 조각 문서를 매번 새로 찾아오는 '구글 검색' 방식입니다.\n  - 질의가 끝나면 맥락이 사라져 사내 지식이 유기적으로 누적되지 못하고 매번 제자리에서 맴도는 **'금붕어 기억'**의 한계에 부딪힙니다.\n- **축적형 LLM Wiki의 본질:**\n  - 새로운 정보(회의록, 고객 피드백, 시장 데이터)가 폴더에 들어오면, AI가 **수석 사서이자 전담 비서**처럼 기존 업무 매뉴얼을 읽고, 문맥에 맞게 내용을 스스로 통합·수정·축적(Compounding Artifact)하는 모델입니다.\n  - 시간이 지날수록 우리 회사만의 살아있는 백과사전이자 지침서로 진화합니다.\n\n### 2) 문서고(옵시디언)와 AI 비서(LLM)의 역할 분담\n- **안드레이 카파시(Andrej Karpathy)의 핵심 비유:**\n  - *\"옵시디언(폴더)은 사내 문서고이고, AI(LLM)는 수석 비서이며, 위키(마크다운 문서들)는 살아있는 업무 매뉴얼이다.\"* (개발로 치면 IDE·개발자·코드베이스의 관계)\n  - 마크다운 문서가 수십 개에서 수백 개로 늘어나면 대표 혼자 머릿속으로 다 외울 수 없습니다. 옵시디언의 폴더 트리와 지식 그래프를 통해 문서 간의 연결망을 시각적으로 조망하고 통제해야 합니다.\n- **게리 탄(Gary Tan, Y Combinator CEO)의 관점:**\n  - *\"잘 만든 업무 지침서(.md) 1장이 24시간 일하는 전담 직원 1명이다 (A markdown file is an employee).\"*\n  - 문서화된 업무 매뉴얼이 늘어날수록 회사의 24시간 AI 직원 수가 늘어나는 것과 동일한 경영 효과를 냅니다.\n\n### 3) 문서 간 규칙 충돌과 대표자의 최종 판정 (AI 교통정리)\n- **규칙 간 충돌(Conflict)의 필연성:**\n  - 회사가 성장하고 문서가 쌓이면 과거 규정과 신규 규정의 충돌이 반드시 발생합니다 (예: 이전 상품 가격 35,000원 vs 인상된 가격 50,000원, 서로 다른 환불 기한 등).\n- **대표자(사람)의 최종 의사결정 의무 (Human-in-the-Loop):**\n  - AI는 텍스트를 대조해 충돌 지점을 찾고 태그(`[CHECK]`, `[CONFLICT]`)를 달아줄 수는 있지만, **\"어느 것이 우리 회사의 진짜 표준인가\"를 확정하는 일은 결코 AI에게 미룰 수 없으며 오직 대표자 본인의 몫**입니다.\n  - 판정된 기준은 일회성 채팅으로 날리지 않고, 즉시 공식 업무 지침서(SOP) 파일로 확정해 폴더에 저장해야 합니다.\n\n### 4) 문서 옷장 정리(지식 린트) — 낡은 규정과 중복 메모 솎아내기\n- **'린트(Lint)'의 쉬운 개념:**\n  - 오래 입은 니트나 스웨터의 보풀(Lint)을 떼어내듯, 낡고 엉켜서 거추장스러워진 실밥을 깔끔하게 정리하는 옷장 대청소 작업입니다.\n- **AI 업무 환경에서 문서 린트가 필수인 이유:**\n  - 파일이 10개에서 50개, 100개로 늘어날수록 사문화된 옛날 규정, 폐기된 기획안이 쌓여 AI에게 혼선을 주고 거짓말(할루시네이션)을 유발합니다.\n  - 정기적으로 불필요한 규칙을 솎아내고(보풀 제거), 정본만 남기는 **'주간 문서 옷장 정리'** 루틴이 있어야만 AI 비서의 답변 정확도가 유지됩니다.\n\n### 5) 아마존의 '고객 집착'과 프롬프트 태도\n- **일하는 목적의 본질:**\n  - \"내가 왜 이 작업을 하는가? 이것이 고객(내부 동료나 외부 사용자)에게 어떤 실질적 가치를 주는가?\"를 명확히 정의하는 일에서 모든 AI 업무 설계가 출발합니다.\n- **예의 바르고 완전한 문장의 프롬프트:**\n  - AI를 장난감이나 심부름꾼이 아니라 회사의 '고위 임원이나 전문 멘토'로 대우하며 정중하고 논리적인 완전한 문장으로 질문해야 합니다. 질문자가 생각을 가다듬어 완전한 문장을 쓰는 과정에서 스스로의 사고가 먼저 정돈되기 때문입니다.\n\n---\n\n## 2. 현장 핵심 어록 (박정근 강사)\n\n> *\"옵시디언(폴더)은 사내 문서고이고, AI는 수석 비서이며, 위키 문서는 살아있는 업무 매뉴얼입니다.\"*\n> \n> *\"잘 만든 업무 지침서(.md) 1장이 우리 회사의 24시간 일하는 직원 1명입니다.\"*\n> \n> *\"문서 간의 모순과 충돌을 감지하는 건 AI가 돕더라도, 기준을 확정하는 최종 교통정리는 결국 대표자 본인의 몫입니다.\"*\n> \n> *\"지식 베이스가 커질수록 스웨터 보풀을 떼어내듯 옛날 규정을 솎아내는 '린트(Lint)' 작업을 해주지 않으면 AI는 길을 잃습니다.\"*\n> \n> *\"AI를 다룰 때 예의 바르고 논리적인 완전한 문장을 쓰는 이유는, 그 과정에서 질문자 자신의 생각이 먼저 명료해지기 때문입니다.\"*\n\n---\n\n## 3. 핵심 관점 대조 (단순 검색 vs 살아있는 사내 매뉴얼)\n\n| 비교 항목 | 단순 검색형 (RAG) | 축적형 백과사전 (LLM Wiki) |\n| :--- | :--- | :--- |\n| **기본 작동 비유** | 구글 검색 (질문마다 파편 조각 검색) | 수석 사서의 백과사전 편찬 (누적 갱신) |\n| **기억 형태** | 단편적 조각 인출 (금붕어 기억) | 유기적으로 연결된 살아있는 업무 지침서 |\n| **지식 축적** | 질문 끝나는 순간 일회성 소멸 | 새 정보 유입 시 기존 문서에 자동 반영·축적 |\n| **역할 분담** | AI가 검색 결과 요약·나열 | 문서고(Obsidian) - 비서(AI) - 매뉴얼(위키) |\n| **충돌 해결** | 검색 유사도 높은 문서 무비판 인용 | 충돌 지점 감지(`[CHECK]`) ➔ 대표자 최종 판정 |\n| **유지 관리** | 벡터 재계산 위주 | **지식 린트**: 낡은 규정 솎아내기, 보풀 제거 |\n\n---\n\n## 4. 수강생 실천 기록 (내 업무 적용 4단계)\n\n강의에서 배운 방식을 제 실제 1인 빌더 업무에 대입해 보며 실천한 4가지 과정입니다.\n\n1. **기록을 로컬 폴더에 체계적으로 적재하기 (Lv.1 적용):**\n   - 회의와 강연 메모, 외부 학습 기록을 마크다운 파일(.md)로 로컬 폴더에 먼저 모았습니다.\n2. **일하는 기준(SOP) 문서화로 에이전트 연결하기 (Lv.2 적용):**\n   - '수치 인용 원칙', '금지 표현', '결과물 서식'을 담은 한 페이지짜리 기준 문서를 작성해 AI들이 읽고 일관되게 협업하도록 구성했습니다.\n3. **충돌 발생 시 대표자의 최종 판정 및 표준화:**\n   - 정책 충돌이나 모호한 기준이 생겼을 때 AI에게 결정을 미루지 않고, 사람이 직접 최종 표준을 정해 공식 규칙 파일에 즉시 반영했습니다.\n4. **정기적인 '지식 린트(옷장 정리)' 루틴 가동:**\n   - 주간 점검 루틴을 두어 사문화된 규칙이나 낡은 메모를 솎아내고(보풀 제거), 지식 베이스의 무결성을 지속적으로 유지하고 있습니다.\n\n> **💡 바로 따라 해보는 추천 사내 폴더 구조 (예시 4줄):**\n> ```text\n> 📁 00_임시메모/        (강의 녹취, 번뜩이는 아이디어 일단 모아두기)\n> 📁 10_사내표준_SOP/   ➔ 📄 고객_환불규정_최종정본.md (대표가 판정한 기준 1장)\n> 📁 20_진행프로젝트/    (실제 진행 중인 사업별 기획 및 산출물)\n> 📁 99_보관함_Archive/ (린트 대청소 후 보관 처리된 옛날 메모·구버전 규정)\n> ```\n\n*(※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)*\n\n---\n\n## 5. 실습 워크시트 (내 사업 대입 3대 질문)\n\n오늘 강의를 들으신 후 대표님의 회사에 지금 당장 대입해 보실 수 있는 3가지 실천 약속입니다.\n\n- [ ] **질문 1. 노션·카톡·구글독스에 흩어져 버전이 헷갈리는 우리 회사 핵심 규정 1가지(예: 환불·견적·응대 기준)가 무엇인지 떠올렸는가?**\n  *(여러 문서 간의 충돌 지점을 찾고, 대표자가 직접 최종 기준 1장을 확정하기)*\n- [ ] **질문 2. AI에게 매번 똑같이 설명하느라 지치는 반복 업무 1개를 골라, 오늘 안에 '업무 지침서 1장'으로 적어두기로 정했는가?**\n  *(게리 탄의 명제: 잘 만든 업무 지침서 1장 = 24시간 일하는 전담 직원 1명)*\n- [ ] **질문 3. 안 쓰는 옛날 기획안과 중복 메모를 솎아낼 '주간 10분 문서 대청소(지식 린트)' 요일과 시간을 캘린더에 정했는가?**\n  *(문서가 늘어날수록 생기는 AI 환각을 막기 위한 주간 10분 캘린더 알림 설정)*\n";
+    const PLAIN_TXT = "[강남구 초기 창업자 과정 3주차 - 사내 지식 기반(LLM Wiki) 구축과 AI 에이전트 협업 실무 강의 정리]\n작성자: 수강생 Neo\n일시: 2026-10-14\n출처: 강의 녹취 기반 정리본 및 수강생 실무 적용 기록\n============================================================\n\n2026-10-14 강남구 초기 창업자 과정 (3주차): 사내 지식 기반(LLM Wiki) 구축 및 AI 협업 실무\n\n\n문서 성격 및 원본성 고지:\n- 본 문서는 외부 강연 기록(artifact_type: training_note)으로, 당일 현장 녹취 중 강사님(박정근 강사, 참석자 1)의 핵심 강의 발언만을 선별하여 비개발자 대표님 눈높이로 구조화한 복습 노트입니다.\n- 청중 간의 잡담, 아이스브레이킹, 참석자 개별 질문 등 비핵심 담화는 배제하고 본 강의의 핵심 프레임워크와 실습 지침만을 충실히 반영했습니다.\n\n---\n\n1. 강의 요지 (사내 문서고와 살아있는 업무 매뉴얼)\n\n1) 단순 검색(RAG)을 넘어 '살아있는 사내 백과사전(LLM Wiki)'으로\n- 단순 검색형 RAG(Retrieval-Augmented Generation)의 한계:\n  - 질문할 때마다 폴더에서 파편화된 조각 문서를 매번 새로 찾아오는 '구글 검색' 방식입니다.\n  - 질의가 끝나면 맥락이 사라져 사내 지식이 유기적으로 누적되지 못하고 매번 제자리에서 맴도는 '금붕어 기억'의 한계에 부딪힙니다.\n- 축적형 LLM Wiki의 본질:\n  - 새로운 정보(회의록, 고객 피드백, 시장 데이터)가 폴더에 들어오면, AI가 수석 사서이자 전담 비서처럼 기존 업무 매뉴얼을 읽고, 문맥에 맞게 내용을 스스로 통합·수정·축적(Compounding Artifact)하는 모델입니다.\n  - 시간이 지날수록 우리 회사만의 살아있는 백과사전이자 지침서로 진화합니다.\n\n2) 문서고(옵시디언)와 AI 비서(LLM)의 역할 분담\n- 안드레이 카파시(Andrej Karpathy)의 핵심 비유:\n  - *\"옵시디언(폴더)은 사내 문서고이고, AI(LLM)는 수석 비서이며, 위키(마크다운 문서들)는 살아있는 업무 매뉴얼이다.\"* (개발로 치면 IDE·개발자·코드베이스의 관계)\n  - 마크다운 문서가 수십 개에서 수백 개로 늘어나면 대표 혼자 머릿속으로 다 외울 수 없습니다. 옵시디언의 폴더 트리와 지식 그래프를 통해 문서 간의 연결망을 시각적으로 조망하고 통제해야 합니다.\n- 게리 탄(Gary Tan, Y Combinator CEO)의 관점:\n  - *\"잘 만든 업무 지침서(.md) 1장이 24시간 일하는 전담 직원 1명이다 (A markdown file is an employee).\"*\n  - 문서화된 업무 매뉴얼이 늘어날수록 회사의 24시간 AI 직원 수가 늘어나는 것과 동일한 경영 효과를 냅니다.\n\n3) 문서 간 규칙 충돌과 대표자의 최종 판정 (AI 교통정리)\n- 규칙 간 충돌(Conflict)의 필연성:\n  - 회사가 성장하고 문서가 쌓이면 과거 규정과 신규 규정의 충돌이 반드시 발생합니다 (예: 이전 상품 가격 35,000원 vs 인상된 가격 50,000원, 서로 다른 환불 기한 등).\n- 대표자(사람)의 최종 의사결정 의무 (Human-in-the-Loop):\n  - AI는 텍스트를 대조해 충돌 지점을 찾고 태그([CHECK], [CONFLICT])를 달아줄 수는 있지만, \"어느 것이 우리 회사의 진짜 표준인가\"를 확정하는 일은 결코 AI에게 미룰 수 없으며 오직 대표자 본인의 몫입니다.\n  - 판정된 기준은 일회성 채팅으로 날리지 않고, 즉시 공식 업무 지침서(SOP) 파일로 확정해 폴더에 저장해야 합니다.\n\n4) 문서 옷장 정리(지식 린트) — 낡은 규정과 중복 메모 솎아내기\n- '린트(Lint)'의 쉬운 개념:\n  - 오래 입은 니트나 스웨터의 보풀(Lint)을 떼어내듯, 낡고 엉켜서 거추장스러워진 실밥을 깔끔하게 정리하는 옷장 대청소 작업입니다.\n- AI 업무 환경에서 문서 린트가 필수인 이유:\n  - 파일이 10개에서 50개, 100개로 늘어날수록 사문화된 옛날 규정, 폐기된 기획안이 쌓여 AI에게 혼선을 주고 거짓말(할루시네이션)을 유발합니다.\n  - 정기적으로 불필요한 규칙을 솎아내고(보풀 제거), 정본만 남기는 '주간 문서 옷장 정리' 루틴이 있어야만 AI 비서의 답변 정확도가 유지됩니다.\n\n5) 아마존의 '고객 집착'과 프롬프트 태도\n- 일하는 목적의 본질:\n  - \"내가 왜 이 작업을 하는가? 이것이 고객(내부 동료나 외부 사용자)에게 어떤 실질적 가치를 주는가?\"를 명확히 정의하는 일에서 모든 AI 업무 설계가 출발합니다.\n- 예의 바르고 완전한 문장의 프롬프트:\n  - AI를 장난감이나 심부름꾼이 아니라 회사의 '고위 임원이나 전문 멘토'로 대우하며 정중하고 논리적인 완전한 문장으로 질문해야 합니다. 질문자가 생각을 가다듬어 완전한 문장을 쓰는 과정에서 스스로의 사고가 먼저 정돈되기 때문입니다.\n\n---\n\n2. 현장 핵심 어록 (박정근 강사)\n\n*\"옵시디언(폴더)은 사내 문서고이고, AI는 수석 비서이며, 위키 문서는 살아있는 업무 매뉴얼입니다.\"*\n*\"잘 만든 업무 지침서(.md) 1장이 우리 회사의 24시간 일하는 직원 1명입니다.\"*\n*\"문서 간의 모순과 충돌을 감지하는 건 AI가 돕더라도, 기준을 확정하는 최종 교통정리는 결국 대표자 본인의 몫입니다.\"*\n*\"지식 베이스가 커질수록 스웨터 보풀을 떼어내듯 옛날 규정을 솎아내는 '린트(Lint)' 작업을 해주지 않으면 AI는 길을 잃습니다.\"*\n*\"AI를 다룰 때 예의 바르고 논리적인 완전한 문장을 쓰는 이유는, 그 과정에서 질문자 자신의 생각이 먼저 명료해지기 때문입니다.\"*\n\n---\n\n3. 핵심 관점 대조 (단순 검색 vs 살아있는 사내 매뉴얼)\n\n| 비교 항목 | 단순 검색형 (RAG) | 축적형 백과사전 (LLM Wiki) |\n| :--- | :--- | :--- |\n| 기본 작동 비유 | 구글 검색 (질문마다 파편 조각 검색) | 수석 사서의 백과사전 편찬 (누적 갱신) |\n| 기억 형태 | 단편적 조각 인출 (금붕어 기억) | 유기적으로 연결된 살아있는 업무 지침서 |\n| 지식 축적 | 질문 끝나는 순간 일회성 소멸 | 새 정보 유입 시 기존 문서에 자동 반영·축적 |\n| 역할 분담 | AI가 검색 결과 요약·나열 | 문서고(Obsidian) - 비서(AI) - 매뉴얼(위키) |\n| 충돌 해결 | 검색 유사도 높은 문서 무비판 인용 | 충돌 지점 감지([CHECK]) ➔ 대표자 최종 판정 |\n| 유지 관리 | 벡터 재계산 위주 | 지식 린트: 낡은 규정 솎아내기, 보풀 제거 |\n\n---\n\n4. 수강생 실천 기록 (내 업무 적용 4단계)\n\n강의에서 배운 방식을 제 실제 1인 빌더 업무에 대입해 보며 실천한 4가지 과정입니다.\n\n1. 기록을 로컬 폴더에 체계적으로 적재하기 (Lv.1 적용):\n   - 회의와 강연 메모, 외부 학습 기록을 마크다운 파일(.md)로 로컬 폴더에 먼저 모았습니다.\n2. 일하는 기준(SOP) 문서화로 에이전트 연결하기 (Lv.2 적용):\n   - '수치 인용 원칙', '금지 표현', '결과물 서식'을 담은 한 페이지짜리 기준 문서를 작성해 AI들이 읽고 일관되게 협업하도록 구성했습니다.\n3. 충돌 발생 시 대표자의 최종 판정 및 표준화:\n   - 정책 충돌이나 모호한 기준이 생겼을 때 AI에게 결정을 미루지 않고, 사람이 직접 최종 표준을 정해 공식 규칙 파일에 즉시 반영했습니다.\n4. 정기적인 '지식 린트(옷장 정리)' 루틴 가동:\n   - 주간 점검 루틴을 두어 사문화된 규칙이나 낡은 메모를 솎아내고(보풀 제거), 지식 베이스의 무결성을 지속적으로 유지하고 있습니다.\n\n💡 바로 따라 해보는 추천 사내 폴더 구조 (예시 4줄):\n`text\n📁 00_임시메모/        (강의 녹취, 번뜩이는 아이디어 일단 모아두기)\n📁 10_사내표준_SOP/   ➔ 📄 고객_환불규정_최종정본.md (대표가 판정한 기준 1장)\n📁 20_진행프로젝트/    (실제 진행 중인 사업별 기획 및 산출물)\n📁 99_보관함_Archive/ (린트 대청소 후 보관 처리된 옛날 메모·구버전 규정)\n`\n\n*(※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)*\n\n---\n\n5. 실습 워크시트 (내 사업 대입 3대 질문)\n\n오늘 강의를 들으신 후 대표님의 회사에 지금 당장 대입해 보실 수 있는 3가지 실천 약속입니다.\n\n- [ ] 질문 1. 노션·카톡·구글독스에 흩어져 버전이 헷갈리는 우리 회사 핵심 규정 1가지(예: 환불·견적·응대 기준)가 무엇인지 떠올렸는가?\n  *(여러 문서 간의 충돌 지점을 찾고, 대표자가 직접 최종 기준 1장을 확정하기)*\n- [ ] 질문 2. AI에게 매번 똑같이 설명하느라 지치는 반복 업무 1개를 골라, 오늘 안에 '업무 지침서 1장'으로 적어두기로 정했는가?\n  *(게리 탄의 명제: 잘 만든 업무 지침서 1장 = 24시간 일하는 전담 직원 1명)*\n- [ ] 질문 3. 안 쓰는 옛날 기획안과 중복 메모를 솎아낼 '주간 10분 문서 대청소(지식 린트)' 요일과 시간을 캘린더에 정했는가?\n  *(문서가 늘어날수록 생기는 AI 환각을 막기 위한 주간 10분 캘린더 알림 설정)*";
     const MD_DOWNLOAD_NAME = "2026-10-14_startup-lecture-week3_복습노트.md";
     const STORAGE_PREFIX = "neo_note_startup_lecture_week3";
-    const CHK_COUNT = 3;
+    const CHK_COUNT = 2;
 
     document.getElementById('md-raw-box').textContent = OBSIDIAN_MD;
 
@@ -573,7 +660,7 @@
     }
 
     function copyPlain() {
-      copyText(PLAIN_TXT, '✓ 일반 문서가 복사되었습니다 (노션·메모장에 붙여넣기)');
+      copyText(PLAIN_TXT, '✓ 노션·카톡에 바로 붙여넣을 수 있게 복사했어요!');
     }
 
     function downloadMd() {
@@ -586,7 +673,7 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast('✓ .md 파일 다운로드가 시작되었습니다');
+      showToast('✓ .md 파일 저장이 시작되었습니다');
     }
 
     function switchTab(mode) {
@@ -632,6 +719,10 @@
       const badge = document.getElementById('chk-count-badge');
       if (badge) {
         badge.textContent = count + ' / ' + CHK_COUNT + ' 완료';
+      }
+      const compBox = document.getElementById('chk-complete-box');
+      if (compBox) {
+        compBox.style.display = (count === CHK_COUNT && CHK_COUNT > 0) ? 'block' : 'none';
       }
     }
 
