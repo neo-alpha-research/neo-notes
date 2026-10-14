@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>강남구 초기창업자 과정 3주차 — 수강생 복습노트와 실무 적용 질문</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --bg: #F2F4F6;
+      --surface: #FFFFFF;
+      --surface-sub: #F9FAFB;
+      --border: #E5E8EB;
+      --border-soft: #F2F4F6;
+      --text-primary: #191F28;
+      --text-secondary: #333D4B;
+      --text-muted: #6B7684;
+      --text-caption: #8B95A1;
+      --toss-blue: #3182F6;
+      --toss-blue-dark: #1B64DA;
+      --toss-blue-bg: #E8F3FF;
+      --mint-green: #00B884;
+      --mint-green-bg: #E5F9F3;
+      --indigo: #6366F1;
+      --indigo-bg: #EEF2FF;
+      --orange: #FF8A00;
+      --orange-bg: #FFF4E5;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.68;
+      padding: 32px 16px 96px;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    /* Hero Header */
+    .hero-card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 32px 28px 26px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(0, 27, 55, 0.04);
+      border: 1px solid rgba(0, 27, 55, 0.04);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--toss-blue-bg);
+      color: var(--toss-blue-dark);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 25px;
+      font-weight: 800;
+      line-height: 1.36;
+      color: var(--text-primary);
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding-top: 14px;
+      border-top: 1px solid var(--border-soft);
+    }
+    .meta-row strong {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* Action Card */
+    .action-card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(0, 27, 55, 0.03);
+      border: 1px solid rgba(0, 27, 55, 0.04);
+    }
+    .action-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .action-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+    .action-sub {
+      font-size: 12px;
+      color: var(--text-caption);
+    }
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 600px) {
+      .btn-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 21px;
+      }
+      .hero-card {
+        padding: 24px 20px;
+      }
+    }
+    button.act-btn {
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 14px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: all 0.15s ease;
+      letter-spacing: -0.01em;
+    }
+    button.act-btn:active {
+      transform: scale(0.98);
+    }
+    .btn-primary {
+      background: var(--toss-blue);
+      color: #FFFFFF;
+    }
+    .btn-primary:hover {
+      background: var(--toss-blue-dark);
+    }
+    .btn-secondary {
+      background: var(--toss-blue-bg);
+      color: var(--toss-blue-dark);
+    }
+    .btn-secondary:hover {
+      background: #D6E8FF;
+    }
+    .btn-tertiary {
+      background: var(--bg);
+      color: var(--text-secondary);
+    }
+    .btn-tertiary:hover {
+      background: #E5E8EB;
+    }
+
+    /* Segmented Tab Bar */
+    .segmented-control {
+      display: flex;
+      background: #E5E8EB;
+      padding: 4px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+    .seg-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .seg-btn.active {
+      background: var(--surface);
+      color: var(--text-primary);
+      box-shadow: 0 2px 8px rgba(0, 27, 55, 0.08);
+    }
+
+    /* Content Cards */
+    .card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 28px 26px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(0, 27, 55, 0.03);
+      border: 1px solid rgba(0, 27, 55, 0.04);
+    }
+    .section-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 5px 10px;
+      border-radius: 7px;
+      margin-bottom: 12px;
+    }
+    .badge-blue {
+      background: var(--toss-blue-bg);
+      color: var(--toss-blue-dark);
+    }
+    .badge-mint {
+      background: var(--mint-green-bg);
+      color: #008A63;
+    }
+    .badge-indigo {
+      background: var(--indigo-bg);
+      color: #4338CA;
+    }
+    .badge-orange {
+      background: var(--orange-bg);
+      color: #C05621;
+    }
+
+    h2 {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin: 18px 0 8px;
+    }
+    p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    /* Quote Banner */
+    .quote-box {
+      background: var(--surface-sub);
+      border-left: 4px solid var(--toss-blue);
+      padding: 16px 18px;
+      border-radius: 4px 14px 14px 4px;
+      margin: 14px 0 16px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .quote-box strong {
+      color: var(--toss-blue-dark);
+    }
+
+    /* Comparison & Table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .comparison-table th {
+      background: var(--surface-sub);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .comparison-table td {
+      color: var(--text-secondary);
+    }
+
+    /* Checklist Items */
+    .chk-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .chk-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--surface-sub);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .chk-item:hover {
+      border-color: var(--toss-blue);
+      background: #F8FAFD;
+    }
+    .chk-item.checked {
+      background: var(--toss-blue-bg);
+      border-color: var(--toss-blue);
+    }
+    .chk-box {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--text-caption);
+      border-radius: 6px;
+      background: #FFFFFF;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+    .chk-box:checked {
+      background: var(--toss-blue);
+      border-color: var(--toss-blue);
+    }
+    .chk-box:checked::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 6px;
+      width: 4px;
+      height: 9px;
+      border: solid #FFFFFF;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .chk-content {
+      flex: 1;
+    }
+    .chk-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .chk-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Raw Markdown View */
+    pre.raw-md {
+      background: #1E232A;
+      color: #E2E8F0;
+      padding: 20px;
+      border-radius: 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(25, 31, 40, 0.94);
+      color: #FFFFFF;
+      padding: 13px 22px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Hero Card -->
+    <div class="hero-card">
+      <div class="eyebrow">강남구 초기창업자 과정 3주차 실무 강의</div>
+      <h1>강남구 초기창업자 과정 3주차 — 수강생 복습노트와 실무 적용 질문</h1>
+      <p class="hero-desc">단순 검색형 RAG를 넘어 사내 지식을 축적하는 LLM Wiki 아키텍처와 충돌 중재, 지식 린트(Lint) 실무를 정리한 공유용 자료입니다.</p>
+      <div class="meta-row">
+        <span>일시: <strong>2026-10-14</strong></span>
+        <span>작성자: <strong>수강생 Neo</strong></span>
+        <span>근거: <strong>강의 녹취 기반 정리본</strong></span>
+      </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="action-card">
+      <div class="action-header">
+        <span class="action-title">원클릭 복사 &amp; 다운로드</span>
+        <span class="action-sub">노션, 메모장, 옵시디언 등 편한 도구에 바로 복사해 활용하세요</span>
+      </div>
+      <div class="btn-grid">
+        <button class="act-btn btn-secondary" onclick="copyPlain()">
+          📄 일반 문서 복사
+        </button>
+        <button class="act-btn btn-primary" onclick="copyObsidian()">
+          📋 옵시디언 마크다운 복사
+        </button>
+        <button class="act-btn btn-tertiary" onclick="downloadMd()">
+          📥 .md 다운로드
+        </button>
+      </div>
+    </div>
+
+    <!-- Segmented Tab Control -->
+    <div class="segmented-control">
+      <button class="seg-btn active" id="tab-read-btn" onclick="switchTab('read')">일반 문서로 편하게 읽기</button>
+      <button class="seg-btn" id="tab-md-btn" onclick="switchTab('md')">옵시디언 마크다운 원문 보기</button>
+    </div>
+
+    <!-- Read View -->
+    <div id="view-read">
+
+      <!-- Section 1: 강의 요지 -->
+      <div class="card">
+        <div class="section-badge badge-blue">1. 강의 요지 (녹취 기반 정리본 기준)</div>
+        <h2>단순 검색을 넘어 지식이 축적되는 회사 만들기</h2>
+
+        <h3>1) RAG vs LLM Wiki (단순 검색을 넘어선 축적형 지식 체계)</h3>
+        <p>단순 검색형 RAG(Retrieval-Augmented Generation)는 질문할 때마다 파편화된 조각을 매번 찾아오는 '구글 검색' 방식으로, 질문이 끝나면 맥락이 사라지는 '금붕어 기억'의 한계가 있습니다. 반면 <strong>LLM Wiki</strong>는 새로운 정보(회의록, 고객 피드백)가 유입될 때 수석 사서처럼 기존 문서들을 읽고 자연스럽게 통합·수정·축적(Compounding Artifact)하는 살아있는 백과사전 모델입니다. 지식은 LLM Wiki 형태로 폴더에 컴파일하고, 실시간 질의는 그 위에서 RAG로 조회하는 결합 구조가 가장 안정적입니다.</p>
+
+        <h3>2) 옵시디언(Obsidian)과 LLM의 역할 분담</h3>
+        <div class="quote-box">
+          <strong>안드레이 카파시(Andrej Karpathy)의 명제:</strong><br />
+          "옵시디언은 IDE(개발환경)이고, LLM은 프로그래머(개발자)이며, 위키(마크다운 문서들)는 코드베이스(소스코드)이다."
+        </div>
+        <p>마크다운 문서가 수백~수천 개로 늘어나면 사람이 머리로 다 기억할 수 없습니다. 옵시디언의 폴더 구조와 지식 그래프를 통해 시각적으로 통제해야 합니다. Y Combinator CEO 게리 탄(Gary Tan)은 <strong>"잘 정리된 마크다운 문서 하나가 우리 회사의 직원 한 명이다 (A markdown file is an employee)"</strong>라고 강조했습니다.</p>
+
+        <h3>3) 충돌 감지와 사람의 최종 중재 (Human-in-the-Loop)</h3>
+        <p>회사가 성장하고 문서가 쌓이면 과거 가격(35,000원)과 신규 가격(50,000원)처럼 규칙 간의 충돌(Conflict)이 필연적으로 발생합니다. AI는 충돌을 감지해 태그([CHECK], [CONFLICT])를 붙여줄 수 있지만, <strong>"어느 것이 우리 회사의 진짜 표준인가"를 확정(Arbitration)하는 것은 오직 대표자(사람)의 몫</strong>입니다. 판정된 결정은 즉시 마크다운 규칙(Rule) 문서로 코드화해야 합니다.</p>
+
+        <h3>4) 지식 린트 (Knowledge Lint: 보풀 제거와 규칙 정제)</h3>
+        <div class="quote-box">
+          <strong>지식 린트(Lint)의 본질:</strong><br />
+          스웨터의 보풀(Lint)을 떼어내듯, 낡고 엉킨 사문화된 규칙을 정기적으로 솎아내는 작업입니다. 파일이 늘어날수록 낡은 지침이 AI의 할루시네이션(환각)을 증폭시키므로, 주기적인 클린업 루틴이 필수적입니다.
+        </div>
+
+        <h3>5) 예의 바르고 완전한 문장의 프롬프트</h3>
+        <p>AI를 단순 심부름꾼이 아니라 회사의 '고위 임원이나 전문 멘토'로 대우하며 정중하고 논리적인 완전한 문장으로 질문해야 합니다. 질문자가 생각을 가다듬어 완전한 문장을 쓰는 과정에서 스스로의 사고가 먼저 정돈되며, AI 또한 최상급의 분석 결과를 도출합니다.</p>
+      </div>
+
+      <!-- Section 2: 핵심 관점 대조표 -->
+      <div class="card">
+        <div class="section-badge badge-indigo">핵심 관점 대조</div>
+        <h2>RAG와 LLM Wiki의 핵심 차이</h2>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>비교 항목</th>
+              <th>RAG (단순 검색 증강)</th>
+              <th>LLM Wiki (축적형 백과사전)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>작동 비유</strong></td>
+              <td>구글 검색 (질문마다 파편 검색)</td>
+              <td>수석 사서의 백과사전 편찬 (누적 갱신)</td>
+            </tr>
+            <tr>
+              <td><strong>기억 형태</strong></td>
+              <td>단편적 청크 인출 (금붕어 기억)</td>
+              <td>유기적으로 연결된 살아있는 문서 체계</td>
+            </tr>
+            <tr>
+              <td><strong>지식 축적</strong></td>
+              <td>질문 시점에 일회성 조합 후 소멸</td>
+              <td>새 정보 유입 시 기존 문서에 자동 반영·축적</td>
+            </tr>
+            <tr>
+              <td><strong>역할 분담</strong></td>
+              <td>AI가 검색 결과 요약</td>
+              <td>Obsidian(IDE) - LLM(개발자) - Wiki(코드)</td>
+            </tr>
+            <tr>
+              <td><strong>충돌 해결</strong></td>
+              <td>검색 유사도 상위 문서 인용</td>
+              <td>충돌 감지 ➔ 대표자가 최종 기준 판정</td>
+            </tr>
+            <tr>
+              <td><strong>유지 관리</strong></td>
+              <td>임베딩 벡터 재계산 위주</td>
+              <td><strong>지식 린트(Lint)</strong>: 보풀 제거, 낡은 규칙 정리</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section 3: 수강생 실천 기록 -->
+      <div class="card">
+        <div class="section-badge badge-mint">2. 수강생 실천 기록 (내 업무 적용)</div>
+        <h2>제가 실제로 해본 과정</h2>
+        <p>강의에서 배운 방식을 제 실제 업무에 대입해 보며 실천한 4가지 과정입니다.</p>
+        
+        <p><strong>1) 기록을 로컬 폴더에 체계적으로 적재하기 (Lv.1 적용):</strong><br />
+        회의와 강연 메모, 외부 학습 기록을 마크다운 파일(.md)로 로컬 폴더에 먼저 쌓기 시작했습니다.</p>
+
+        <p><strong>2) 일하는 기준(SOP) 문서화로 에이전트 연결하기 (Lv.2 적용):</strong><br />
+        '수치 인용 원칙', '금지 표현', '결과물 서식'을 담은 한 페이지짜리 기준 문서를 작성해 에이전트들이 읽고 협업하도록 구성했습니다.</p>
+
+        <p><strong>3) 충돌 발생 시 대표자의 최종 판정 및 표준화:</strong><br />
+        정책 충돌이나 모호한 기준이 생겼을 때 AI에게 판단을 미루지 않고, 사람이 직접 최종 표준을 정해 공식 규칙 파일에 즉시 반영했습니다.</p>
+
+        <p><strong>4) 정기적인 '지식 린트' 루틴 가동:</strong><br />
+        주간 점검 루틴을 두어 사문화된 규칙이나 낡은 메모를 솎아내고(보풀 제거), 지식 베이스의 무결성을 지속적으로 유지하고 있습니다.</p>
+
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 14px;">
+          <em>(※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)</em>
+        </p>
+      </div>
+
+      <!-- Section 4: 실습 워크시트 체크리스트 -->
+      <div class="card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <div class="section-badge badge-orange" style="margin-bottom: 0;">3. 제가 만든 적용 질문 (동기 실습 워크시트)</div>
+          <span id="chk-count-badge" style="font-size: 12px; font-weight: 800; color: var(--toss-blue); background: var(--toss-blue-bg); padding: 4px 10px; border-radius: 8px;">0 / 3 완료</span>
+        </div>
+        <h2>내 사업에 대입해 볼 3대 실천 질문</h2>
+        <p>오늘 실습을 진행하시면서 각자의 사업에 대입해 보실 수 있도록 제가 덧붙인 3가지 질문입니다. 직접 체크해 보세요.</p>
+
+        <div class="chk-group">
+          <div class="chk-item" id="item-chk1" onclick="toggleChk('chk1')">
+            <input type="checkbox" class="chk-box" id="chk1" onclick="event.stopPropagation(); saveChk();" />
+            <div class="chk-content">
+              <div class="chk-title">질문 1. 우리 회사 업무 문서 중 충돌하는 규정 1개를 찾아 정본(SSOT)으로 확정했는가?</div>
+              <div class="chk-sub">AI가 찾아준 충돌 표시([CHECK])를 바탕으로, 대표자가 직접 최종 기준을 판정하고 문서에 반영하기</div>
+            </div>
+          </div>
+
+          <div class="chk-item" id="item-chk2" onclick="toggleChk('chk2')">
+            <input type="checkbox" class="chk-box" id="chk2" onclick="event.stopPropagation(); saveChk();" />
+            <div class="chk-content">
+              <div class="chk-title">질문 2. 자주 쓰는 프롬프트나 업무 절차를 1장의 마크다운 규칙(SOP) 파일로 저장했는가?</div>
+              <div class="chk-sub">게리 탄의 명제: 잘 정리된 마크다운 문서 1개 = 24시간 일하는 AI 직원 1명</div>
+            </div>
+          </div>
+
+          <div class="chk-item" id="item-chk3" onclick="toggleChk('chk3')">
+            <input type="checkbox" class="chk-box" id="chk3" onclick="event.stopPropagation(); saveChk();" />
+            <div class="chk-content">
+              <div class="chk-title">질문 3. 사문화된 지침과 중복 메모를 솎아내는 '지식 린트(보풀 제거)' 정기 루틴을 계획했는가?</div>
+              <div class="chk-sub">문서가 늘어날수록 발생하는 지식 오염과 할루시네이션을 방지하기 위한 정기 클린업 루틴</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: 핵심 어록 -->
+      <div class="card">
+        <div class="section-badge badge-blue">강사 핵심 어록</div>
+        <h2>그대로 옮긴 강사 핵심 메시지</h2>
+        <div class="quote-box" style="margin-top: 12px;">
+          "옵시디언은 IDE이고, LLM은 프로그래머이며, 위키 문서는 코드베이스입니다."
+        </div>
+        <div class="quote-box">
+          "마크다운 문서 하나가 우리 회사의 직원 한 명입니다."
+        </div>
+        <div class="quote-box">
+          "규칙 간의 모순과 충돌을 감지하는 건 AI가 돕더라도, 기준을 확정하는 최종 판정은 결국 대표자 본인의 몫입니다."
+        </div>
+        <div class="quote-box">
+          "지식 베이스가 커질수록 스웨터의 보풀을 떼어내듯 낡은 규칙을 솎아내는 '린트(Lint)' 작업을 해주지 않으면 AI는 길을 잃습니다."
+        </div>
+        <div class="quote-box">
+          "AI를 다룰 때 예의 바르고 논리적인 완전한 문장을 쓰는 이유는, 그 과정에서 질문자 자신의 생각이 먼저 정돈되기 때문입니다."
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Markdown View -->
+    <div id="view-md" style="display: none;">
+      <div class="card">
+        <div class="section-badge badge-blue">옵시디언 마크다운 원문</div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">
+          아래 텍스트를 복사하여 옵시디언 볼트 폴더나 메모장에 <code>.md</code> 파일로 저장하시면 그대로 호환됩니다.
+        </p>
+        <pre class="raw-md" id="md-raw-box"></pre>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="toast">복사되었습니다</div>
+
+  <script>
+    const OBSIDIAN_MD = `---
+title: "강남구 초기창업자 과정 3주차 — 수강생 복습노트와 실무 적용 질문"
+date: 2026-10-14
+category: AI Native Company / Startup Workflow
+tags:
+  - Startup
+  - AINative
+  - Obsidian
+  - LLMWiki
+  - KnowledgeLint
+  - GangnamStartup
+  - TrainingNote
+source: "2026-10-14 강남구 초기창업자 과정 3주차 강의 녹취 요약 + 수강생 실전 적용 기록"
+---
+
+# 강남구 초기창업자 과정 3주차 — 수강생 복습노트와 실무 적용 질문
+
+> **문서 안내:**
+> 본 문서는 강남구 초기창업자 과정 3주차 강의에서 배운 핵심 내용(LLM Wiki 아키텍처, 사람의 중재, 지식 린트)을 복습하고, 제 실제 업무에 대입해 본 4가지 실천 과정과 동기 대표님들이 각자의 사업에 활용하실 수 있는 적용 질문을 정리한 자료입니다.
+
+---
+
+## 1. 강의 요지 (녹취 기반 정리본 기준)
+
+- **RAG vs LLM Wiki (단순 검색을 넘어선 축적형 지식 체계):**
+  - 단순 검색형 RAG는 질문할 때마다 조각을 매번 찾아오는 '구글 검색' 방식으로, 맥락이 쌓이지 않는 단편성이 있습니다.
+  - LLM Wiki는 새로운 정보가 들어오면 수석 사서처럼 기존 지식 체계를 읽고, 자연스럽게 통합·수정·축적(Compounding Artifact)하는 살아있는 백과사전 모델입니다.
+  - 최적 구조: 지식은 LLM Wiki 형태로 폴더에 유기적으로 컴파일하고, 실시간 조사는 그 위에서 RAG 검색을 수행하는 결합 구조가 가장 안정적입니다.
+
+- **옵시디언(Obsidian)과 LLM의 역할 분담:**
+  - 안드레이 카파시의 명제: *"옵시디언은 IDE(개발환경)이고, LLM은 프로그래머(개발자)이며, 위키(마크다운 문서들)는 코드베이스(소스코드)이다."*
+  - 문서가 수백~수천 개로 늘어나면 사람이 머리로 다 관리할 수 없으므로, 옵시디언의 폴더 구조와 지식 그래프로 시각화해 통제해야 합니다.
+  - 게리 탄(Y Combinator CEO)의 관점: *"잘 정리된 마크다운 문서 하나가 우리 회사의 직원 한 명이다."*
+
+- **충돌 감지와 사람의 최종 중재 (Human-in-the-Loop):**
+  - 사내 문서가 쌓이면 과거 규정과 최신 규정 사이에 필연적인 충돌(Conflict)이 발생합니다 (예: 이전 상품 가격 35,000원 vs 최근 가격 50,000원).
+  - AI는 충돌을 감지해 태그([CHECK], [CONFLICT])를 달아줄 수 있지만, **어느 것이 진짜 표준인지 확정(Arbitration)하는 것은 오직 대표자(사람)의 몫입니다.**
+  - 확정된 결정은 일회성 채팅으로 끝내지 않고, 공식 규칙(Rule) 문서와 스킬 규격으로 코드화해야 자산이 됩니다.
+
+- **지식 린트 (Knowledge Lint: 보풀 제거와 규칙 정제):**
+  - 스웨터의 보풀(Lint)을 떼어내듯 낡고 엉킨 규칙을 정리하는 작업입니다.
+  - 문서가 10개에서 100개, 500개로 늘어날수록 사문화된 규칙이 쌓여 AI의 할루시네이션(환각)을 증폭시킵니다.
+  - 정기적으로 불필요한 규칙을 솎아내는(보풀 제거) '지식 린트' 루틴이 있어야만 모델의 추론 정확도가 유지됩니다.
+
+- **예의 바르고 논리적인 완전한 문장의 프롬프트:**
+  - AI를 장난감이 아닌 '고위 임원/전문 멘토'로 대우하며 정중하고 논리적인 완전한 문장으로 질문해야 합니다.
+  - 문장을 정돈하는 과정에서 질문자 자신의 생각이 먼저 명료해지며, LLM 또한 최상위 품질의 추론 결과를 도출합니다.
+
+---
+
+## 2. 제가 실제로 해본 과정 (수강생 실천 기록)
+
+강의에서 배운 방식을 제 실제 업무에 대입해 보며 실천한 4가지 과정입니다.
+
+1. **기록을 로컬 폴더에 체계적으로 적재하기 (Lv.1 적용):**
+   - 회의와 강연 메모, 외부 학습 기록을 마크다운 파일(.md)로 로컬 폴더에 먼저 쌓기 시작했습니다.
+2. **일하는 기준(SOP) 문서화로 에이전트 연결하기 (Lv.2 적용):**
+   - '수치 인용 원칙', '금지 표현', '결과물 서식'을 담은 한 페이지짜리 기준 문서를 작성해 에이전트들이 읽고 협업하도록 구성했습니다.
+3. **충돌 발생 시 대표자의 최종 판정 및 표준화:**
+   - 정책 충돌이나 모호한 기준이 생겼을 때 AI에게 판단을 미루지 않고, 사람이 직접 최종 표준을 정해 공식 규칙 파일에 즉시 반영했습니다.
+4. **정기적인 '지식 린트' 루틴 가동:**
+   - 주간 점검 루틴을 두어 사문화된 규칙이나 낡은 메모를 솎아내고(보풀 제거), 지식 베이스의 무결성을 지속적으로 유지하고 있습니다.
+
+*(※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)*
+
+---
+
+## 3. 제가 만든 적용 질문 (동기 대표님들을 위한 실습 워크시트)
+
+오늘 실습을 진행하시면서 각자의 사업에 대입해 보실 수 있도록 제가 덧붙인 3가지 질문입니다.
+
+- [ ] **질문 1. 우리 회사의 업무 문서 중 충돌하는 규정(가격, 환불, 응대) 1개를 찾아 정본(SSOT)으로 확정했는가?**
+  *(AI가 찾아준 충돌 표시를 바탕으로, 대표자가 직접 최종 기준을 판정하고 문서에 반영하기)*
+- [ ] **질문 2. 자주 쓰는 프롬프트나 업무 절차를 일회성 대화로 날리지 않고 마크다운 규칙(SOP) 파일로 만들어 폴더에 저장했는가?**
+  *(게리 탄의 명제: 잘 정리된 마크다운 문서 1개 = 24시간 일하는 AI 직원 1명)*
+- [ ] **질문 3. 사문화된 지침과 중복 메모를 솎아내는 '지식 린트(보풀 제거)' 정기 루틴을 계획했는가?**
+  *(문서가 늘어날수록 발생하는 지식 오염과 할루시네이션을 방지하기 위한 정기 클린업 루틴)*
+
+---
+
+## 그대로 옮긴 강사 핵심 메시지
+
+> *"옵시디언은 IDE이고, LLM은 프로그래머이며, 위키 문서는 코드베이스입니다."*
+> 
+> *"마크다운 문서 하나가 우리 회사의 직원 한 명입니다."*
+> 
+> *"규칙 간의 모순과 충돌을 감지하는 건 AI가 돕더라도, 기준을 확정하는 최종 판정은 결국 대표자 본인의 몫입니다."*
+> 
+> *"지식 베이스가 커질수록 스웨터의 보풀을 떼어내듯 낡은 규칙을 솎아내는 '린트(Lint)' 작업을 해주지 않으면 AI는 길을 잃습니다."*
+`;
+
+    const PLAIN_TXT = `[강남구 초기창업자 과정 3주차 — 수강생 복습노트와 실무 적용 질문]
+작성자: 수강생 Neo
+일시: 2026-10-14
+출처: 2026-10-14 강남구 초기창업자 과정 3주차 강의 녹취 요약 + 수강생 실전 적용 기록
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. 강의 요지 (녹취 기반 정리본 기준)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• RAG vs LLM Wiki (단순 검색을 넘어선 축적형 지식 체계)
+  - 단순 검색형 RAG는 질문할 때마다 조각을 매번 찾아오는 '구글 검색' 방식으로, 맥락이 누적되지 않는 단편성이 있습니다.
+  - LLM Wiki는 새로운 정보가 들어오면 수석 사서처럼 기존 지식 체계를 읽고, 자연스럽게 통합·수정·축적하는 살아있는 백과사전 모델입니다.
+  - 최적 구조: 지식은 LLM Wiki 형태로 폴더에 유기적으로 컴파일하고, 실시간 조사는 그 위에서 RAG 검색을 수행하는 결합 구조가 가장 안정적입니다.
+
+• 옵시디언(Obsidian)과 LLM의 역할 분담
+  - 안드레이 카파시의 명제: "옵시디언은 IDE(개발환경)이고, LLM은 프로그래머(개발자)이며, 위키(마크다운 문서들)는 코드베이스(소스코드)이다."
+  - 문서가 수백~수천 개로 늘어나면 사람이 머리로 다 관리할 수 없으므로, 옵시디언의 폴더 구조와 지식 그래프로 시각화해 통제해야 합니다.
+  - 게리 탄(Y Combinator CEO)의 관점: "잘 정리된 마크다운 문서 하나가 우리 회사의 직원 한 명이다."
+
+• 충돌 감지와 사람의 최종 중재 (Human-in-the-Loop)
+  - 사내 문서가 쌓이면 과거 규정과 최신 규정 사이에 필연적인 충돌이 발생합니다 (예: 이전 상품 가격 35,000원 vs 최근 가격 50,000원).
+  - AI는 충돌을 감지해 태그([CHECK], [CONFLICT])를 달아줄 수 있지만, 어느 것이 진짜 표준인지 확정(중재)하는 것은 오직 대표자(사람)의 몫입니다.
+  - 확정된 결정은 일회성 채팅으로 끝내지 않고, 공식 규칙 문서와 스킬 규격으로 코드화해야 자산이 됩니다.
+
+• 지식 린트 (Knowledge Lint: 보풀 제거와 규칙 정제)
+  - 스웨터의 보풀을 떼어내듯 낡고 엉킨 규칙을 정리하는 작업입니다.
+  - 문서가 늘어날수록 사문화된 규칙이 쌓여 AI의 할루시네이션(환각)을 증폭시킵니다.
+  - 정기적으로 불필요한 규칙을 솎아내는 '지식 린트' 루틴이 있어야만 모델의 추론 정확도가 유지됩니다.
+
+• 예의 바르고 논리적인 완전한 문장의 프롬프트
+  - AI를 장난감이 아닌 '고위 임원/전문 멘토'로 대우하며 정중하고 논리적인 완전한 문장으로 질문해야 합니다.
+  - 문장을 정돈하는 과정에서 질문자 자신의 생각이 먼저 명료해지며, LLM 또한 최상위 품질의 추론 결과를 도출합니다.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. 제가 실제로 해본 과정 (수강생 실천 기록)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1) 기록을 로컬 폴더에 체계적으로 적재하기 (Lv.1 적용):
+   - 회의와 강연 메모, 외부 학습 기록을 마크다운 파일(.md)로 로컬 폴더에 먼저 쌓기 시작했습니다.
+2) 일하는 기준(SOP) 문서화로 에이전트 연결하기 (Lv.2 적용):
+   - '수치 인용 원칙', '금지 표현', '결과물 서식'을 담은 한 페이지짜리 기준 문서를 작성해 에이전트들이 읽고 협업하도록 구성했습니다.
+3) 충돌 발생 시 대표자의 최종 판정 및 표준화:
+   - 정책 충돌이나 모호한 기준이 생겼을 때 AI에게 판단을 미루지 않고, 사람이 직접 최종 표준을 정해 공식 규칙 파일에 즉시 반영했습니다.
+4) 정기적인 '지식 린트' 루틴 가동:
+   - 주간 점검 루틴을 두어 사문화된 규칙이나 낡은 메모를 솎아내고(보풀 제거), 지식 베이스의 무결성을 지속적으로 유지하고 있습니다.
+   (※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. 제가 만든 적용 질문 (동기 대표님들을 위한 실습 워크시트)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[ ] 질문 1. 우리 회사의 업무 문서 중 충돌하는 규정(가격, 환불, 응대) 1개를 찾아 정본(SSOT)으로 확정했는가?
+    (AI가 찾아준 충돌 표시를 바탕으로, 대표자가 직접 최종 기준을 판정하고 문서에 반영하기)
+
+[ ] 질문 2. 자주 쓰는 프롬프트나 업무 절차를 일회성 대화로 날리지 않고 마크다운 규칙(SOP) 파일로 만들어 폴더에 저장했는가?
+    (게리 탄의 명제: 잘 정리된 마크다운 문서 1개 = 24시간 일하는 AI 직원 1명)
+
+[ ] 질문 3. 사문화된 지침과 중복 메모를 솎아내는 '지식 린트(보풀 제거)' 정기 루틴을 계획했는가?
+    (문서가 늘어날수록 발생하는 지식 오염과 할루시네이션을 방지하기 위한 정기 클린업 루틴)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+그대로 옮긴 강사 핵심 메시지
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"옵시디언은 IDE이고, LLM은 프로그래머이며, 위키 문서는 코드베이스입니다."
+"마크다운 문서 하나가 우리 회사의 직원 한 명입니다."
+"규칙 간의 모순과 충돌을 감지하는 건 AI가 돕더라도, 기준을 확정하는 최종 판정은 결국 대표자 본인의 몫입니다."
+"지식 베이스가 커질수록 스웨터의 보풀을 떼어내듯 낡은 규칙을 솎아내는 '린트(Lint)' 작업을 해주지 않으면 AI는 길을 잃습니다."
+`;
+
+    document.getElementById('md-raw-box').textContent = OBSIDIAN_MD;
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function copyText(txt, label) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(txt).then(() => showToast(label));
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = txt;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(label);
+      }
+    }
+
+    function copyObsidian() {
+      copyText(OBSIDIAN_MD, '✓ 옵시디언 마크다운 원문이 복사되었습니다');
+    }
+
+    function copyPlain() {
+      copyText(PLAIN_TXT, '✓ 일반 문서가 복사되었습니다 (노션·메모장에 붙여넣기)');
+    }
+
+    function downloadMd() {
+      const blob = new Blob([OBSIDIAN_MD], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = '2026-10-14_강남구초기창업자_3주차_수강생_복습노트_및_적용질문.md';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('✓ .md 파일 다운로드가 시작되었습니다');
+    }
+
+    function switchTab(mode) {
+      const readView = document.getElementById('view-read');
+      const mdView = document.getElementById('view-md');
+      const readBtn = document.getElementById('tab-read-btn');
+      const mdBtn = document.getElementById('tab-md-btn');
+      if (mode === 'read') {
+        readView.style.display = 'block';
+        mdView.style.display = 'none';
+        readBtn.classList.add('active');
+        mdBtn.classList.remove('active');
+      } else {
+        readView.style.display = 'none';
+        mdView.style.display = 'block';
+        readBtn.classList.remove('active');
+        mdBtn.classList.add('active');
+      }
+    }
+
+    function toggleChk(id) {
+      const el = document.getElementById(id);
+      el.checked = !el.checked;
+      saveChk();
+    }
+
+    function updateChkUI() {
+      let count = 0;
+      ['chk1', 'chk2', 'chk3'].forEach(id => {
+        const el = document.getElementById(id);
+        const item = document.getElementById('item-' + id);
+        if (el.checked) {
+          count++;
+          item.classList.add('checked');
+        } else {
+          item.classList.remove('checked');
+        }
+      });
+      document.getElementById('chk-count-badge').textContent = count + ' / 3 완료';
+    }
+
+    function saveChk() {
+      ['chk1', 'chk2', 'chk3'].forEach(id => {
+        localStorage.setItem('gangnam_startup_w3_' + id, document.getElementById(id).checked ? '1' : '0');
+      });
+      updateChkUI();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      ['chk1', 'chk2', 'chk3'].forEach(id => {
+        if (localStorage.getItem('gangnam_startup_w3_' + id) === '1') {
+          document.getElementById(id).checked = true;
+        }
+      });
+      updateChkUI();
+    });
+  </script>
+</body>
+</html>
