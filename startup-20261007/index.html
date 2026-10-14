@@ -23,12 +23,10 @@
       --toss-blue: #3182F6;
       --toss-blue-dark: #1B64DA;
       --toss-blue-bg: #E8F3FF;
-      --mint-green: #00B884;
-      --mint-green-bg: #E5F9F3;
-      --indigo: #6366F1;
-      --indigo-bg: #EEF2FF;
-      --orange: #FF8A00;
-      --orange-bg: #FFF4E5;
+      --mint-green: #00C471;
+      --mint-green-bg: #E5F9F0;
+      --slate-gray: #4E5968;
+      --slate-gray-bg: #F2F4F6;
     }
     * {
       box-sizing: border-box;
@@ -71,7 +69,7 @@
       margin-bottom: 14px;
     }
     h1 {
-      font-size: 25px;
+      font-size: 24px;
       font-weight: 800;
       line-height: 1.36;
       color: var(--text-primary);
@@ -132,7 +130,7 @@
         grid-template-columns: 1fr;
       }
       h1 {
-        font-size: 21px;
+        font-size: 20px;
       }
       .hero-card {
         padding: 24px 20px;
@@ -142,14 +140,14 @@
       cursor: pointer;
       border: none;
       border-radius: 12px;
-      padding: 14px 14px;
+      padding: 13px 12px;
       font-family: inherit;
       font-size: 14px;
       font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
+      gap: 6px;
       transition: all 0.15s ease;
       letter-spacing: -0.01em;
     }
@@ -222,21 +220,18 @@
       border-radius: 7px;
       margin-bottom: 12px;
     }
+    /* 3색 정제 팔레트 */
     .badge-blue {
       background: var(--toss-blue-bg);
       color: var(--toss-blue-dark);
     }
     .badge-mint {
       background: var(--mint-green-bg);
-      color: #008A63;
+      color: #007A45;
     }
-    .badge-indigo {
-      background: var(--indigo-bg);
-      color: #4338CA;
-    }
-    .badge-orange {
-      background: var(--orange-bg);
-      color: #C05621;
+    .badge-neutral {
+      background: var(--slate-gray-bg);
+      color: var(--slate-gray);
     }
 
     h2 {
@@ -263,9 +258,9 @@
     .quote-box {
       background: var(--surface-sub);
       border-left: 4px solid var(--toss-blue);
-      padding: 16px 18px;
-      border-radius: 4px 14px 14px 4px;
-      margin: 14px 0 16px;
+      padding: 14px 16px;
+      border-radius: 4px 12px 12px 4px;
+      margin: 12px 0 14px;
       font-size: 14px;
       color: var(--text-secondary);
       line-height: 1.65;
@@ -274,11 +269,28 @@
       color: var(--toss-blue-dark);
     }
 
-    /* Comparison & Table */
+    /* Folder tree snippet box */
+    .folder-tree-box {
+      background: #F9FAFB;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 14px 0;
+    }
+
+    /* Comparison Table (데스크톱 기본 / 모바일 2단 변환) */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
     .comparison-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 16px 0;
       font-size: 14px;
     }
     .comparison-table th, .comparison-table td {
@@ -293,6 +305,52 @@
     }
     .comparison-table td {
       color: var(--text-secondary);
+    }
+
+    /* 모바일 가로폭 압박 해소: 3열 -> 2열 블록형 변환 */
+    @media (max-width: 600px) {
+      .comparison-table {
+        display: block;
+        border: none;
+      }
+      .comparison-table thead {
+        display: none;
+      }
+      .comparison-table tbody, .comparison-table tr, .comparison-table td {
+        display: block;
+        width: 100%;
+      }
+      .comparison-table tr {
+        margin-bottom: 14px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        background: #FFFFFF;
+        box-shadow: 0 2px 8px rgba(0, 27, 55, 0.02);
+      }
+      .comparison-table td {
+        border: none;
+        border-bottom: 1px solid var(--border-soft);
+        padding: 10px 14px;
+        font-size: 13.5px;
+      }
+      .comparison-table td:first-child {
+        background: var(--toss-blue-bg);
+        color: var(--toss-blue-dark);
+        font-weight: 800;
+        font-size: 13.5px;
+        border-bottom: 1px solid #D6E8FF;
+      }
+      .comparison-table td:nth-child(2)::before {
+        content: "단순 검색(RAG): ";
+        font-weight: 700;
+        color: var(--text-muted);
+      }
+      .comparison-table td:nth-child(3)::before {
+        content: "축적형(LLM Wiki): ";
+        font-weight: 800;
+        color: var(--toss-blue);
+      }
     }
 
     /* Checklist Items */
@@ -314,12 +372,12 @@
       transition: all 0.15s ease;
     }
     .chk-item:hover {
-      border-color: var(--toss-blue);
+      border-color: var(--mint-green);
       background: #F8FAFD;
     }
     .chk-item.checked {
-      background: var(--toss-blue-bg);
-      border-color: var(--toss-blue);
+      background: var(--mint-green-bg);
+      border-color: var(--mint-green);
     }
     .chk-box {
       appearance: none;
@@ -336,8 +394,8 @@
       transition: all 0.15s ease;
     }
     .chk-box:checked {
-      background: var(--toss-blue);
-      border-color: var(--toss-blue);
+      background: var(--mint-green);
+      border-color: var(--mint-green);
     }
     .chk-box:checked::after {
       content: "";
@@ -408,7 +466,7 @@
 
     <!-- Hero Card -->
     <div class="hero-card">
-      <div class="eyebrow">Startup / Entrepreneurship — 실무 강의 정리</div>
+      <div class="eyebrow">⏱️ 읽는 시간 3분 · 강남구 초기창업자 3주차 수강생 복습노트</div>
       <h1>모두의 창업 서울 - 선배 창업가 3인 인사이트 강연 요약 및 내 사업 적용안</h1>
       <p class="hero-desc">사내 지식 자산화 및 실무 적용 체크리스트 공유용 자료입니다.</p>
       <div class="meta-row">
@@ -418,21 +476,21 @@
       </div>
     </div>
 
-    <!-- Action Bar -->
+    <!-- Top Action Card (직관적 버튼 워딩) -->
     <div class="action-card">
       <div class="action-header">
-        <span class="action-title">원클릭 복사 &amp; 다운로드</span>
-        <span class="action-sub">노션, 메모장, 옵시디언 등 편한 도구에 바로 복사해 활용하세요</span>
+        <span class="action-title">원클릭 복사 &amp; 파일 저장</span>
+        <span class="action-sub">노션, 카카오톡, 옵시디언 등 편한 도구에 바로 복사해 활용하세요</span>
       </div>
       <div class="btn-grid">
         <button class="act-btn btn-secondary" onclick="copyPlain()">
-          📄 일반 문서 복사
+          📄 카톡·노션용 복사
         </button>
         <button class="act-btn btn-primary" onclick="copyObsidian()">
-          📋 옵시디언 마크다운 복사
+          📋 옵시디언(.md) 복사
         </button>
         <button class="act-btn btn-tertiary" onclick="downloadMd()">
-          📥 .md 다운로드
+          📥 파일(.md) 저장
         </button>
       </div>
     </div>
@@ -446,94 +504,62 @@
     <!-- Read View -->
     <div id="view-read">
 
-      <!-- Section: 상세 내용 -->
-      <div class="card">
-        <div class="section-badge badge-blue">상세 내용</div>
-        <h2>상세 내용</h2>
-        
-      </div>
-
       <!-- Section: 한 줄 요약 -->
       <div class="card">
-        <div class="section-badge badge-indigo">한 줄 요약</div>
+        <div class="section-badge badge-blue">한 줄 요약</div>
         <h2>한 줄 요약</h2>
         <p>스타트업 3년 내 폐업률 90%가 넘는 냉혹한 현실 속에서, <strong>① 매출·영업이익 중심의 극단적 자기객관화(최혁재), ② 1인 완결성과 최소 손익분기점 우선 확보(최두아), ③ 기술의 정량적 입증과 투트랙 생존 포트폴리오(김영준)</strong>를 통해 데스밸리를 돌파하는 실전 생존 법칙.</p><p>---</p>
       </div>
 
       <!-- Section: 1. 최혁재 대표 (스푼랩스) — &quot;창업자의 명과 암, 냉혹한 자기객관화&quot; -->
       <div class="card">
-        <div class="section-badge badge-mint">1. 최혁재 대표 (스푼랩스) — &quot;창업자의 명과 암, 냉혹한 자기객관화&quot;</div>
+        <div class="section-badge badge-blue">1. 최혁재 대표 (스푼랩스) — &quot;창업자의 명과 암, 냉혹한 자기객관화&quot;</div>
         <h2>1. 최혁재 대표 (스푼랩스) — &quot;창업자의 명과 암, 냉혹한 자기객관화&quot;</h2>
         <p style="margin-left: 12px; margin-bottom: 8px;">• <strong>시장과 생존율의 현실:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 3년 이내 스타트업 폐업률은 <strong>90% 이상</strong>에 달함.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 한국은 법인 폐업 시 법인 채무가 대표 개인 채무로 전이되는 구조적 리스크가 상존하여, 사업 실패가 곧 개인의 사회적 파산으로 이어질 수 있음을 직시해야 함.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>투입량과 몰입:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 초기 제로투원(0 to 1) 단계에서는 <strong>&quot;압도적인 양이 질을 압도함&quot;</strong>. 주 80~100시간의 극한 투입 필수.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 경쟁자들은 회사에 목숨을 건 상태로 임하고 있음을 잊지 말 것.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>자기객관화의 유일한 잣대:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 작은 성공(월 매출 1억 원 등)에 도취되는 순간 침체가 시작됨. 목표가 100억 원이면 1억 원은 100분의 1일 뿐.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 자기객관화의 유일한 기준은 <strong>&#x27;매출&#x27;</strong>과 <strong>&#x27;영업이익&#x27;</strong>. 투자 유치 금액은 성과가 아니라 결국 갚아야 할 <strong>&#x27;미래 부채&#x27;</strong>이자 평가 가치일 뿐임.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>실전 전략 원칙:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>초기 대외활동/SNS 절제:</strong> 초기 10~20인 이하 규모에서는 대표의 물리적 시간이 최대 자산. 보여주기식 네트워킹 대신 <strong>고객의 지갑을 여는 제품 완성</strong>에 집중할 것.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>해외 진출 기준:</strong> 국내에서 월 매출 1~3억 원 수준의 확실한 PMF 검증 없이 해외로 나가는 것은 돌파가 아니라 도피에 불과함.</p><p>---</p>
       </div>
 
       <!-- Section: 2. 최두아 대표 (휴레이포지티브) — &quot;생존을 위한 비용 통제와 1인 완결성&quot; -->
       <div class="card">
-        <div class="section-badge badge-orange">2. 최두아 대표 (휴레이포지티브) — &quot;생존을 위한 비용 통제와 1인 완결성&quot;</div>
+        <div class="section-badge badge-blue">2. 최두아 대표 (휴레이포지티브) — &quot;생존을 위한 비용 통제와 1인 완결성&quot;</div>
         <h2>2. 최두아 대표 (휴레이포지티브) — &quot;생존을 위한 비용 통제와 1인 완결성&quot;</h2>
         <p style="margin-left: 12px; margin-bottom: 8px;">• <strong>자금 조달과 부채 인식:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 초기 투자는 3F(Family, Friend, Fool) 중심이나, 시리즈 A/B/C 등 모든 외부 펀딩은 결국 갚아내야 할 책임성 자금(빚)임.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 외부 투자는 확신이 서기 전까지 최대한 미루고 자본을 아끼는 것이 원칙.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>최소한의 손익분기점(BEP) 우선 확보:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 모두가 처음부터 거창한 유니콘만을 지향할 필요는 없음.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 나와 내 가족이 자립할 수 있는 <strong>최소한의 손익분기점(BEP, 바둑의 &#x27;두 집&#x27;)</strong>을 먼저 구축하여 죽지 않는 구조를 만드는 것이 핵심.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>조직 및 개발 효율화 (&quot;내가 다 한다&quot;):</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 초기에는 공동 창업자나 외부 인력에 의존하기보다 <strong>&quot;내가 다 한다&quot;</strong>는 각오로 대표가 직접 학습하여 문제를 해결해야 살아남음 (유통을 모르면 유통을 배우고, 개발을 모르면 개발을 배울 것).</p><p style="margin-left: 12px; margin-bottom: 8px;">• PMF 검증 전에 거대하고 완벽한 제품을 만들지 말고, <strong>먼저 팔아보며(돈 내는 고객 1명 확보)</strong> 외주·정부 R&amp;D 등을 레버리지해 생존 시간을 벌 것.</p><p>---</p>
       </div>
 
       <!-- Section: 3. 김영준 의장 (파블로항공) — &quot;기술의 정량화와 듀얼 유즈(투트랙) 확장&quot; -->
       <div class="card">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-          <div class="section-badge badge-orange" style="margin-bottom: 0;">실습 워크시트</div>
-          <span id="chk-count-badge" style="font-size: 12px; font-weight: 800; color: var(--toss-blue); background: var(--toss-blue-bg); padding: 4px 10px; border-radius: 8px;">0 / 3 완료</span>
-        </div>
+        <div class="section-badge badge-blue">3. 김영준 의장 (파블로항공) — &quot;기술의 정량화와 듀얼 유즈(투트랙) 확장&quot;</div>
         <h2>3. 김영준 의장 (파블로항공) — &quot;기술의 정량화와 듀얼 유즈(투트랙) 확장&quot;</h2>
-        <p>오늘 강의 내용을 바탕으로 각자의 사업에 대입해 보실 수 있는 실습 질문입니다. 직접 체크해 보세요.</p>
-        <div class="chk-group">
-          
-          <div class="chk-item" id="item-chk1" onclick="toggleChk('chk1')">
-            <input type="checkbox" class="chk-box" id="chk1" onclick="event.stopPropagation(); saveChk();" />
-            <div class="chk-content">
-              <div class="chk-title">질문 1. 자기객관화 &amp; 제품 집중 (최혁재 대표 기준):**</div>
-              <div class="chk-sub">- 지금 내 시간 중 &#x27;고객이 실제로 지갑을 여는 핵심 자산(전자책 3부작 완결, ETF 캠퍼스 핵심 기능, 웹소설 유입)&#x27;과 직결되지 않는 작업은 무엇인가?</div>
-            </div>
-          </div>
-          <div class="chk-item" id="item-chk2" onclick="toggleChk('chk2')">
-            <input type="checkbox" class="chk-box" id="chk2" onclick="event.stopPropagation(); saveChk();" />
-            <div class="chk-content">
-              <div class="chk-title">질문 2. 1인 완결성 &amp; 최소 손익분기점 선확보 (최두아 대표 기준):**</div>
-              <div class="chk-sub">- 외부 의존 없이 AI 에이전트(Hermes + Obsidian + 결정적 린터)로 고정비를 통제하며, 가장 빠르게 첫 유료 매출(BEP)을 일으킬 최소 단위 상품은 무엇인가?</div>
-            </div>
-          </div>
-          <div class="chk-item" id="item-chk3" onclick="toggleChk('chk3')">
-            <input type="checkbox" class="chk-box" id="chk3" onclick="event.stopPropagation(); saveChk();" />
-            <div class="chk-content">
-              <div class="chk-title">질문 3. 정량적 수치 증명 &amp; 투트랙 현금흐름 (김영준 의장 기준):**</div>
-              <div class="chk-sub">- 내 프로덕트와 콘텐츠의 가치를 추상적 수식어 대신 **&#x27;정량 데이터(예: 1,172개 ETF 전수 비교, 20년 복리 격차 실측, 추론 시간 187초➔8초 단축)&#x27;**로 즉시 증명하고 있는가? 단기 현금흐름(전자책·콘텐츠)과 장기 플랫폼(ETF 캠퍼스·트레이딩 시스템)의 투트랙이 맞물려 돌아가고 있는가?</div>
-            </div>
-          </div>
-        </div>
+        <p style="margin-left: 12px; margin-bottom: 8px;">• <strong>기술의 정량적 입증:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 기술 수준(예: 군집 비행 자율주행 레벨 등)을 추상적·정성적 설명(&quot;우리 기술 대단합니다&quot;)이 아닌 <strong>정량적 데이터와 단계별 수치</strong>로 증명해야 투자자와 고객을 설득할 수 있음.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>듀얼 유즈(민수 + 방산) 투트랙 포트폴리오:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 단일 시장(방산·공공 등)의 긴 조달 사이클(2~3년) 동안 발생하는 매출 공백(데스밸리)을 민수 시장(드론 쇼, 점검 로봇 등)의 단기 현금흐름으로 방어하는 하이브리드 모델 구축.</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>규제 돌파 및 신뢰 네트워크(PI):</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 법과 제도가 없는 신산업에서는 현장 실증과 긍정적 여론 형성을 통해 규제 가이드를 역으로 만들어가는 역량 필요.</p><p style="margin-left: 12px; margin-bottom: 8px;">• B2B/B2G 영역에서는 창업자의 평판과 신뢰 네트워크 구축이 대규모 계약의 핵심 열쇠로 작용.</p><p>---</p>
       </div>
 
       <!-- Section: 4. 핵심 관점 대조 (비즈니스 모델에 따른 전략 차이) -->
       <div class="card">
-        <div class="section-badge badge-blue">4. 핵심 관점 대조 (비즈니스 모델에 따른 전략 차이)</div>
+        <div class="section-badge badge-blue">핵심 관점 대조</div>
         <h2>4. 핵심 관점 대조 (비즈니스 모델에 따른 전략 차이)</h2>
-        <table class="comparison-table">
+        <div class="table-wrap">
+<table class="comparison-table">
   <thead>
     <tr><th>구분</th><th>최혁재 대표 (스푼랩스)</th><th>최두아 대표 (휴레이포지티브)</th><th>김영준 의장 (파블로항공)</th></tr>
   </thead>
   <tbody>
-    <tr><td><strong>핵심 비즈니스</strong></td><td>B2C 글로벌 오디오/숏폼 플랫폼</td><td>디지털 헬스케어 (B2B/B2G/R&amp;D)</td><td>딥테크 드론·방산·모빌리티</td></tr>
-<tr><td><strong>자금 및 투자관</strong></td><td>매출 없는 투자는 전부 &#x27;빚&#x27;, 흑자 지향</td><td>펀딩 최소화, 최소 손익분기점(BEP) 우선</td><td>대규모 기술 투자 유치 및 M&amp;A 스왑 활용</td></tr>
-<tr><td><strong>초기 대표의 역할</strong></td><td>외부 활동 끊고 주 100시간 제품 몰입</td><td>&quot;내가 다 한다&quot;는 각오로 직접 학습·선판매</td><td>기술을 정량 수치로 증명 + 대외 신뢰(PI) 구축</td></tr>
-<tr><td><strong>생존 방어 기제</strong></td><td>국내 확실한 PMF(월 1~3억) 선검증</td><td>완벽한 제품 전 먼저 팔아보기 + R&amp;D 활용</td><td>장기 타깃(방산) + 단기 캐시카우(민수) 투트랙</td></tr>
+    <tr><td data-label="구분"><strong>핵심 비즈니스</strong></td><td data-label="최혁재 대표 (스푼랩스)">B2C 글로벌 오디오/숏폼 플랫폼</td><td data-label="최두아 대표 (휴레이포지티브)">디지털 헬스케어 (B2B/B2G/R&amp;D)</td><td data-label="김영준 의장 (파블로항공)">딥테크 드론·방산·모빌리티</td></tr>
+<tr><td data-label="구분"><strong>자금 및 투자관</strong></td><td data-label="최혁재 대표 (스푼랩스)">매출 없는 투자는 전부 &#x27;빚&#x27;, 흑자 지향</td><td data-label="최두아 대표 (휴레이포지티브)">펀딩 최소화, 최소 손익분기점(BEP) 우선</td><td data-label="김영준 의장 (파블로항공)">대규모 기술 투자 유치 및 M&amp;A 스왑 활용</td></tr>
+<tr><td data-label="구분"><strong>초기 대표의 역할</strong></td><td data-label="최혁재 대표 (스푼랩스)">외부 활동 끊고 주 100시간 제품 몰입</td><td data-label="최두아 대표 (휴레이포지티브)">&quot;내가 다 한다&quot;는 각오로 직접 학습·선판매</td><td data-label="김영준 의장 (파블로항공)">기술을 정량 수치로 증명 + 대외 신뢰(PI) 구축</td></tr>
+<tr><td data-label="구분"><strong>생존 방어 기제</strong></td><td data-label="최혁재 대표 (스푼랩스)">국내 확실한 PMF(월 1~3억) 선검증</td><td data-label="최두아 대표 (휴레이포지티브)">완벽한 제품 전 먼저 팔아보기 + R&amp;D 활용</td><td data-label="김영준 의장 (파블로항공)">장기 타깃(방산) + 단기 캐시카우(민수) 투트랙</td></tr>
 
   </tbody>
-</table><p>---</p>
+</table>
+</div><p>---</p>
       </div>
 
       <!-- Section: 5. 내 사업(1인 AI 네이티브 컴퍼니)에 바로 적용할 3대 체크리스트 -->
       <div class="card">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-          <div class="section-badge badge-orange" style="margin-bottom: 0;">실습 워크시트</div>
-          <span id="chk-count-badge" style="font-size: 12px; font-weight: 800; color: var(--toss-blue); background: var(--toss-blue-bg); padding: 4px 10px; border-radius: 8px;">0 / 3 완료</span>
+          <div class="section-badge badge-mint" style="margin-bottom: 0;">3. 실습 워크시트</div>
+          <span id="chk-count-badge" style="font-size: 12px; font-weight: 800; color: var(--mint-green); background: var(--mint-green-bg); padding: 4px 10px; border-radius: 8px;">0 / 3 완료</span>
         </div>
         <h2>5. 내 사업(1인 AI 네이티브 컴퍼니)에 바로 적용할 3대 체크리스트</h2>
-        <p>오늘 강의 내용을 바탕으로 각자의 사업에 대입해 보실 수 있는 실습 질문입니다. 직접 체크해 보세요.</p>
+        <p>오늘 강의 내용을 바탕으로 대표님의 사업에 지금 바로 대입해 볼 수 있는 3가지 실천 약속입니다. 직접 체크해 보세요.</p>
         <div class="chk-group">
           
           <div class="chk-item" id="item-chk1" onclick="toggleChk('chk1')">
@@ -554,18 +580,45 @@
             <input type="checkbox" class="chk-box" id="chk3" onclick="event.stopPropagation(); saveChk();" />
             <div class="chk-content">
               <div class="chk-title">질문 3. 정량적 수치 증명 &amp; 투트랙 현금흐름 (김영준 의장 기준):**</div>
-              <div class="chk-sub">- 내 프로덕트와 콘텐츠의 가치를 추상적 수식어 대신 **&#x27;정량 데이터(예: 1,172개 ETF 전수 비교, 20년 복리 격차 실측, 추론 시간 187초➔8초 단축)&#x27;**로 즉시 증명하고 있는가? 단기 현금흐름(전자책·콘텐츠)과 장기 플랫폼(ETF 캠퍼스·트레이딩 시스템)의 투트랙이 맞물려 돌아가고 있는가?</div>
+              <div class="chk-sub">- 내 프로덕트와 콘텐츠의 가치를 추상적 수식어 대신 **&#x27;출원과 범위가 명시된 정량 데이터(예: 공시 기준일이 확인된 ETF 실부담비용 비교, 조건이 명시된 20년 복리 계좌 격차 계산, 원장 조회 시각·실행 조건이 명시된 런타임 로그)&#x27;**로 증명하고 있는가? 단기 현금흐름(전자책·콘텐츠)과 장기 플랫폼(ETF 캠퍼스·트레이딩 시스템)의 투트랙이 맞물려 돌아가고 있는가?</div>
             </div>
           </div>
+        </div>
+        <!-- 3/3 달성 시 나타나는 부드러운 축하 및 복사 안내 박스 -->
+        <div id="chk-complete-box" style="display: none; background: #E5F9F0; border: 1px solid #00C471; border-radius: 14px; padding: 16px 18px; margin-top: 16px; font-size: 14px; color: #007A45; line-height: 1.6;">
+          <strong>🎉 3가지 적용 포인트를 모두 찾으셨네요!</strong><br />
+          아래 복사 버튼을 눌러 대표님의 노트(노션·옵시디언)에 바로 붙여넣고 오늘부터 시작해 보세요.
         </div>
       </div>
 
       <!-- Section: 그대로 옮긴 말 (현장 핵심 어록) -->
       <div class="card">
-        <div class="section-badge badge-mint">그대로 옮긴 말 (현장 핵심 어록)</div>
+        <div class="section-badge badge-neutral">강사 핵심 어록</div>
         <h2>그대로 옮긴 말 (현장 핵심 어록)</h2>
         <p style="margin-left: 12px; margin-bottom: 8px;">• <em>&quot;3년 안에 90% 이상이 폐업합니다. 한국은 법인만 망하지 않고 개인 채무로 이어져 인생이 무너집니다.&quot;</em> — 최혁재 대표</p><p style="margin-left: 12px; margin-bottom: 8px;">• <em>&quot;매출 없는 투자는 성공이 아니라 미래 가치를 가불한 빚입니다.&quot;</em> — 최혁재 대표</p><p style="margin-left: 12px; margin-bottom: 8px;">• <em>&quot;모두가 유니콘이 될 필요는 없습니다. 내가 다 한다는 각오로 먼저 팔아보며 최소한의 손익분기점부터 만드세요.&quot;</em> — 최두아 대표</p><p style="margin-left: 12px; margin-bottom: 8px;">• <em>&quot;우리 기술이 대단하다고 말로 설명하지 말고, 누구나 납득할 정량적 레벨 수치로 증명해야 돈이 들어옵니다.&quot;</em> — 김영준 의장</p>
       </div>
+
+      <!-- Bottom Action Card (클라이맥스 체크 후 마무리 소장 유도) -->
+      <div class="action-card" style="margin-top: 24px; text-align: center;">
+        <div style="font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">
+          방금 점검한 내용을 대표님 노트에 가져가세요
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          노션, 카카오톡, 옵시디언 등 편한 도구에 원클릭으로 붙여넣고 오늘부터 시작할 수 있습니다.
+        </p>
+        <div class="btn-grid">
+          <button class="act-btn btn-secondary" onclick="copyPlain()">
+            📄 카톡·노션용 복사
+          </button>
+          <button class="act-btn btn-primary" onclick="copyObsidian()">
+            📋 옵시디언(.md) 복사
+          </button>
+          <button class="act-btn btn-tertiary" onclick="downloadMd()">
+            📥 파일(.md) 저장
+          </button>
+        </div>
+      </div>
+
     </div>
 
     <!-- Markdown View -->
@@ -585,8 +638,8 @@
 
   <script>
     // json.dumps() 기반 안전한 무결점 데이터 주입 (Triple-Sync 컴파일)
-    const OBSIDIAN_MD = "---\ntitle: \"모두의 창업 서울 - 선배 창업가 3인 인사이트 강연 요약 및 내 사업 적용안\"\nknowledge_scope: external_lecture\ncanonical_status: staging\ndate: 2026-10-07\ncategory: Startup / Entrepreneurship\ntags:\n  - Startup\n  - Insight\n  - Obsidian\n  - BusinessStrategy\n  - 모두의창업\nspeakers:\n  - 최혁재 (스푼랩스 대표)\n  - 최두아 (휴레이포지티브 대표)\n  - 김영준 (파블로항공 의장)\nmoderator: 김영란 (코리아스타트업포럼 사무국장)\nsource: 클로바노트 현장 녹취 + Gemini 요약 + 내 사업 적용 구조화\n---\n\n# 2026-10-07 모두의 창업 서울: 선배 창업가 인사이트 강연\n\n## 한 줄 요약\n스타트업 3년 내 폐업률 90%가 넘는 냉혹한 현실 속에서, **① 매출·영업이익 중심의 극단적 자기객관화(최혁재), ② 1인 완결성과 최소 손익분기점 우선 확보(최두아), ③ 기술의 정량적 입증과 투트랙 생존 포트폴리오(김영준)**를 통해 데스밸리를 돌파하는 실전 생존 법칙.\n\n---\n\n## 1. 최혁재 대표 (스푼랩스) — \"창업자의 명과 암, 냉혹한 자기객관화\"\n\n- **시장과 생존율의 현실:**\n  - 3년 이내 스타트업 폐업률은 **90% 이상**에 달함.\n  - 한국은 법인 폐업 시 법인 채무가 대표 개인 채무로 전이되는 구조적 리스크가 상존하여, 사업 실패가 곧 개인의 사회적 파산으로 이어질 수 있음을 직시해야 함.\n- **투입량과 몰입:**\n  - 초기 제로투원(0 to 1) 단계에서는 **\"압도적인 양이 질을 압도함\"**. 주 80~100시간의 극한 투입 필수.\n  - 경쟁자들은 회사에 목숨을 건 상태로 임하고 있음을 잊지 말 것.\n- **자기객관화의 유일한 잣대:**\n  - 작은 성공(월 매출 1억 원 등)에 도취되는 순간 침체가 시작됨. 목표가 100억 원이면 1억 원은 100분의 1일 뿐.\n  - 자기객관화의 유일한 기준은 **'매출'**과 **'영업이익'**. 투자 유치 금액은 성과가 아니라 결국 갚아야 할 **'미래 부채'**이자 평가 가치일 뿐임.\n- **실전 전략 원칙:**\n  - **초기 대외활동/SNS 절제:** 초기 10~20인 이하 규모에서는 대표의 물리적 시간이 최대 자산. 보여주기식 네트워킹 대신 **고객의 지갑을 여는 제품 완성**에 집중할 것.\n  - **해외 진출 기준:** 국내에서 월 매출 1~3억 원 수준의 확실한 PMF 검증 없이 해외로 나가는 것은 돌파가 아니라 도피에 불과함.\n\n---\n\n## 2. 최두아 대표 (휴레이포지티브) — \"생존을 위한 비용 통제와 1인 완결성\"\n\n- **자금 조달과 부채 인식:**\n  - 초기 투자는 3F(Family, Friend, Fool) 중심이나, 시리즈 A/B/C 등 모든 외부 펀딩은 결국 갚아내야 할 책임성 자금(빚)임.\n  - 외부 투자는 확신이 서기 전까지 최대한 미루고 자본을 아끼는 것이 원칙.\n- **최소한의 손익분기점(BEP) 우선 확보:**\n  - 모두가 처음부터 거창한 유니콘만을 지향할 필요는 없음.\n  - 나와 내 가족이 자립할 수 있는 **최소한의 손익분기점(BEP, 바둑의 '두 집')**을 먼저 구축하여 죽지 않는 구조를 만드는 것이 핵심.\n- **조직 및 개발 효율화 (\"내가 다 한다\"):**\n  - 초기에는 공동 창업자나 외부 인력에 의존하기보다 **\"내가 다 한다\"**는 각오로 대표가 직접 학습하여 문제를 해결해야 살아남음 (유통을 모르면 유통을 배우고, 개발을 모르면 개발을 배울 것).\n  - PMF 검증 전에 거대하고 완벽한 제품을 만들지 말고, **먼저 팔아보며(돈 내는 고객 1명 확보)** 외주·정부 R&D 등을 레버리지해 생존 시간을 벌 것.\n\n---\n\n## 3. 김영준 의장 (파블로항공) — \"기술의 정량화와 듀얼 유즈(투트랙) 확장\"\n\n- **기술의 정량적 입증:**\n  - 기술 수준(예: 군집 비행 자율주행 레벨 등)을 추상적·정성적 설명(\"우리 기술 대단합니다\")이 아닌 **정량적 데이터와 단계별 수치**로 증명해야 투자자와 고객을 설득할 수 있음.\n- **듀얼 유즈(민수 + 방산) 투트랙 포트폴리오:**\n  - 단일 시장(방산·공공 등)의 긴 조달 사이클(2~3년) 동안 발생하는 매출 공백(데스밸리)을 민수 시장(드론 쇼, 점검 로봇 등)의 단기 현금흐름으로 방어하는 하이브리드 모델 구축.\n- **규제 돌파 및 신뢰 네트워크(PI):**\n  - 법과 제도가 없는 신산업에서는 현장 실증과 긍정적 여론 형성을 통해 규제 가이드를 역으로 만들어가는 역량 필요.\n  - B2B/B2G 영역에서는 창업자의 평판과 신뢰 네트워크 구축이 대규모 계약의 핵심 열쇠로 작용.\n\n---\n\n## 4. 핵심 관점 대조 (비즈니스 모델에 따른 전략 차이)\n\n| 구분 | 최혁재 대표 (스푼랩스) | 최두아 대표 (휴레이포지티브) | 김영준 의장 (파블로항공) |\n| :--- | :--- | :--- | :--- |\n| **핵심 비즈니스** | B2C 글로벌 오디오/숏폼 플랫폼 | 디지털 헬스케어 (B2B/B2G/R&D) | 딥테크 드론·방산·모빌리티 |\n| **자금 및 투자관** | 매출 없는 투자는 전부 '빚', 흑자 지향 | 펀딩 최소화, 최소 손익분기점(BEP) 우선 | 대규모 기술 투자 유치 및 M&A 스왑 활용 |\n| **초기 대표의 역할** | 외부 활동 끊고 주 100시간 제품 몰입 | \"내가 다 한다\"는 각오로 직접 학습·선판매 | 기술을 정량 수치로 증명 + 대외 신뢰(PI) 구축 |\n| **생존 방어 기제** | 국내 확실한 PMF(월 1~3억) 선검증 | 완벽한 제품 전 먼저 팔아보기 + R&D 활용 | 장기 타깃(방산) + 단기 캐시카우(민수) 투트랙 |\n\n---\n\n## 5. 내 사업(1인 AI 네이티브 컴퍼니)에 바로 적용할 3대 체크리스트\n\n- [ ] **1. 자기객관화 & 제품 집중 (최혁재 대표 기준):**\n  - 지금 내 시간 중 '고객이 실제로 지갑을 여는 핵심 자산(전자책 3부작 완결, ETF 캠퍼스 핵심 기능, 웹소설 유입)'과 직결되지 않는 작업은 무엇인가?\n- [ ] **2. 1인 완결성 & 최소 손익분기점 선확보 (최두아 대표 기준):**\n  - 외부 의존 없이 AI 에이전트(Hermes + Obsidian + 결정적 린터)로 고정비를 통제하며, 가장 빠르게 첫 유료 매출(BEP)을 일으킬 최소 단위 상품은 무엇인가?\n- [ ] **3. 정량적 수치 증명 & 투트랙 현금흐름 (김영준 의장 기준):**\n  - 내 프로덕트와 콘텐츠의 가치를 추상적 수식어 대신 **'정량 데이터(예: 1,172개 ETF 전수 비교, 20년 복리 격차 실측, 추론 시간 187초➔8초 단축)'**로 즉시 증명하고 있는가? 단기 현금흐름(전자책·콘텐츠)과 장기 플랫폼(ETF 캠퍼스·트레이딩 시스템)의 투트랙이 맞물려 돌아가고 있는가?\n\n---\n\n## 그대로 옮긴 말 (현장 핵심 어록)\n\n- *\"3년 안에 90% 이상이 폐업합니다. 한국은 법인만 망하지 않고 개인 채무로 이어져 인생이 무너집니다.\"* — 최혁재 대표\n- *\"매출 없는 투자는 성공이 아니라 미래 가치를 가불한 빚입니다.\"* — 최혁재 대표\n- *\"모두가 유니콘이 될 필요는 없습니다. 내가 다 한다는 각오로 먼저 팔아보며 최소한의 손익분기점부터 만드세요.\"* — 최두아 대표\n- *\"우리 기술이 대단하다고 말로 설명하지 말고, 누구나 납득할 정량적 레벨 수치로 증명해야 돈이 들어옵니다.\"* — 김영준 의장\n";
-    const PLAIN_TXT = "[모두의 창업 서울 - 선배 창업가 3인 인사이트 강연 요약 및 내 사업 적용안]\n작성자: 수강생 Neo\n일시: 2026-10-07\n출처: 강의 녹취 기반 정리본 및 수강생 실무 적용 기록\n============================================================\n\n2026-10-07 모두의 창업 서울: 선배 창업가 인사이트 강연\n\n한 줄 요약\n스타트업 3년 내 폐업률 90%가 넘는 냉혹한 현실 속에서, ① 매출·영업이익 중심의 극단적 자기객관화(최혁재), ② 1인 완결성과 최소 손익분기점 우선 확보(최두아), ③ 기술의 정량적 입증과 투트랙 생존 포트폴리오(김영준)를 통해 데스밸리를 돌파하는 실전 생존 법칙.\n\n---\n\n1. 최혁재 대표 (스푼랩스) — \"창업자의 명과 암, 냉혹한 자기객관화\"\n\n- 시장과 생존율의 현실:\n  - 3년 이내 스타트업 폐업률은 90% 이상에 달함.\n  - 한국은 법인 폐업 시 법인 채무가 대표 개인 채무로 전이되는 구조적 리스크가 상존하여, 사업 실패가 곧 개인의 사회적 파산으로 이어질 수 있음을 직시해야 함.\n- 투입량과 몰입:\n  - 초기 제로투원(0 to 1) 단계에서는 \"압도적인 양이 질을 압도함\". 주 80~100시간의 극한 투입 필수.\n  - 경쟁자들은 회사에 목숨을 건 상태로 임하고 있음을 잊지 말 것.\n- 자기객관화의 유일한 잣대:\n  - 작은 성공(월 매출 1억 원 등)에 도취되는 순간 침체가 시작됨. 목표가 100억 원이면 1억 원은 100분의 1일 뿐.\n  - 자기객관화의 유일한 기준은 '매출'과 '영업이익'. 투자 유치 금액은 성과가 아니라 결국 갚아야 할 '미래 부채'이자 평가 가치일 뿐임.\n- 실전 전략 원칙:\n  - 초기 대외활동/SNS 절제: 초기 10~20인 이하 규모에서는 대표의 물리적 시간이 최대 자산. 보여주기식 네트워킹 대신 고객의 지갑을 여는 제품 완성에 집중할 것.\n  - 해외 진출 기준: 국내에서 월 매출 1~3억 원 수준의 확실한 PMF 검증 없이 해외로 나가는 것은 돌파가 아니라 도피에 불과함.\n\n---\n\n2. 최두아 대표 (휴레이포지티브) — \"생존을 위한 비용 통제와 1인 완결성\"\n\n- 자금 조달과 부채 인식:\n  - 초기 투자는 3F(Family, Friend, Fool) 중심이나, 시리즈 A/B/C 등 모든 외부 펀딩은 결국 갚아내야 할 책임성 자금(빚)임.\n  - 외부 투자는 확신이 서기 전까지 최대한 미루고 자본을 아끼는 것이 원칙.\n- 최소한의 손익분기점(BEP) 우선 확보:\n  - 모두가 처음부터 거창한 유니콘만을 지향할 필요는 없음.\n  - 나와 내 가족이 자립할 수 있는 최소한의 손익분기점(BEP, 바둑의 '두 집')을 먼저 구축하여 죽지 않는 구조를 만드는 것이 핵심.\n- 조직 및 개발 효율화 (\"내가 다 한다\"):\n  - 초기에는 공동 창업자나 외부 인력에 의존하기보다 \"내가 다 한다\"는 각오로 대표가 직접 학습하여 문제를 해결해야 살아남음 (유통을 모르면 유통을 배우고, 개발을 모르면 개발을 배울 것).\n  - PMF 검증 전에 거대하고 완벽한 제품을 만들지 말고, 먼저 팔아보며(돈 내는 고객 1명 확보) 외주·정부 R&D 등을 레버리지해 생존 시간을 벌 것.\n\n---\n\n3. 김영준 의장 (파블로항공) — \"기술의 정량화와 듀얼 유즈(투트랙) 확장\"\n\n- 기술의 정량적 입증:\n  - 기술 수준(예: 군집 비행 자율주행 레벨 등)을 추상적·정성적 설명(\"우리 기술 대단합니다\")이 아닌 정량적 데이터와 단계별 수치로 증명해야 투자자와 고객을 설득할 수 있음.\n- 듀얼 유즈(민수 + 방산) 투트랙 포트폴리오:\n  - 단일 시장(방산·공공 등)의 긴 조달 사이클(2~3년) 동안 발생하는 매출 공백(데스밸리)을 민수 시장(드론 쇼, 점검 로봇 등)의 단기 현금흐름으로 방어하는 하이브리드 모델 구축.\n- 규제 돌파 및 신뢰 네트워크(PI):\n  - 법과 제도가 없는 신산업에서는 현장 실증과 긍정적 여론 형성을 통해 규제 가이드를 역으로 만들어가는 역량 필요.\n  - B2B/B2G 영역에서는 창업자의 평판과 신뢰 네트워크 구축이 대규모 계약의 핵심 열쇠로 작용.\n\n---\n\n4. 핵심 관점 대조 (비즈니스 모델에 따른 전략 차이)\n\n| 구분 | 최혁재 대표 (스푼랩스) | 최두아 대표 (휴레이포지티브) | 김영준 의장 (파블로항공) |\n| :--- | :--- | :--- | :--- |\n| 핵심 비즈니스 | B2C 글로벌 오디오/숏폼 플랫폼 | 디지털 헬스케어 (B2B/B2G/R&D) | 딥테크 드론·방산·모빌리티 |\n| 자금 및 투자관 | 매출 없는 투자는 전부 '빚', 흑자 지향 | 펀딩 최소화, 최소 손익분기점(BEP) 우선 | 대규모 기술 투자 유치 및 M&A 스왑 활용 |\n| 초기 대표의 역할 | 외부 활동 끊고 주 100시간 제품 몰입 | \"내가 다 한다\"는 각오로 직접 학습·선판매 | 기술을 정량 수치로 증명 + 대외 신뢰(PI) 구축 |\n| 생존 방어 기제 | 국내 확실한 PMF(월 1~3억) 선검증 | 완벽한 제품 전 먼저 팔아보기 + R&D 활용 | 장기 타깃(방산) + 단기 캐시카우(민수) 투트랙 |\n\n---\n\n5. 내 사업(1인 AI 네이티브 컴퍼니)에 바로 적용할 3대 체크리스트\n\n- [ ] 1. 자기객관화 & 제품 집중 (최혁재 대표 기준):\n  - 지금 내 시간 중 '고객이 실제로 지갑을 여는 핵심 자산(전자책 3부작 완결, ETF 캠퍼스 핵심 기능, 웹소설 유입)'과 직결되지 않는 작업은 무엇인가?\n- [ ] 2. 1인 완결성 & 최소 손익분기점 선확보 (최두아 대표 기준):\n  - 외부 의존 없이 AI 에이전트(Hermes + Obsidian + 결정적 린터)로 고정비를 통제하며, 가장 빠르게 첫 유료 매출(BEP)을 일으킬 최소 단위 상품은 무엇인가?\n- [ ] 3. 정량적 수치 증명 & 투트랙 현금흐름 (김영준 의장 기준):\n  - 내 프로덕트와 콘텐츠의 가치를 추상적 수식어 대신 '정량 데이터(예: 1,172개 ETF 전수 비교, 20년 복리 격차 실측, 추론 시간 187초➔8초 단축)'로 즉시 증명하고 있는가? 단기 현금흐름(전자책·콘텐츠)과 장기 플랫폼(ETF 캠퍼스·트레이딩 시스템)의 투트랙이 맞물려 돌아가고 있는가?\n\n---\n\n그대로 옮긴 말 (현장 핵심 어록)\n\n- *\"3년 안에 90% 이상이 폐업합니다. 한국은 법인만 망하지 않고 개인 채무로 이어져 인생이 무너집니다.\"* — 최혁재 대표\n- *\"매출 없는 투자는 성공이 아니라 미래 가치를 가불한 빚입니다.\"* — 최혁재 대표\n- *\"모두가 유니콘이 될 필요는 없습니다. 내가 다 한다는 각오로 먼저 팔아보며 최소한의 손익분기점부터 만드세요.\"* — 최두아 대표\n- *\"우리 기술이 대단하다고 말로 설명하지 말고, 누구나 납득할 정량적 레벨 수치로 증명해야 돈이 들어옵니다.\"* — 김영준 의장";
+    const OBSIDIAN_MD = "---\nnote_id: training-note-20261007-modu-startup\ntitle: \"모두의 창업 서울 - 선배 창업가 3인 인사이트 강연 요약 및 내 사업 적용안\"\nartifact_type: training_note\nknowledge_scope: external_lecture\ncanonical_status: staging\ndate: 2026-10-07\nupdated_at_kst: 2026-10-07T18:36:00+09:00\nstatus: processed\ncategory: Startup / Entrepreneurship\ntags:\n  - Startup\n  - Insight\n  - Obsidian\n  - BusinessStrategy\n  - 모두의창업\nspeakers:\n  - 최혁재 (스푼랩스 대표)\n  - 최두아 (휴레이포지티브 대표)\n  - 김영준 (파블로항공 의장)\nmoderator: 김영란 (코리아스타트업포럼 사무국장)\nsource: 클로바노트 현장 녹취 + Gemini 요약 + 내 사업 적용 구조화\nsource_refs:\n  - path: D:/Obsidian/내 회사 허브/00_Inbox/2026-10-07 모두의 창업 선배 창업가 인사이트 강연 요약.md\n    sha256: 9067a1a1c2d6065c0337f19a4c453b49d3102f30faaf0cefd09100c23266074b\n    evidence_state: original_training_note_snapshot\n---\n\n# 2026-10-07 모두의 창업 서울: 선배 창업가 인사이트 강연\n\n## 한 줄 요약\n스타트업 3년 내 폐업률 90%가 넘는 냉혹한 현실 속에서, **① 매출·영업이익 중심의 극단적 자기객관화(최혁재), ② 1인 완결성과 최소 손익분기점 우선 확보(최두아), ③ 기술의 정량적 입증과 투트랙 생존 포트폴리오(김영준)**를 통해 데스밸리를 돌파하는 실전 생존 법칙.\n\n---\n\n## 1. 최혁재 대표 (스푼랩스) — \"창업자의 명과 암, 냉혹한 자기객관화\"\n\n- **시장과 생존율의 현실:**\n  - 3년 이내 스타트업 폐업률은 **90% 이상**에 달함.\n  - 한국은 법인 폐업 시 법인 채무가 대표 개인 채무로 전이되는 구조적 리스크가 상존하여, 사업 실패가 곧 개인의 사회적 파산으로 이어질 수 있음을 직시해야 함.\n- **투입량과 몰입:**\n  - 초기 제로투원(0 to 1) 단계에서는 **\"압도적인 양이 질을 압도함\"**. 주 80~100시간의 극한 투입 필수.\n  - 경쟁자들은 회사에 목숨을 건 상태로 임하고 있음을 잊지 말 것.\n- **자기객관화의 유일한 잣대:**\n  - 작은 성공(월 매출 1억 원 등)에 도취되는 순간 침체가 시작됨. 목표가 100억 원이면 1억 원은 100분의 1일 뿐.\n  - 자기객관화의 유일한 기준은 **'매출'**과 **'영업이익'**. 투자 유치 금액은 성과가 아니라 결국 갚아야 할 **'미래 부채'**이자 평가 가치일 뿐임.\n- **실전 전략 원칙:**\n  - **초기 대외활동/SNS 절제:** 초기 10~20인 이하 규모에서는 대표의 물리적 시간이 최대 자산. 보여주기식 네트워킹 대신 **고객의 지갑을 여는 제품 완성**에 집중할 것.\n  - **해외 진출 기준:** 국내에서 월 매출 1~3억 원 수준의 확실한 PMF 검증 없이 해외로 나가는 것은 돌파가 아니라 도피에 불과함.\n\n---\n\n## 2. 최두아 대표 (휴레이포지티브) — \"생존을 위한 비용 통제와 1인 완결성\"\n\n- **자금 조달과 부채 인식:**\n  - 초기 투자는 3F(Family, Friend, Fool) 중심이나, 시리즈 A/B/C 등 모든 외부 펀딩은 결국 갚아내야 할 책임성 자금(빚)임.\n  - 외부 투자는 확신이 서기 전까지 최대한 미루고 자본을 아끼는 것이 원칙.\n- **최소한의 손익분기점(BEP) 우선 확보:**\n  - 모두가 처음부터 거창한 유니콘만을 지향할 필요는 없음.\n  - 나와 내 가족이 자립할 수 있는 **최소한의 손익분기점(BEP, 바둑의 '두 집')**을 먼저 구축하여 죽지 않는 구조를 만드는 것이 핵심.\n- **조직 및 개발 효율화 (\"내가 다 한다\"):**\n  - 초기에는 공동 창업자나 외부 인력에 의존하기보다 **\"내가 다 한다\"**는 각오로 대표가 직접 학습하여 문제를 해결해야 살아남음 (유통을 모르면 유통을 배우고, 개발을 모르면 개발을 배울 것).\n  - PMF 검증 전에 거대하고 완벽한 제품을 만들지 말고, **먼저 팔아보며(돈 내는 고객 1명 확보)** 외주·정부 R&D 등을 레버리지해 생존 시간을 벌 것.\n\n---\n\n## 3. 김영준 의장 (파블로항공) — \"기술의 정량화와 듀얼 유즈(투트랙) 확장\"\n\n- **기술의 정량적 입증:**\n  - 기술 수준(예: 군집 비행 자율주행 레벨 등)을 추상적·정성적 설명(\"우리 기술 대단합니다\")이 아닌 **정량적 데이터와 단계별 수치**로 증명해야 투자자와 고객을 설득할 수 있음.\n- **듀얼 유즈(민수 + 방산) 투트랙 포트폴리오:**\n  - 단일 시장(방산·공공 등)의 긴 조달 사이클(2~3년) 동안 발생하는 매출 공백(데스밸리)을 민수 시장(드론 쇼, 점검 로봇 등)의 단기 현금흐름으로 방어하는 하이브리드 모델 구축.\n- **규제 돌파 및 신뢰 네트워크(PI):**\n  - 법과 제도가 없는 신산업에서는 현장 실증과 긍정적 여론 형성을 통해 규제 가이드를 역으로 만들어가는 역량 필요.\n  - B2B/B2G 영역에서는 창업자의 평판과 신뢰 네트워크 구축이 대규모 계약의 핵심 열쇠로 작용.\n\n---\n\n## 4. 핵심 관점 대조 (비즈니스 모델에 따른 전략 차이)\n\n| 구분 | 최혁재 대표 (스푼랩스) | 최두아 대표 (휴레이포지티브) | 김영준 의장 (파블로항공) |\n| :--- | :--- | :--- | :--- |\n| **핵심 비즈니스** | B2C 글로벌 오디오/숏폼 플랫폼 | 디지털 헬스케어 (B2B/B2G/R&D) | 딥테크 드론·방산·모빌리티 |\n| **자금 및 투자관** | 매출 없는 투자는 전부 '빚', 흑자 지향 | 펀딩 최소화, 최소 손익분기점(BEP) 우선 | 대규모 기술 투자 유치 및 M&A 스왑 활용 |\n| **초기 대표의 역할** | 외부 활동 끊고 주 100시간 제품 몰입 | \"내가 다 한다\"는 각오로 직접 학습·선판매 | 기술을 정량 수치로 증명 + 대외 신뢰(PI) 구축 |\n| **생존 방어 기제** | 국내 확실한 PMF(월 1~3억) 선검증 | 완벽한 제품 전 먼저 팔아보기 + R&D 활용 | 장기 타깃(방산) + 단기 캐시카우(민수) 투트랙 |\n\n---\n\n## 5. 내 사업(1인 AI 네이티브 컴퍼니)에 바로 적용할 3대 체크리스트\n\n- [ ] **1. 자기객관화 & 제품 집중 (최혁재 대표 기준):**\n  - 지금 내 시간 중 '고객이 실제로 지갑을 여는 핵심 자산(전자책 3부작 완결, ETF 캠퍼스 핵심 기능, 웹소설 유입)'과 직결되지 않는 작업은 무엇인가?\n- [ ] **2. 1인 완결성 & 최소 손익분기점 선확보 (최두아 대표 기준):**\n  - 외부 의존 없이 AI 에이전트(Hermes + Obsidian + 결정적 린터)로 고정비를 통제하며, 가장 빠르게 첫 유료 매출(BEP)을 일으킬 최소 단위 상품은 무엇인가?\n- [ ] **3. 정량적 수치 증명 & 투트랙 현금흐름 (김영준 의장 기준):**\n  - 내 프로덕트와 콘텐츠의 가치를 추상적 수식어 대신 **'출원과 범위가 명시된 정량 데이터(예: 공시 기준일이 확인된 ETF 실부담비용 비교, 조건이 명시된 20년 복리 계좌 격차 계산, 원장 조회 시각·실행 조건이 명시된 런타임 로그)'**로 증명하고 있는가? 단기 현금흐름(전자책·콘텐츠)과 장기 플랫폼(ETF 캠퍼스·트레이딩 시스템)의 투트랙이 맞물려 돌아가고 있는가?\n\n---\n\n## 그대로 옮긴 말 (현장 핵심 어록)\n\n- *\"3년 안에 90% 이상이 폐업합니다. 한국은 법인만 망하지 않고 개인 채무로 이어져 인생이 무너집니다.\"* — 최혁재 대표\n- *\"매출 없는 투자는 성공이 아니라 미래 가치를 가불한 빚입니다.\"* — 최혁재 대표\n- *\"모두가 유니콘이 될 필요는 없습니다. 내가 다 한다는 각오로 먼저 팔아보며 최소한의 손익분기점부터 만드세요.\"* — 최두아 대표\n- *\"우리 기술이 대단하다고 말로 설명하지 말고, 누구나 납득할 정량적 레벨 수치로 증명해야 돈이 들어옵니다.\"* — 김영준 의장\n";
+    const PLAIN_TXT = "[모두의 창업 서울 - 선배 창업가 3인 인사이트 강연 요약 및 내 사업 적용안]\n작성자: 수강생 Neo\n일시: 2026-10-07\n출처: 강의 녹취 기반 정리본 및 수강생 실무 적용 기록\n============================================================\n\n2026-10-07 모두의 창업 서울: 선배 창업가 인사이트 강연\n\n한 줄 요약\n스타트업 3년 내 폐업률 90%가 넘는 냉혹한 현실 속에서, ① 매출·영업이익 중심의 극단적 자기객관화(최혁재), ② 1인 완결성과 최소 손익분기점 우선 확보(최두아), ③ 기술의 정량적 입증과 투트랙 생존 포트폴리오(김영준)를 통해 데스밸리를 돌파하는 실전 생존 법칙.\n\n---\n\n1. 최혁재 대표 (스푼랩스) — \"창업자의 명과 암, 냉혹한 자기객관화\"\n\n- 시장과 생존율의 현실:\n  - 3년 이내 스타트업 폐업률은 90% 이상에 달함.\n  - 한국은 법인 폐업 시 법인 채무가 대표 개인 채무로 전이되는 구조적 리스크가 상존하여, 사업 실패가 곧 개인의 사회적 파산으로 이어질 수 있음을 직시해야 함.\n- 투입량과 몰입:\n  - 초기 제로투원(0 to 1) 단계에서는 \"압도적인 양이 질을 압도함\". 주 80~100시간의 극한 투입 필수.\n  - 경쟁자들은 회사에 목숨을 건 상태로 임하고 있음을 잊지 말 것.\n- 자기객관화의 유일한 잣대:\n  - 작은 성공(월 매출 1억 원 등)에 도취되는 순간 침체가 시작됨. 목표가 100억 원이면 1억 원은 100분의 1일 뿐.\n  - 자기객관화의 유일한 기준은 '매출'과 '영업이익'. 투자 유치 금액은 성과가 아니라 결국 갚아야 할 '미래 부채'이자 평가 가치일 뿐임.\n- 실전 전략 원칙:\n  - 초기 대외활동/SNS 절제: 초기 10~20인 이하 규모에서는 대표의 물리적 시간이 최대 자산. 보여주기식 네트워킹 대신 고객의 지갑을 여는 제품 완성에 집중할 것.\n  - 해외 진출 기준: 국내에서 월 매출 1~3억 원 수준의 확실한 PMF 검증 없이 해외로 나가는 것은 돌파가 아니라 도피에 불과함.\n\n---\n\n2. 최두아 대표 (휴레이포지티브) — \"생존을 위한 비용 통제와 1인 완결성\"\n\n- 자금 조달과 부채 인식:\n  - 초기 투자는 3F(Family, Friend, Fool) 중심이나, 시리즈 A/B/C 등 모든 외부 펀딩은 결국 갚아내야 할 책임성 자금(빚)임.\n  - 외부 투자는 확신이 서기 전까지 최대한 미루고 자본을 아끼는 것이 원칙.\n- 최소한의 손익분기점(BEP) 우선 확보:\n  - 모두가 처음부터 거창한 유니콘만을 지향할 필요는 없음.\n  - 나와 내 가족이 자립할 수 있는 최소한의 손익분기점(BEP, 바둑의 '두 집')을 먼저 구축하여 죽지 않는 구조를 만드는 것이 핵심.\n- 조직 및 개발 효율화 (\"내가 다 한다\"):\n  - 초기에는 공동 창업자나 외부 인력에 의존하기보다 \"내가 다 한다\"는 각오로 대표가 직접 학습하여 문제를 해결해야 살아남음 (유통을 모르면 유통을 배우고, 개발을 모르면 개발을 배울 것).\n  - PMF 검증 전에 거대하고 완벽한 제품을 만들지 말고, 먼저 팔아보며(돈 내는 고객 1명 확보) 외주·정부 R&D 등을 레버리지해 생존 시간을 벌 것.\n\n---\n\n3. 김영준 의장 (파블로항공) — \"기술의 정량화와 듀얼 유즈(투트랙) 확장\"\n\n- 기술의 정량적 입증:\n  - 기술 수준(예: 군집 비행 자율주행 레벨 등)을 추상적·정성적 설명(\"우리 기술 대단합니다\")이 아닌 정량적 데이터와 단계별 수치로 증명해야 투자자와 고객을 설득할 수 있음.\n- 듀얼 유즈(민수 + 방산) 투트랙 포트폴리오:\n  - 단일 시장(방산·공공 등)의 긴 조달 사이클(2~3년) 동안 발생하는 매출 공백(데스밸리)을 민수 시장(드론 쇼, 점검 로봇 등)의 단기 현금흐름으로 방어하는 하이브리드 모델 구축.\n- 규제 돌파 및 신뢰 네트워크(PI):\n  - 법과 제도가 없는 신산업에서는 현장 실증과 긍정적 여론 형성을 통해 규제 가이드를 역으로 만들어가는 역량 필요.\n  - B2B/B2G 영역에서는 창업자의 평판과 신뢰 네트워크 구축이 대규모 계약의 핵심 열쇠로 작용.\n\n---\n\n4. 핵심 관점 대조 (비즈니스 모델에 따른 전략 차이)\n\n| 구분 | 최혁재 대표 (스푼랩스) | 최두아 대표 (휴레이포지티브) | 김영준 의장 (파블로항공) |\n| :--- | :--- | :--- | :--- |\n| 핵심 비즈니스 | B2C 글로벌 오디오/숏폼 플랫폼 | 디지털 헬스케어 (B2B/B2G/R&D) | 딥테크 드론·방산·모빌리티 |\n| 자금 및 투자관 | 매출 없는 투자는 전부 '빚', 흑자 지향 | 펀딩 최소화, 최소 손익분기점(BEP) 우선 | 대규모 기술 투자 유치 및 M&A 스왑 활용 |\n| 초기 대표의 역할 | 외부 활동 끊고 주 100시간 제품 몰입 | \"내가 다 한다\"는 각오로 직접 학습·선판매 | 기술을 정량 수치로 증명 + 대외 신뢰(PI) 구축 |\n| 생존 방어 기제 | 국내 확실한 PMF(월 1~3억) 선검증 | 완벽한 제품 전 먼저 팔아보기 + R&D 활용 | 장기 타깃(방산) + 단기 캐시카우(민수) 투트랙 |\n\n---\n\n5. 내 사업(1인 AI 네이티브 컴퍼니)에 바로 적용할 3대 체크리스트\n\n- [ ] 1. 자기객관화 & 제품 집중 (최혁재 대표 기준):\n  - 지금 내 시간 중 '고객이 실제로 지갑을 여는 핵심 자산(전자책 3부작 완결, ETF 캠퍼스 핵심 기능, 웹소설 유입)'과 직결되지 않는 작업은 무엇인가?\n- [ ] 2. 1인 완결성 & 최소 손익분기점 선확보 (최두아 대표 기준):\n  - 외부 의존 없이 AI 에이전트(Hermes + Obsidian + 결정적 린터)로 고정비를 통제하며, 가장 빠르게 첫 유료 매출(BEP)을 일으킬 최소 단위 상품은 무엇인가?\n- [ ] 3. 정량적 수치 증명 & 투트랙 현금흐름 (김영준 의장 기준):\n  - 내 프로덕트와 콘텐츠의 가치를 추상적 수식어 대신 '출원과 범위가 명시된 정량 데이터(예: 공시 기준일이 확인된 ETF 실부담비용 비교, 조건이 명시된 20년 복리 계좌 격차 계산, 원장 조회 시각·실행 조건이 명시된 런타임 로그)'로 증명하고 있는가? 단기 현금흐름(전자책·콘텐츠)과 장기 플랫폼(ETF 캠퍼스·트레이딩 시스템)의 투트랙이 맞물려 돌아가고 있는가?\n\n---\n\n그대로 옮긴 말 (현장 핵심 어록)\n\n- *\"3년 안에 90% 이상이 폐업합니다. 한국은 법인만 망하지 않고 개인 채무로 이어져 인생이 무너집니다.\"* — 최혁재 대표\n- *\"매출 없는 투자는 성공이 아니라 미래 가치를 가불한 빚입니다.\"* — 최혁재 대표\n- *\"모두가 유니콘이 될 필요는 없습니다. 내가 다 한다는 각오로 먼저 팔아보며 최소한의 손익분기점부터 만드세요.\"* — 최두아 대표\n- *\"우리 기술이 대단하다고 말로 설명하지 말고, 누구나 납득할 정량적 레벨 수치로 증명해야 돈이 들어옵니다.\"* — 김영준 의장";
     const MD_DOWNLOAD_NAME = "2026-10-07_startup-20261007_복습노트.md";
     const STORAGE_PREFIX = "neo_note_startup_20261007";
     const CHK_COUNT = 3;
@@ -619,7 +672,7 @@
     }
 
     function copyPlain() {
-      copyText(PLAIN_TXT, '✓ 일반 문서가 복사되었습니다 (노션·메모장에 붙여넣기)');
+      copyText(PLAIN_TXT, '✓ 노션·카톡에 바로 붙여넣을 수 있게 복사했어요!');
     }
 
     function downloadMd() {
@@ -632,7 +685,7 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast('✓ .md 파일 다운로드가 시작되었습니다');
+      showToast('✓ .md 파일 저장이 시작되었습니다');
     }
 
     function switchTab(mode) {
@@ -678,6 +731,10 @@
       const badge = document.getElementById('chk-count-badge');
       if (badge) {
         badge.textContent = count + ' / ' + CHK_COUNT + ' 완료';
+      }
+      const compBox = document.getElementById('chk-complete-box');
+      if (compBox) {
+        compBox.style.display = (count === CHK_COUNT && CHK_COUNT > 0) ? 'block' : 'none';
       }
     }
 
