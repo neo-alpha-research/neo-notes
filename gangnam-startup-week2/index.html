@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문</title>
+  <title>강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문 | Neo Note</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:title" content="강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문 | Neo Note" />
+  <meta property="og:description" content="2026-10-13 강의 녹취 기반 정리본 및 3대 실무 적용 질문" />
+  <meta property="og:type" content="article" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
     :root {
@@ -259,212 +263,165 @@
     .quote-box {
       background: var(--surface-sub);
       border-left: 4px solid var(--toss-blue);
-      padding: 16px 20px;
-      border-radius: 0 14px 14px 0;
-      margin: 14px 0;
-      font-size: 15px;
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-
-    /* Level List */
-    .level-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin: 14px 0;
-    }
-    .level-item {
-      background: var(--surface-sub);
-      border-radius: 12px;
-      padding: 14px 18px;
-      border: 1px solid var(--border-soft);
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-    .level-tag {
-      font-size: 12px;
-      font-weight: 800;
-      padding: 4px 8px;
-      border-radius: 6px;
-      background: #E5E8EB;
-      color: var(--text-secondary);
-      white-space: nowrap;
-    }
-    .level-text {
+      padding: 16px 18px;
+      border-radius: 4px 14px 14px 4px;
+      margin: 14px 0 16px;
       font-size: 14px;
       color: var(--text-secondary);
-      line-height: 1.55;
+      line-height: 1.65;
+    }
+    .quote-box strong {
+      color: var(--toss-blue-dark);
     }
 
-    /* Practice Steps */
-    .step-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin: 14px 0;
+    /* Comparison & Table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
     }
-    .step-item {
+    .comparison-table th, .comparison-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .comparison-table th {
       background: var(--surface-sub);
-      border-radius: 14px;
-      padding: 18px 20px;
-      border: 1px solid var(--border-soft);
-    }
-    .step-title {
-      font-size: 15px;
       font-weight: 700;
       color: var(--text-primary);
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
-    .step-num {
-      width: 22px;
-      height: 22px;
-      background: var(--mint-green);
-      color: #FFFFFF;
-      border-radius: 50%;
-      font-size: 12px;
-      font-weight: 800;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .step-desc {
-      font-size: 14px;
+    .comparison-table td {
       color: var(--text-secondary);
-      line-height: 1.6;
     }
 
-    /* Interactive Checklist */
-    .chk-container {
-      margin-top: 10px;
-    }
-    .chk-header {
+    /* Checklist Items */
+    .chk-group {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-    .chk-badge {
-      font-size: 12px;
-      font-weight: 800;
-      background: var(--mint-green-bg);
-      color: #008A63;
-      padding: 4px 10px;
-      border-radius: 20px;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
     }
     .chk-item {
-      background: var(--surface-sub);
-      border: 1px solid var(--border-soft);
-      border-radius: 14px;
-      padding: 16px 18px;
-      margin-bottom: 10px;
-      cursor: pointer;
       display: flex;
       align-items: flex-start;
       gap: 12px;
+      background: var(--surface-sub);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 16px;
+      cursor: pointer;
       transition: all 0.15s ease;
     }
     .chk-item:hover {
-      border-color: var(--border);
+      border-color: var(--toss-blue);
+      background: #F8FAFD;
     }
-    .chk-item input[type="checkbox"] {
-      margin-top: 4px;
-      width: 18px;
-      height: 18px;
+    .chk-item.checked {
+      background: var(--toss-blue-bg);
+      border-color: var(--toss-blue);
+    }
+    .chk-box {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--text-caption);
+      border-radius: 6px;
+      background: #FFFFFF;
       cursor: pointer;
-      accent-color: var(--toss-blue);
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      transition: all 0.15s ease;
     }
-    .chk-label {
+    .chk-box:checked {
+      background: var(--toss-blue);
+      border-color: var(--toss-blue);
+    }
+    .chk-box:checked::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 6px;
+      width: 4px;
+      height: 9px;
+      border: solid #FFFFFF;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .chk-content {
       flex: 1;
+    }
+    .chk-title {
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-primary);
-      line-height: 1.5;
+      margin-bottom: 4px;
     }
     .chk-sub {
       font-size: 13px;
-      font-weight: 400;
       color: var(--text-muted);
-      margin-top: 4px;
       line-height: 1.5;
     }
-    .chk-item.checked {
-      background: #F8FAFC;
-    }
-    .chk-item.checked .chk-label {
-      color: var(--text-muted);
-      text-decoration: line-through;
-    }
 
-    /* Markdown raw box */
+    /* Raw Markdown View */
     pre.raw-md {
-      background: var(--surface-sub);
-      border: 1px solid var(--border-soft);
-      border-radius: 14px;
+      background: #1E232A;
+      color: #E2E8F0;
       padding: 20px;
+      border-radius: 16px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 13px;
       line-height: 1.6;
-      color: var(--text-secondary);
       overflow-x: auto;
       white-space: pre-wrap;
+      word-break: break-all;
     }
 
-    /* Toast Notification */
-    .toast {
+    /* Toast */
+    #toast {
       position: fixed;
       bottom: 28px;
       left: 50%;
-      transform: translateX(-50%) translateY(40px);
+      transform: translateX(-50%) translateY(20px);
       background: rgba(25, 31, 40, 0.94);
       color: #FFFFFF;
+      padding: 13px 22px;
+      border-radius: 30px;
       font-size: 14px;
       font-weight: 600;
-      padding: 12px 24px;
-      border-radius: 30px;
-      box-shadow: 0 8px 24px rgba(0, 27, 55, 0.18);
-      pointer-events: none;
       opacity: 0;
+      pointer-events: none;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
       z-index: 9999;
     }
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
+    #toast.show {
       opacity: 1;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 13px;
-      color: var(--text-caption);
+      transform: translateX(-50%) translateY(0);
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Hero Header -->
+
+    <!-- Hero Card -->
     <div class="hero-card">
-      <div class="eyebrow">강남구 초기창업자 과정 2주차 복습 & 실무 적용 워크시트</div>
-      <h1>수강생 복습노트와 실무 적용 질문</h1>
-      <p class="hero-desc">
-        지난주 강의에서 배운 핵심 방식을 복습하고, 제 실제 업무에 대입해 본 4가지 실천 과정과 동기 대표님들이 오늘 3주차 실습에서 바로 활용해 보실 수 있는 적용 질문을 정리했습니다.
-      </p>
+      <div class="eyebrow">AI Native Company / Startup Workflow — 실무 강의 정리</div>
+      <h1>강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문</h1>
+      <p class="hero-desc">사내 지식 자산화 및 실무 적용 체크리스트 공유용 자료입니다.</p>
       <div class="meta-row">
-        <div><strong>일시</strong> 2026. 10. 06 강의 복습</div>
-        <div><strong>작성</strong> 수강생 Neo</div>
-        <div><strong>근거</strong> 강의 녹취 기반 정리본</div>
+        <span>일시: <strong>2026-10-13</strong></span>
+        <span>작성자: <strong>수강생 Neo</strong></span>
+        <span>근거: <strong>강의 녹취 기반 정리본</strong></span>
       </div>
     </div>
 
-    <!-- One-click Action Card -->
+    <!-- Action Bar -->
     <div class="action-card">
       <div class="action-header">
-        <span class="action-title">원클릭 복사 및 다운로드</span>
+        <span class="action-title">원클릭 복사 &amp; 다운로드</span>
         <span class="action-sub">노션, 메모장, 옵시디언 등 편한 도구에 바로 복사해 활용하세요</span>
       </div>
       <div class="btn-grid">
@@ -480,302 +437,100 @@
       </div>
     </div>
 
-    <!-- Segmented Control -->
+    <!-- Segmented Tab Control -->
     <div class="segmented-control">
-      <button id="tab-read-btn" class="seg-btn active" onclick="switchTab('read')">
-        일반 문서로 편하게 읽기
-      </button>
-      <button id="tab-md-btn" class="seg-btn" onclick="switchTab('md')">
-        옵시디언 마크다운 원문 보기
-      </button>
+      <button class="seg-btn active" id="tab-read-btn" onclick="switchTab('read')">일반 문서로 편하게 읽기</button>
+      <button class="seg-btn" id="tab-md-btn" onclick="switchTab('md')">옵시디언 마크다운 원문 보기</button>
     </div>
 
-    <!-- TAB 1: General Reading View -->
+    <!-- Read View -->
     <div id="view-read">
-      <!-- Section 1: Lecture Summary -->
+
+      <!-- Section: 상세 내용 -->
       <div class="card">
-        <span class="section-badge badge-blue">1. 강의 요지</span>
-        <h2>강의 핵심 요약 (녹취 정리본 기준)</h2>
-        
-        <div class="quote-box">
-          "채팅창이 아니라 폴더입니다."
-        </div>
-        <p>
-          웹 채팅창에서 대화가 길어지면 이전 맥락을 잊는 <strong>컨텍스트 압축(Compaction)</strong> 현상이 발생합니다. 이를 극복하려면 회의와 대화를 녹음해 마크다운(<code>.md</code>) 파일로 저장하고, 정해진 규칙에 따라 폴더에 축적하는 작업 환경이 중요합니다.
-        </p>
-
-        <h3>AI 활용 단계 자가점검 (6단계)</h3>
-        <p style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">
-          우리 사업은 지금 어느 단계에 있는지 점검해 볼 수 있는 6단계 자가점검 기준입니다:
-        </p>
-        <div class="level-list">
-          <div class="level-item">
-            <span class="level-tag">Lv.0</span>
-            <div class="level-text">필요할 때마다 채팅창을 새로 열고 배경 설명부터 다시 하는 단계</div>
-          </div>
-          <div class="level-item">
-            <span class="level-tag">Lv.1</span>
-            <div class="level-text">회의·고객·결정이 한 폴더에 파일로 쌓이고 있는 단계</div>
-          </div>
-          <div class="level-item">
-            <span class="level-tag">Lv.2</span>
-            <div class="level-text">"우리는 이렇게 일한다"는 기준 문서가 있고 AI가 이를 읽고 답하는 단계</div>
-          </div>
-          <div class="level-item">
-            <span class="level-tag">Lv.3</span>
-            <div class="level-text">매주 같은 일을 짧은 지시서 한 줄로 넘기는 단계 (자동 리포트)</div>
-          </div>
-          <div class="level-item">
-            <span class="level-tag">Lv.4</span>
-            <div class="level-text">외부에서 접속되는 주소가 있고 내 숫자를 출처와 함께 말할 수 있는 단계</div>
-          </div>
-          <div class="level-item">
-            <span class="level-tag">Lv.5</span>
-            <div class="level-text">정해진 시각에 자동 실행되고, 팀이 채널에서 함께 활용하는 단계</div>
-          </div>
-        </div>
-
-        <h3>사람의 개입과 승인 원칙</h3>
-        <p>
-          에이전트에게 반복 실행(루프)만 맡긴다고 결과가 저절로 나오지 않으며, 사람이 처음에 의도를 <strong>트리거(Trigger)</strong>하고 결과를 검토·<strong>승인(Approve)</strong>하며 이끌어야 합니다. 기술 도입보다 중요한 것은 일하는 현장의 암묵지를 문서로 정리하는 일입니다.
-        </p>
+        <div class="section-badge badge-blue">상세 내용</div>
+        <h2>상세 내용</h2>
+        <p>---</p>
       </div>
 
-      <!-- Section 2: Personal Practice -->
+      <!-- Section: 1. 강의 요지 (녹취 기반 정리본 기준) -->
       <div class="card">
-        <span class="section-badge badge-mint">2. 제가 실제로 해본 과정</span>
-        <h2>수강생 실천 기록 (내 업무 적용)</h2>
-        <p>
-          강의에서 배운 방식을 제 실제 업무에 대입해 보며 실천한 4가지 과정입니다:
-        </p>
-
-        <div class="step-list">
-          <div class="step-item">
-            <div class="step-title">
-              <span class="step-num">1</span> 기록을 파일로 남기기 (Lv.1)
-            </div>
-            <div class="step-desc">
-              일상 메모와 외부 강연 요약을 마크다운 파일(<code>.md</code>)로 로컬 폴더에 먼저 저장하기 시작했습니다.
-            </div>
-          </div>
-
-          <div class="step-item">
-            <div class="step-title">
-              <span class="step-num">2</span> 일하는 기준 문서화로 에이전트 연결하기 (Lv.2)
-            </div>
-            <div class="step-desc">
-              '수치 인용 원칙', '금지 표현', '결과물 서식'을 담은 한 페이지짜리 기준 문서를 작성해 에이전트들이 읽고 효율적으로 작업할 수 있도록 개선했습니다.
-            </div>
-          </div>
-
-          <div class="step-item">
-            <div class="step-title">
-              <span class="step-num">3</span> 사람의 시작과 최종 승인 경계 두기
-            </div>
-            <div class="step-desc">
-              전 과정을 무리하게 완전 자동화하려 하기보다, 자료 수집과 초안 작성까지만 AI의 도움을 받고, 최종 확인과 배포 결정은 사람이 직접 검토·승인하도록 업무 경계를 나누었습니다.
-            </div>
-          </div>
-
-          <div class="step-item">
-            <div class="step-title">
-              <span class="step-num">4</span> 기본 시스템 구축과 지속적인 개선
-            </div>
-            <div class="step-desc">
-              폴더에 파일을 쌓는 기본부터 시스템을 차근차근 구성하고, 실제 업무를 진행하며 발생하는 피드백을 반영해 지속적으로 개선해가고 있습니다.
-            </div>
-          </div>
-        </div>
-        <p style="font-size:12px; color:var(--text-caption); margin-top:8px;">
-          (※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)
-        </p>
+        <div class="section-badge badge-indigo">1. 강의 요지 (녹취 기반 정리본 기준)</div>
+        <h2>1. 강의 요지 (녹취 기반 정리본 기준)</h2>
+        <p style="margin-left: 12px; margin-bottom: 8px;">• <strong>전사(Transcription) 기반 폴더 적재와 컨텍스트 한계 극복:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 회의와 대화를 녹음하고 마크다운(<code>.md</code>) 파일로 정리해 지정 폴더에 축적하는 구조의 중요성.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 웹 채팅창에서 대화가 길어지면 이전 맥락을 잊는 &#x27;컨텍스트 압축(Compaction)&#x27; 현상이 발생하므로, 파일과 폴더 기반의 작업 환경이 유리함.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 핵심 메시지: <em>&quot;채팅창이 아니라 폴더입니다.&quot;</em></p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>AI 활용 단계 자가점검 (6단계):</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>Lv.0</strong>: 필요할 때마다 채팅창을 새로 열고 배경 설명부터 다시 하는 단계</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>Lv.1</strong>: 회의·고객·결정이 한 폴더에 파일로 쌓이고 있는 단계</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>Lv.2</strong>: &quot;우리는 이렇게 일한다&quot;는 기준 문서가 있고 AI가 이를 읽고 답하는 단계</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>Lv.3</strong>: 매주 같은 일을 짧은 지시서 한 줄로 넘기는 단계 (자동 리포트)</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>Lv.4</strong>: 외부에서 접속되는 주소가 있고 내 숫자를 출처와 함께 말할 수 있는 단계</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>Lv.5</strong>: 정해진 시각에 자동 실행되고, 팀이 채널에서 함께 활용하는 단계</p><p style="margin-left: 12px; margin-bottom: 8px;">• <strong>사람의 개입과 승인 원칙:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 에이전트에게 반복 실행(루프)만 맡긴다고 결과가 저절로 나오지 않으며, 사람이 처음에 의도를 <strong>트리거(Trigger)</strong>하고 결과를 검토·<strong>승인(Approve)</strong>하며 이끌어야 함.</p><p style="margin-left: 12px; margin-bottom: 8px;">• 기술 도입보다 중요한 것은 일하는 현장의 암묵지를 문서로 정리하는 일.</p><p>---</p>
       </div>
 
-      <!-- Section 3: Questions for Peers -->
+      <!-- Section: 2. 제가 실제로 해본 과정 (수강생 실천 기록) -->
       <div class="card">
-        <div class="chk-header">
-          <span class="section-badge badge-orange" style="margin-bottom:0;">3. 제가 만든 적용 질문</span>
-          <span id="chk-count-badge" class="chk-badge">0 / 3 완료</span>
-        </div>
-        <h2>동기 대표님들을 위한 실습 워크시트</h2>
-        <p>
-          오늘 3주차 실습을 진행하시면서 각자의 사업에 대입해 보실 수 있도록 제가 덧붙인 3가지 질문입니다. 체크박스를 누르시면 브라우저에 완료 상태가 저장됩니다:
-        </p>
+        <div class="section-badge badge-mint">2. 제가 실제로 해본 과정 (수강생 실천 기록)</div>
+        <h2>2. 제가 실제로 해본 과정 (수강생 실천 기록)</h2>
+        <p>강의에서 배운 방식을 제 실제 업무에 대입해 보며 실천한 4가지 과정입니다.</p><p>1. <strong>기록을 파일로 남기기 (Lv.1 적용):</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 일상 메모와 외부 강연 요약을 마크다운 파일(<code>.md</code>)로 로컬 폴더에 먼저 저장하기 시작했습니다.</p><p>2. <strong>일하는 기준 문서화로 에이전트 연결하기 (Lv.2 적용):</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• &#x27;수치 인용 원칙&#x27;, &#x27;금지 표현&#x27;, &#x27;결과물 서식&#x27;을 담은 한 페이지짜리 기준 문서를 작성해 에이전트들이 읽고 효율적으로 작업할 수 있도록 개선했습니다.</p><p>3. <strong>사람의 시작과 최종 승인 경계 두기:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 전 과정을 무리하게 완전 자동화하려 하기보다, 자료 수집과 초안 작성까지만 AI의 도움을 받고, 최종 확인과 배포 결정은 사람이 직접 검토·승인하도록 업무 경계를 나누었습니다.</p><p>4. <strong>기본 시스템 구축과 지속적인 개선:</strong></p><p style="margin-left: 12px; margin-bottom: 8px;">• 폴더에 파일을 쌓는 기본부터 시스템을 차근차근 구성하고, 실제 업무를 진행하며 발생하는 피드백을 반영해 지속적으로 개선해가고 있습니다.</p><p><em>(※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)</em></p><p>---</p>
+      </div>
 
-        <div class="chk-container">
+      <!-- Section: 3. 제가 만든 적용 질문 (동기 대표님들을 위한 실습 워크시트) -->
+      <div class="card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <div class="section-badge badge-orange" style="margin-bottom: 0;">실습 워크시트</div>
+          <span id="chk-count-badge" style="font-size: 12px; font-weight: 800; color: var(--toss-blue); background: var(--toss-blue-bg); padding: 4px 10px; border-radius: 8px;">0 / 3 완료</span>
+        </div>
+        <h2>3. 제가 만든 적용 질문 (동기 대표님들을 위한 실습 워크시트)</h2>
+        <p>오늘 강의 내용을 바탕으로 각자의 사업에 대입해 보실 수 있는 실습 질문입니다. 직접 체크해 보세요.</p>
+        <div class="chk-group">
+          
           <div class="chk-item" id="item-chk1" onclick="toggleChk('chk1')">
-            <input type="checkbox" id="chk1" onchange="saveChk()" onclick="event.stopPropagation()" />
-            <div class="chk-label" id="lbl-chk1">
-              질문 1. 오늘 우리 회사에서 파일로 남길 단 1개의 기록은 무엇인가요?
-              <div class="chk-sub">예: 오늘 고객 미팅 녹취본, 대표자의 사업 아이디어 메모, 개발 요구사항 등</div>
+            <input type="checkbox" class="chk-box" id="chk1" onclick="event.stopPropagation(); saveChk();" />
+            <div class="chk-content">
+              <div class="chk-title">질문 1. 오늘 우리 회사에서 파일로 남길 단 1개의 기록은 무엇인가요?**</div>
+              <div class="chk-sub">예: 오늘 고객 미팅 녹취본, 대표자의 핵심 사업 아이디어 메모, 개발 요구사항 등</div>
             </div>
           </div>
-
           <div class="chk-item" id="item-chk2" onclick="toggleChk('chk2')">
-            <input type="checkbox" id="chk2" onchange="saveChk()" onclick="event.stopPropagation()" />
-            <div class="chk-label" id="lbl-chk2">
-              질문 2. 우리 회사가 일하는 방식(규칙) 1가지를 글로 쓴다면 무엇인가요?
-              <div class="chk-sub">예: 고객 응대 3원칙, 서비스 가격 산정 기준, 마케팅 문구 작성 원칙 등</div>
+            <input type="checkbox" class="chk-box" id="chk2" onclick="event.stopPropagation(); saveChk();" />
+            <div class="chk-content">
+              <div class="chk-title">질문 2. 우리 회사가 일하는 방식(규칙) 1가지를 글로 쓴다면 무엇인가요?**</div>
+              <div class="chk-sub">예: 고객 응대 3원칙, 우리 서비스의 가격 산정 기준, 마케팅 문구 시 필수 준수 사항 등</div>
             </div>
           </div>
-
           <div class="chk-item" id="item-chk3" onclick="toggleChk('chk3')">
-            <input type="checkbox" id="chk3" onchange="saveChk()" onclick="event.stopPropagation()" />
-            <div class="chk-label" id="lbl-chk3">
-              질문 3. AI에게 맡길 초안 작업과, 내가 직접 눈으로 확인할 최종 판단은 무엇인가요?
+            <input type="checkbox" class="chk-box" id="chk3" onclick="event.stopPropagation(); saveChk();" />
+            <div class="chk-content">
+              <div class="chk-title">질문 3. AI에게 맡길 초안 작업과, 내가 직접 눈으로 확인할 최종 판단은 무엇인가요?**</div>
               <div class="chk-sub">예: AI는 자료 요약 및 초안 작성 담당 / 대표자는 사실 확인 및 최종 전송 승인 담당</div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Section: 그대로 옮긴 강사 핵심 메시지 -->
+      <div class="card">
+        <div class="section-badge badge-blue">그대로 옮긴 강사 핵심 메시지</div>
+        <h2>그대로 옮긴 강사 핵심 메시지</h2>
+        <div class="quote-box"><em>&quot;채팅창이 아니라 폴더입니다.&quot;</em></div><div class="quote-box"></div><div class="quote-box"><em>&quot;인간 대 AI의 경쟁이 아니라, AI를 쓰는 인간과 나머지의 경쟁으로 바뀌게 될 것입니다.&quot;</em></div>
+      </div>
     </div>
 
-    <!-- TAB 2: Obsidian Raw Markdown View -->
-    <div id="view-md" style="display:none;">
+    <!-- Markdown View -->
+    <div id="view-md" style="display: none;">
       <div class="card">
-        <span class="section-badge badge-indigo">Obsidian Markdown</span>
-        <h2>옵시디언(Obsidian) 마크다운 원문</h2>
-        <p style="font-size:14px; color:var(--text-muted); margin-bottom:14px;">
-          상단의 <strong>[📋 옵시디언 마크다운 복사]</strong> 버튼을 누른 뒤 옵시디언 새 노트에 붙여넣으시면 YAML 프론트매터, 단계 목록, 체크박스 서식이 그대로 적용됩니다.
+        <div class="section-badge badge-blue">옵시디언 마크다운 원문</div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">
+          아래 텍스트를 복사하여 옵시디언 볼트 폴더나 메모장에 <code>.md</code> 파일로 저장하시면 그대로 호환됩니다.
         </p>
         <pre class="raw-md" id="md-raw-box"></pre>
       </div>
     </div>
 
-    <div class="footer">
-      강남구 초기창업자 과정 2주차 복습 · 수강생 실전 적용 기록 및 워크시트
-    </div>
   </div>
 
-  <div id="toast" class="toast">복사되었습니다</div>
+  <div id="toast">복사되었습니다</div>
 
   <script>
-    const OBSIDIAN_MD = `---
-title: "강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문"
-date: 2026-10-13
-category: AI Native Company / Startup Workflow
-tags:
-  - Startup
-  - AINative
-  - Obsidian
-  - GangnamStartup
-  - TrainingNote
-source: "2026-10-06 강남구 초기창업자 과정 2주차 강의 녹취 요약 + 수강생 실전 적용 기록"
----
-
-# 강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문
-
-> **문서 안내:**
-> 본 문서는 지난주 강남구 초기창업자 과정 2주차 강의에서 배운 핵심 방식을 복습하고, 제 실제 업무에 대입해 본 4가지 실천 과정과 동기 대표님들이 오늘 실습에 활용하실 수 있는 적용 질문을 정리한 자료입니다.
-
----
-
-## 1. 강의 요지 (녹취 기반 정리본 기준)
-
-- **전사(Transcription) 기반 폴더 적재와 컨텍스트 한계 극복:**
-  - 회의와 대화를 녹음하고 마크다운(\`.md\`) 파일로 정리해 지정 폴더에 축적하는 구조의 중요성.
-  - 웹 채팅창에서 대화가 길어지면 이전 맥락을 잊는 '컨텍스트 압축(Compaction)' 현상이 발생하므로, 파일과 폴더 기반의 작업 환경이 유리함.
-  - 핵심 메시지: *"채팅창이 아니라 폴더입니다."*
-
-- **AI 활용 단계 자가점검 (6단계):**
-  - **Lv.0**: 필요할 때마다 채팅창을 새로 열고 배경 설명부터 다시 하는 단계
-  - **Lv.1**: 회의·고객·결정이 한 폴더에 파일로 쌓이고 있는 단계
-  - **Lv.2**: "우리는 이렇게 일한다"는 기준 문서가 있고 AI가 이를 읽고 답하는 단계
-  - **Lv.3**: 매주 같은 일을 짧은 지시서 한 줄로 넘기는 단계 (자동 리포트)
-  - **Lv.4**: 외부에서 접속되는 주소가 있고 내 숫자를 출처와 함께 말할 수 있는 단계
-  - **Lv.5**: 정해진 시각에 자동 실행되고, 팀이 채널에서 함께 활용하는 단계
-
-- **사람의 개입과 승인 원칙:**
-  - 에이전트에게 반복 실행(루프)만 맡긴다고 결과가 저절로 나오지 않으며, 사람이 처음에 의도를 **트리거(Trigger)**하고 결과를 검토·**승인(Approve)**하며 이끌어야 함.
-  - 기술 도입보다 중요한 것은 일하는 현장의 암묵지를 문서로 정리하는 일.
-
----
-
-## 2. 제가 실제로 해본 과정 (수강생 실천 기록)
-
-강의에서 배운 방식을 제 실제 업무에 대입해 보며 실천한 4가지 과정입니다.
-
-1. **기록을 파일로 남기기 (Lv.1 적용):**
-   - 일상 메모와 외부 강연 요약을 마크다운 파일(\`.md\`)로 로컬 폴더에 먼저 저장하기 시작했습니다.
-2. **일하는 기준 문서화로 에이전트 연결하기 (Lv.2 적용):**
-   - '수치 인용 원칙', '금지 표현', '결과물 서식'을 담은 한 페이지짜리 기준 문서를 작성해 에이전트들이 읽고 효율적으로 작업할 수 있도록 개선했습니다.
-3. **사람의 시작과 최종 승인 경계 두기:**
-   - 전 과정을 무리하게 완전 자동화하려 하기보다, 자료 수집과 초안 작성까지만 AI의 도움을 받고, 최종 확인과 배포 결정은 사람이 직접 검토·승인하도록 업무 경계를 나누었습니다.
-4. **기본 시스템 구축과 지속적인 개선:**
-   - 폴더에 파일을 쌓는 기본부터 시스템을 차근차근 구성하고, 실제 업무를 진행하며 발생하는 피드백을 반영해 지속적으로 개선해가고 있습니다.
-
-*(※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)*
-
----
-
-## 3. 제가 만든 적용 질문 (동기 대표님들을 위한 실습 워크시트)
-
-오늘 3주차 실습을 진행하시면서 각자의 사업에 대입해 보실 수 있도록 제가 덧붙인 3가지 질문입니다.
-
-- [ ] **질문 1. 오늘 우리 회사에서 파일로 남길 단 1개의 기록은 무엇인가요?**
-  *(예: 오늘 고객 미팅 녹취본, 대표자의 핵심 사업 아이디어 메모, 개발 요구사항 등)*
-- [ ] **질문 2. 우리 회사가 일하는 방식(규칙) 1가지를 글로 쓴다면 무엇인가요?**
-  *(예: 고객 응대 3원칙, 우리 서비스의 가격 산정 기준, 마케팅 문구 시 필수 준수 사항 등)*
-- [ ] **질문 3. AI에게 맡길 초안 작업과, 내가 직접 눈으로 확인할 최종 판단은 무엇인가요?**
-  *(예: AI는 자료 요약 및 초안 작성 담당 / 대표자는 사실 확인 및 최종 전송 승인 담당)*
-
----
-
-## 그대로 옮긴 강사 핵심 메시지
-
-> *"채팅창이 아니라 폴더입니다."*
-> 
-> *"인간 대 AI의 경쟁이 아니라, AI를 쓰는 인간과 나머지의 경쟁으로 바뀌게 될 것입니다."*
-`;
-
-    const PLAIN_TXT = `[강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문]
-일시: 2026. 10. 06 강의 복습 | 작성: 수강생 Neo
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1. 강의 요지 (녹취 기반 정리본 기준)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-• 전사 기반 폴더 적재와 컨텍스트 한계 극복
-  - 아침 회의와 대화를 녹음하고 마크다운(.md)으로 정리해 폴더에 축적하는 작업의 중요성.
-  - 웹 채팅창의 대화가 길어지면 이전 맥락을 잊는 '컨텍스트 압축'이 발생하므로, 파일과 로컬 폴더 기반 작업이 유리함.
-  - 핵심 메시지: "채팅창이 아니라 폴더입니다."
-
-• AI 활용 단계 자가점검 (6단계)
-  - Lv.0: 필요할 때마다 채팅창을 새로 열고 배경 설명부터 다시 하는 단계
-  - Lv.1: 회의·고객·결정이 한 폴더에 파일로 쌓이고 있는 단계
-  - Lv.2: "우리는 이렇게 일한다"는 기준 문서가 있고 AI가 이를 읽고 답하는 단계
-  - Lv.3: 매주 같은 일을 짧은 지시서 한 줄로 넘기는 단계 (자동 리포트)
-  - Lv.4: 외부에서 접속되는 주소가 있고 내 숫자를 출처와 함께 말할 수 있는 단계
-  - Lv.5: 정해진 시각에 자동 실행되고, 팀이 채널에서 함께 활용하는 단계
-
-• 사람의 개입과 승인 원칙
-  - 에이전트에게 반복 실행(루프)만 맡긴다고 결과가 저절로 나오지 않으며, 사람이 처음에 의도를 트리거(Trigger)하고 결과를 검토·승인(Approve)하며 이끌어야 함.
-  - 기술 도입보다 중요한 것은 일하는 현장의 암묵지를 문서로 정리하는 일.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-2. 제가 실제로 해본 과정 (수강생 실천 기록)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1) 기록을 파일로 남기기 (Lv.1 적용):
-   - 일상 메모와 외부 강연 요약을 마크다운 파일(.md)로 로컬 폴더에 먼저 저장하기 시작했습니다.
-2) 일하는 기준 문서화로 에이전트 연결하기 (Lv.2 적용):
-   - '수치 인용 원칙', '금지 표현', '결과물 서식'을 담은 한 페이지짜리 기준 문서를 작성해 에이전트들이 읽고 효율적으로 작업할 수 있도록 개선했습니다.
-3) 사람의 시작과 최종 승인 경계 두기:
-   - 전 과정을 무리하게 완전 자동화하려 하기보다, 자료 수집과 초안 작성까지만 AI의 도움을 받고, 최종 확인과 배포 결정은 사람이 직접 검토·승인하도록 업무 경계를 나누었습니다.
-4) 기본 시스템 구축과 지속적인 개선:
-   - 폴더에 파일을 쌓는 기본부터 시스템을 차근차근 구성하고, 실제 업무를 진행하며 발생하는 피드백을 반영해 지속적으로 개선해가고 있습니다.
-   (※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-3. 제가 만든 적용 질문 (동기 대표님들을 위한 실습 워크시트)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[ ] 질문 1. 오늘 우리 회사에서 파일로 남길 단 1개의 기록은 무엇인가요?
-    (예: 오늘 고객 미팅 녹취본, 대표자의 사업 아이디어 메모, 개발 요구사항 등)
-
-[ ] 질문 2. 우리 회사가 일하는 방식(규칙) 1가지를 글로 쓴다면 무엇인가요?
-    (예: 고객 응대 3원칙, 서비스 가격 산정 기준, 마케팅 문구 작성 원칙 등)
-
-[ ] 질문 3. AI에게 맡길 초안 작업과, 내가 직접 눈으로 확인할 최종 판단은 무엇인가요?
-    (예: AI는 자료 요약 및 초안 작성 담당 / 대표자는 사실 확인 및 최종 전송 승인 담당)
-`;
+    // json.dumps() 기반 안전한 무결점 데이터 주입 (Triple-Sync 컴파일)
+    const OBSIDIAN_MD = "---\ntitle: \"강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문\"\ndate: 2026-10-13\ncategory: AI Native Company / Startup Workflow\ntags:\n  - Startup\n  - AINative\n  - Obsidian\n  - GangnamStartup\n  - TrainingNote\nsource: \"2026-10-06 강남구 초기창업자 과정 2주차 강의 녹취 요약 + 수강생 실전 적용 기록\"\n---\n\n# 강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문\n\n> **문서 안내:**\n> 본 문서는 지난주 강남구 초기창업자 과정 2주차 강의에서 배운 핵심 방식을 복습하고, 제 실제 업무에 대입해 본 4가지 실천 과정과 동기 대표님들이 오늘 실습에 활용하실 수 있는 적용 질문을 정리한 자료입니다.\n\n---\n\n## 1. 강의 요지 (녹취 기반 정리본 기준)\n\n- **전사(Transcription) 기반 폴더 적재와 컨텍스트 한계 극복:**\n  - 회의와 대화를 녹음하고 마크다운(`.md`) 파일로 정리해 지정 폴더에 축적하는 구조의 중요성.\n  - 웹 채팅창에서 대화가 길어지면 이전 맥락을 잊는 '컨텍스트 압축(Compaction)' 현상이 발생하므로, 파일과 폴더 기반의 작업 환경이 유리함.\n  - 핵심 메시지: *\"채팅창이 아니라 폴더입니다.\"*\n\n- **AI 활용 단계 자가점검 (6단계):**\n  - **Lv.0**: 필요할 때마다 채팅창을 새로 열고 배경 설명부터 다시 하는 단계\n  - **Lv.1**: 회의·고객·결정이 한 폴더에 파일로 쌓이고 있는 단계\n  - **Lv.2**: \"우리는 이렇게 일한다\"는 기준 문서가 있고 AI가 이를 읽고 답하는 단계\n  - **Lv.3**: 매주 같은 일을 짧은 지시서 한 줄로 넘기는 단계 (자동 리포트)\n  - **Lv.4**: 외부에서 접속되는 주소가 있고 내 숫자를 출처와 함께 말할 수 있는 단계\n  - **Lv.5**: 정해진 시각에 자동 실행되고, 팀이 채널에서 함께 활용하는 단계\n\n- **사람의 개입과 승인 원칙:**\n  - 에이전트에게 반복 실행(루프)만 맡긴다고 결과가 저절로 나오지 않으며, 사람이 처음에 의도를 **트리거(Trigger)**하고 결과를 검토·**승인(Approve)**하며 이끌어야 함.\n  - 기술 도입보다 중요한 것은 일하는 현장의 암묵지를 문서로 정리하는 일.\n\n---\n\n## 2. 제가 실제로 해본 과정 (수강생 실천 기록)\n\n강의에서 배운 방식을 제 실제 업무에 대입해 보며 실천한 4가지 과정입니다.\n\n1. **기록을 파일로 남기기 (Lv.1 적용):**\n   - 일상 메모와 외부 강연 요약을 마크다운 파일(`.md`)로 로컬 폴더에 먼저 저장하기 시작했습니다.\n2. **일하는 기준 문서화로 에이전트 연결하기 (Lv.2 적용):**\n   - '수치 인용 원칙', '금지 표현', '결과물 서식'을 담은 한 페이지짜리 기준 문서를 작성해 에이전트들이 읽고 효율적으로 작업할 수 있도록 개선했습니다.\n3. **사람의 시작과 최종 승인 경계 두기:**\n   - 전 과정을 무리하게 완전 자동화하려 하기보다, 자료 수집과 초안 작성까지만 AI의 도움을 받고, 최종 확인과 배포 결정은 사람이 직접 검토·승인하도록 업무 경계를 나누었습니다.\n4. **기본 시스템 구축과 지속적인 개선:**\n   - 폴더에 파일을 쌓는 기본부터 시스템을 차근차근 구성하고, 실제 업무를 진행하며 발생하는 피드백을 반영해 지속적으로 개선해가고 있습니다.\n\n*(※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)*\n\n---\n\n## 3. 제가 만든 적용 질문 (동기 대표님들을 위한 실습 워크시트)\n\n오늘 3주차 실습을 진행하시면서 각자의 사업에 대입해 보실 수 있도록 제가 덧붙인 3가지 질문입니다.\n\n- [ ] **질문 1. 오늘 우리 회사에서 파일로 남길 단 1개의 기록은 무엇인가요?**\n  *(예: 오늘 고객 미팅 녹취본, 대표자의 핵심 사업 아이디어 메모, 개발 요구사항 등)*\n- [ ] **질문 2. 우리 회사가 일하는 방식(규칙) 1가지를 글로 쓴다면 무엇인가요?**\n  *(예: 고객 응대 3원칙, 우리 서비스의 가격 산정 기준, 마케팅 문구 시 필수 준수 사항 등)*\n- [ ] **질문 3. AI에게 맡길 초안 작업과, 내가 직접 눈으로 확인할 최종 판단은 무엇인가요?**\n  *(예: AI는 자료 요약 및 초안 작성 담당 / 대표자는 사실 확인 및 최종 전송 승인 담당)*\n\n---\n\n## 그대로 옮긴 강사 핵심 메시지\n\n> *\"채팅창이 아니라 폴더입니다.\"*\n> \n> *\"인간 대 AI의 경쟁이 아니라, AI를 쓰는 인간과 나머지의 경쟁으로 바뀌게 될 것입니다.\"*\n";
+    const PLAIN_TXT = "[강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문]\n작성자: 수강생 Neo\n일시: 2026-10-13\n출처: 강의 녹취 기반 정리본 및 수강생 실무 적용 기록\n============================================================\n\n강남구 초기창업자 과정 2주차 — 수강생 복습노트와 실무 적용 질문\n\n문서 안내:\n본 문서는 지난주 강남구 초기창업자 과정 2주차 강의에서 배운 핵심 방식을 복습하고, 제 실제 업무에 대입해 본 4가지 실천 과정과 동기 대표님들이 오늘 실습에 활용하실 수 있는 적용 질문을 정리한 자료입니다.\n\n---\n\n1. 강의 요지 (녹취 기반 정리본 기준)\n\n- 전사(Transcription) 기반 폴더 적재와 컨텍스트 한계 극복:\n  - 회의와 대화를 녹음하고 마크다운(.md) 파일로 정리해 지정 폴더에 축적하는 구조의 중요성.\n  - 웹 채팅창에서 대화가 길어지면 이전 맥락을 잊는 '컨텍스트 압축(Compaction)' 현상이 발생하므로, 파일과 폴더 기반의 작업 환경이 유리함.\n  - 핵심 메시지: *\"채팅창이 아니라 폴더입니다.\"*\n\n- AI 활용 단계 자가점검 (6단계):\n  - Lv.0: 필요할 때마다 채팅창을 새로 열고 배경 설명부터 다시 하는 단계\n  - Lv.1: 회의·고객·결정이 한 폴더에 파일로 쌓이고 있는 단계\n  - Lv.2: \"우리는 이렇게 일한다\"는 기준 문서가 있고 AI가 이를 읽고 답하는 단계\n  - Lv.3: 매주 같은 일을 짧은 지시서 한 줄로 넘기는 단계 (자동 리포트)\n  - Lv.4: 외부에서 접속되는 주소가 있고 내 숫자를 출처와 함께 말할 수 있는 단계\n  - Lv.5: 정해진 시각에 자동 실행되고, 팀이 채널에서 함께 활용하는 단계\n\n- 사람의 개입과 승인 원칙:\n  - 에이전트에게 반복 실행(루프)만 맡긴다고 결과가 저절로 나오지 않으며, 사람이 처음에 의도를 트리거(Trigger)하고 결과를 검토·승인(Approve)하며 이끌어야 함.\n  - 기술 도입보다 중요한 것은 일하는 현장의 암묵지를 문서로 정리하는 일.\n\n---\n\n2. 제가 실제로 해본 과정 (수강생 실천 기록)\n\n강의에서 배운 방식을 제 실제 업무에 대입해 보며 실천한 4가지 과정입니다.\n\n1. 기록을 파일로 남기기 (Lv.1 적용):\n   - 일상 메모와 외부 강연 요약을 마크다운 파일(.md)로 로컬 폴더에 먼저 저장하기 시작했습니다.\n2. 일하는 기준 문서화로 에이전트 연결하기 (Lv.2 적용):\n   - '수치 인용 원칙', '금지 표현', '결과물 서식'을 담은 한 페이지짜리 기준 문서를 작성해 에이전트들이 읽고 효율적으로 작업할 수 있도록 개선했습니다.\n3. 사람의 시작과 최종 승인 경계 두기:\n   - 전 과정을 무리하게 완전 자동화하려 하기보다, 자료 수집과 초안 작성까지만 AI의 도움을 받고, 최종 확인과 배포 결정은 사람이 직접 검토·승인하도록 업무 경계를 나누었습니다.\n4. 기본 시스템 구축과 지속적인 개선:\n   - 폴더에 파일을 쌓는 기본부터 시스템을 차근차근 구성하고, 실제 업무를 진행하며 발생하는 피드백을 반영해 지속적으로 개선해가고 있습니다.\n\n*(※ 녹음 요약 시 Gemini 활용은 수강생 개인이 편의를 위해 선택한 방식입니다.)*\n\n---\n\n3. 제가 만든 적용 질문 (동기 대표님들을 위한 실습 워크시트)\n\n오늘 3주차 실습을 진행하시면서 각자의 사업에 대입해 보실 수 있도록 제가 덧붙인 3가지 질문입니다.\n\n- [ ] 질문 1. 오늘 우리 회사에서 파일로 남길 단 1개의 기록은 무엇인가요?\n  *(예: 오늘 고객 미팅 녹취본, 대표자의 핵심 사업 아이디어 메모, 개발 요구사항 등)*\n- [ ] 질문 2. 우리 회사가 일하는 방식(규칙) 1가지를 글로 쓴다면 무엇인가요?\n  *(예: 고객 응대 3원칙, 우리 서비스의 가격 산정 기준, 마케팅 문구 시 필수 준수 사항 등)*\n- [ ] 질문 3. AI에게 맡길 초안 작업과, 내가 직접 눈으로 확인할 최종 판단은 무엇인가요?\n  *(예: AI는 자료 요약 및 초안 작성 담당 / 대표자는 사실 확인 및 최종 전송 승인 담당)*\n\n---\n\n그대로 옮긴 강사 핵심 메시지\n\n*\"채팅창이 아니라 폴더입니다.\"*\n*\"인간 대 AI의 경쟁이 아니라, AI를 쓰는 인간과 나머지의 경쟁으로 바뀌게 될 것입니다.\"*";
+    const MD_DOWNLOAD_NAME = "2026-10-13_gangnam-startup-week2_복습노트.md";
+    const STORAGE_PREFIX = "neo_note_gangnam_startup_week2";
+    const CHK_COUNT = 3;
 
     document.getElementById('md-raw-box').textContent = OBSIDIAN_MD;
 
@@ -813,7 +568,7 @@ source: "2026-10-06 강남구 초기창업자 과정 2주차 강의 녹취 요�
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = '2026-10-13_강남구초기창업자_2주차_수강생_복습노트_및_적용질문.md';
+      a.download = MD_DOWNLOAD_NAME;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -841,38 +596,51 @@ source: "2026-10-06 강남구 초기창업자 과정 2주차 강의 녹취 요�
 
     function toggleChk(id) {
       const el = document.getElementById(id);
+      if (!el) return;
       el.checked = !el.checked;
       saveChk();
     }
 
     function updateChkUI() {
       let count = 0;
-      ['chk1', 'chk2', 'chk3'].forEach(id => {
+      for (let i = 1; i <= CHK_COUNT; i++) {
+        const id = 'chk' + i;
         const el = document.getElementById(id);
         const item = document.getElementById('item-' + id);
-        if (el.checked) {
-          count++;
-          item.classList.add('checked');
-        } else {
-          item.classList.remove('checked');
+        if (el && item) {
+          if (el.checked) {
+            count++;
+            item.classList.add('checked');
+          } else {
+            item.classList.remove('checked');
+          }
         }
-      });
-      document.getElementById('chk-count-badge').textContent = count + ' / 3 완료';
+      }
+      const badge = document.getElementById('chk-count-badge');
+      if (badge) {
+        badge.textContent = count + ' / ' + CHK_COUNT + ' 완료';
+      }
     }
 
     function saveChk() {
-      ['chk1', 'chk2', 'chk3'].forEach(id => {
-        localStorage.setItem('gangnam_startup_' + id, document.getElementById(id).checked ? '1' : '0');
-      });
+      for (let i = 1; i <= CHK_COUNT; i++) {
+        const id = 'chk' + i;
+        const el = document.getElementById(id);
+        if (el) {
+          localStorage.setItem(STORAGE_PREFIX + '_' + id, el.checked ? '1' : '0');
+        }
+      }
       updateChkUI();
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      ['chk1', 'chk2', 'chk3'].forEach(id => {
-        if (localStorage.getItem('gangnam_startup_' + id) === '1') {
-          document.getElementById(id).checked = true;
+      for (let i = 1; i <= CHK_COUNT; i++) {
+        const id = 'chk' + i;
+        const el = document.getElementById(id);
+        if (el && localStorage.getItem(STORAGE_PREFIX + '_' + id) === '1') {
+          el.checked = true;
         }
-      });
+      }
       updateChkUI();
     });
   </script>
