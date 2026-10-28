@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hermes Agent 차세대 런타임 하네스 원샷 마스터 프롬프트 v2.0 | Neo Note</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:title" content="Hermes Agent 차세대 런타임 하네스 원샷 마스터 프롬프트 v2.0 | Neo Note" />
+  <meta property="og:description" content="답변 복붙 셔틀에서 벗어나, 백그라운드에서 스스로 정보를 검증하고 내 서재로 직배달하는 '진짜 AI 직원' 1초 구축 패킷" />
+  <meta property="og:type" content="article" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --bg: #F2F4F6;
+      --surface: #FFFFFF;
+      --surface-sub: #F9FAFB;
+      --border: #E5E8EB;
+      --border-soft: #F2F4F6;
+      --text-primary: #191F28;
+      --text-secondary: #333D4B;
+      --text-muted: #6B7684;
+      --text-caption: #8B95A1;
+      --toss-blue: #3182F6;
+      --toss-blue-dark: #1B64DA;
+      --toss-blue-bg: #E8F3FF;
+      --mint-green: #00B884;
+      --mint-green-bg: #E5F9F3;
+      --indigo: #6366F1;
+      --indigo-bg: #EEF2FF;
+      --orange: #FF8A00;
+      --orange-bg: #FFF4E5;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.68;
+      padding: 32px 16px 96px;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    /* Hero Header */
+    .hero-card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 32px 28px 26px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(0, 27, 55, 0.04);
+      border: 1px solid rgba(0, 27, 55, 0.04);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--toss-blue-bg);
+      color: var(--toss-blue-dark);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 25px;
+      font-weight: 800;
+      line-height: 1.36;
+      color: var(--text-primary);
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding-top: 14px;
+      border-top: 1px solid var(--border-soft);
+    }
+    .meta-row strong {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* Action Card */
+    .action-card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(0, 27, 55, 0.03);
+    }
+    .action-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 480px) {
+      .btn-group {
+        grid-template-columns: 1.6fr 1fr;
+      }
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--toss-blue);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(49, 130, 246, 0.28);
+    }
+    .btn-primary:active {
+      background: var(--toss-blue-dark);
+      transform: scale(0.98);
+    }
+    .btn-secondary {
+      background: var(--surface-sub);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:active {
+      background: #E5E8EB;
+      transform: scale(0.98);
+    }
+
+    /* Infographic Card */
+    .infographic-card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .infographic-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .infographic-caption {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Section Cards */
+    .card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 26px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(0, 27, 55, 0.03);
+    }
+    .card h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--mint-green-bg);
+      color: var(--mint-green);
+    }
+
+    /* Harness Grid */
+    .harness-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    @media (min-width: 540px) {
+      .harness-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .harness-item {
+      background: var(--surface-sub);
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid var(--border-soft);
+    }
+    .harness-tag {
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .tag-blue { background: var(--toss-blue-bg); color: var(--toss-blue-dark); }
+    .tag-green { background: var(--mint-green-bg); color: var(--mint-green); }
+    .tag-indigo { background: var(--indigo-bg); color: var(--indigo); }
+    .tag-orange { background: var(--orange-bg); color: var(--orange); }
+    .harness-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .harness-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Prompt Box */
+    .prompt-box {
+      background: #191F28;
+      color: #F9FAFB;
+      border-radius: 16px;
+      padding: 20px;
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      font-size: 13.5px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      margin-top: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-height: 480px;
+      overflow-y: auto;
+    }
+
+    /* Interactive Checklist */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--surface-sub);
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      cursor: pointer;
+      user-select: none;
+    }
+    .check-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--toss-blue);
+      cursor: pointer;
+    }
+    .check-label {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+    .check-item.done {
+      background: #E8F3FF;
+      border-color: rgba(49, 130, 246, 0.2);
+    }
+    .check-item.done .check-label {
+      color: var(--toss-blue-dark);
+      text-decoration: line-through;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #191F28;
+      color: #FFFFFF;
+      font-size: 14.5px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 30px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+      color: var(--text-caption);
+      line-height: 1.6;
+    }
+    .footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero Header -->
+    <header class="hero-card">
+      <div class="eyebrow">🚀 1인 AX 시스템 & 리드 마그넷 정품</div>
+      <h1>Hermes Agent 차세대 런타임 하네스<br>원샷 마스터 프롬프트 v2.0</h1>
+      <p class="hero-desc">
+        AI 답변을 복사해서 다른 창으로 나르는 '복붙 셔틀'에서 벗어나세요.<br>
+        사령관 ORCA의 지휘 아래, 특급 전령 Hermes가 백그라운드에서 검증까지 마쳐 로컬 서재로 직배달하는 <strong>'진짜 AI 무인 실무팀'</strong> 1초 구축 패킷입니다.
+      </p>
+      <div class="meta-row">
+        <div>기획·제작: <strong>Neo Builder (@neo.alphareader)</strong></div>
+        <div>버전: <strong>v2.0 (2026-10-28)</strong></div>
+        <div>최종 검토: <strong>Opus 5.5 High & 전문가 5인 패널</strong></div>
+      </div>
+    </header>
+
+    <!-- Quick Action Card -->
+    <div class="action-card">
+      <div class="action-title">⚡ 스마트폰 1초 복사</div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="copyBtn" onclick="copyMasterPrompt()">
+          📋 원샷 마스터 프롬프트 전체 복사
+        </button>
+        <button class="btn btn-secondary" onclick="downloadMarkdown()">
+          📥 .md 파일 다운로드
+        </button>
+      </div>
+    </div>
+
+    <!-- 3D Infographic Card -->
+    <div class="infographic-card">
+      <img src="https://market-briefing-distributor.neo-alpha-research.workers.dev/api/images/threads?date=flagship%3Aep27_orca_hermes%3A1" alt="사령관 ORCA × 특급 전령 Hermes Agent 역할 분담 인포그래픽" />
+      <p class="infographic-caption">▲ 스레드 제27화 공식 인포그래픽: 사령관 ORCA(지휘) × 특급 전령 Hermes(무인 실행)</p>
+    </div>
+
+    <!-- Hermes 4-Harness Architecture -->
+    <section class="card">
+      <h2>Hermes 차세대 4대 하네스 엔진 <span class="pill">2026-10-28 최신</span></h2>
+      <p style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6;">
+        단순한 프롬프트는 에러가 나면 멈추지만, 4대 하네스 엔진이 결합된 Hermes Agent는 오류를 스스로 검증하고 지식을 영구 자산화합니다.
+      </p>
+      <div class="harness-grid">
+        <div class="harness-item">
+          <span class="harness-tag tag-blue">🛡️ 엔진 1</span>
+          <div class="harness-title">Verify-on-Stop 종료 가드</div>
+          <p class="harness-desc">AI의 "다 했습니다" 거짓 보고 원천 차단. 실제 파일 생성·테스트 PASS 증거가 있어야만 세션 종료 승인.</p>
+        </div>
+        <div class="harness-item">
+          <span class="harness-tag tag-green">⚡ 엔진 2</span>
+          <div class="harness-title">Living Memory 초고속 인출</div>
+          <p class="harness-desc">구판·폐기 문서는 은퇴(Retired) 격리하여 환각 방지. 살아있는 정본만 6,000자 이내 핀포인트 인출 (토큰 90% 절감).</p>
+        </div>
+        <div class="harness-item">
+          <span class="harness-tag tag-indigo">🧩 엔진 3</span>
+          <div class="harness-title">FairyClaw 스킬 런타임</div>
+          <p class="harness-desc">장황한 말 대신 한 줄 CLI 명령어로 리서치·요약·검수를 무인 자동 실행하는 정형화 스킬 체계.</p>
+        </div>
+        <div class="harness-item">
+          <span class="harness-tag tag-orange">🔄 엔진 4</span>
+          <div class="harness-title">전파 채무 추적기 (Debt Tracker)</div>
+          <p class="harness-desc">상위 헌법이나 세법/상품 스펙이 바뀌었을 때, 하위 마케팅 원고와 기획서가 누락 없이 함께 갱신되도록 추적.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Master Prompt Code Box -->
+    <section class="card">
+      <h2>마스터 프롬프트 전문</h2>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">
+        지금 평소 쓰시던 메인 AI(Claude, ChatGPT, Cursor 등) 대화창에 아래 내용을 그대로 붙여넣으세요:
+      </p>
+      <pre class="prompt-box" id="promptText">당신은 나의 1인 비즈니스 시스템을 혁신하는 [수석 AX(AI Transformation) 시스템 아키텍트]입니다.
+
+내가 지금까지 당신과 나눈 대화, 진행 중인 사업 프로젝트, 작성 중인 문서 맥락을 종합 분석하여, 
+단순한 '대화창 복붙 셔틀'에서 벗어나 백그라운드에서 스스로 정보를 검증하고 내 서재로 직배달하는 [Hermes Agent 1인 무인 업무 시스템]을 내 상황에 맞춰 완벽하게 구축해 주세요.
+
+이번 세팅에는 최신 2026 Hermes 4대 런타임 하네스 엔진(Verify-on-Stop 가드, Living Memory 초고속 인출, FairyClaw 스킬 런타임, 전파 채무 추적)이 반드시 포함되어야 합니다.
+
+아래 4가지 단계를 순서대로 구체적이고 바로 쓸 수 있게 작성해 주세요:
+
+---
+
+### [STEP 1] 2층 분리 폴더 구조 (Thin Cockpit + Data Vault)
+- 지금까지 우리가 나눈 대화를 바탕으로, 내가 집중하고 있는 2~3대 핵심 사업 영역을 정의해 주세요.
+- 사람이 보는 가벼운 메모/조종석(Obsidian/마크다운)과 데이터가 쌓이는 영구 볼트를 분리한 실전 디렉토리 트리(Directory Tree)를 짜주세요:
+  - 00_Inbox/ (아이디어·회의록·웹링크 무마찰 인입)
+  - 01_SSOT/ (단일 진실 원천 규정 및 브랜드 헌법)
+  - 02_Projects/ (진행 중인 프로젝트별 조종석 노트)
+  - 03_Ledger/ (지식 원장 및 실행 장부 SQLite/JSON)
+  - 99_Archive/ (구판·폐기 문서가 영구 격리되는 은퇴 보관소)
+
+---
+
+### [STEP 2] 우리 팀 마스터 헌법 (AGENTS.md)
+- Hermes Agent가 내 컴퓨터에서 자율적으로 일할 때 지켜야 할 [절대 행동 지침 4대 규칙]을 명문화해 주세요:
+  1. [Zero-Question Autonomous]: "어떻게 할까요?", "A안과 B안 중 골라주세요" 같은 사소한 질문으로 사람의 집중을 깨지 말고, 최선의 권장안(Recommended Option)을 스스로 판단해 끝까지 완주할 것.
+  2. [Fail-Closed & Zero-Fabrication]: 확인되지 않은 데이터, 결측치, 모르는 수치는 0으로 지어내지 말고 반드시 [미측정] 또는 [미연결]로 표기할 것.
+  3. [토큰 90% 다이어트]: 긴 대화를 전부 프롬프트에 넣지 말고, 필요한 살아있는 정본 자료만 6,000자 이내로 핀포인트 인출해 컨텍스트 낭비와 환각을 원천 차단할 것.
+  4. [3대 블록 사후 보고]: 작업 완료 후 장황한 변명 대신 반드시 [1. 수행 결과 / 2. 자동 채택 근거 / 3. 롤백(되돌리기) 방법] 3가지만 간결하게 보고할 것.
+
+---
+
+### [STEP 3] Hermes 차세대 4대 하네스 엔진 구현 명세
+- 내 업무 특성에 맞춰 아래 4대 하네스를 어떻게 구성할지 구체적인 스펙과 작동 방식을 정의해 주세요:
+  1. [Verify-on-Stop 종료 가드]: AI가 "다 했습니다"라고 말만 하고 끝내는 것을 원천 차단. 실제 파일 생성 여부, 글자 수 규격, 린터 점수 등 '기계적 증거'가 확인되어야만 세션을 종료하는 가드레일.
+  2. [Living Memory 초고속 인출]: 폐기된 옛날 문서는 은퇴(Retired) 처리하여 읽지 못하게 차단하고, 살아있는 정본 지식만 빠르게 인출하는 인덱싱 규칙.
+  3. [FairyClaw 스킬 런타임]: 반복되는 리서치, 요약, 검수 작업을 매번 설명하지 않고 python run_task.py --mode research 형태의 1줄 정형 스킬로 모듈화하는 방안.
+  4. [전파 채무 추적기 (Propagation Debt Tracker)]: 상위 지침서나 가격, 제품 스펙이 바뀌었을 때 하위 마케팅 원고나 기획서가 누락 없이 함께 갱신되도록 추적하는 동기화 규칙.
+
+---
+
+### [STEP 4] 오늘 바로 실행할 '첫 번째 Hermes 무인 태스크'
+- 내가 지금 당장 터미널이나 AI 대화창에 던져서 테스트할 수 있는 가장 효과적인 [첫 번째 실행 명령어와 프롬프트]를 하나 제시해 주세요.
+  (예: "내 사업 관련 시장 리포트/경쟁사 자료 3개를 수집·대조하여 00_Inbox에 팩트 요약표를 납품하는 태스크")
+
+---
+
+지금 바로 위 4단계를 내 실제 업무 맥락에 맞춰서 빈틈없이 완성해 줘.</pre>
+    </section>
+
+    <!-- 3-Minute Action Checklist -->
+    <section class="card">
+      <h2>내 PC 적용 3분 체크리스트 <span class="pill" id="badgeCount">0 / 3 완료</span></h2>
+      <ul class="checklist">
+        <li class="check-item" onclick="toggleCheck(this, 1)">
+          <input type="checkbox" id="chk1" onchange="updateProgress()" />
+          <label class="check-label" for="chk1">1. 위 프롬프트를 복사하여 평소 쓰던 메인 AI(클로드, 챗GPT 등) 대화창에 넣기</label>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this, 2)">
+          <input type="checkbox" id="chk2" onchange="updateProgress()" />
+          <label class="check-label" for="chk2">2. AI가 뽑아준 [STEP 2]의 규칙을 내 작업 폴더 최상단에 <code>AGENTS.md</code>로 저장하기</label>
+        </li>
+        <li class="check-item" onclick="toggleCheck(this, 3)">
+          <input type="checkbox" id="chk3" onchange="updateProgress()" />
+          <label class="check-label" for="chk3">3. [STEP 4]의 첫 무인 리서치 명령을 실행하고 커피 한 잔 마시며 산책 다녀오기 ☕</label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>제작: <a href="https://www.threads.net/@neo.alphareader" target="_blank">Neo Builder (@neo.alphareader)</a></p>
+      <p style="margin-top: 4px;">숫자를 다루고 AI 금융 도구를 만드는 1인 빌더의 지식 복리 기록</p>
+    </footer>
+  </div>
+
+  <!-- Toast Element -->
+  <div class="toast" id="toast">
+    <span>✅</span> 마스터 프롬프트가 클립보드에 복사되었습니다!
+  </div>
+
+  <script>
+    function copyMasterPrompt() {
+      const text = document.getElementById("promptText").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("✅ 마스터 프롬프트가 클립보드에 복사되었습니다!");
+      }).catch(err => {
+        // Fallback
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        showToast("✅ 마스터 프롬프트가 클립보드에 복사되었습니다!");
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.innerText = msg;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2500);
+    }
+
+    function downloadMarkdown() {
+      const text = document.getElementById("promptText").innerText;
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "HERMES_AGENT_MASTER_PROMPT.md";
+      a.click();
+      URL.revokeObjectURL(a.href);
+      showToast("📥 마크다운 파일이 다운로드되었습니다!");
+    }
+
+    function toggleCheck(item, index) {
+      const chk = item.querySelector("input[type='checkbox']");
+      chk.checked = !chk.checked;
+      item.classList.toggle("done", chk.checked);
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const chks = document.querySelectorAll(".checklist input[type='checkbox']");
+      let done = 0;
+      chks.forEach(c => {
+        if (c.checked) done++;
+        c.closest(".check-item").classList.toggle("done", c.checked);
+      });
+      document.getElementById("badgeCount").innerText = `${done} / ${chks.length} 완료`;
+    }
+  </script>
+</body>
+</html>
