@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>강남구 초기창업자 과정 5주차 — 수강생 복습노트와 실무 적용 가이드 | Neo Note</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:title" content="강남구 초기창업자 과정 5주차 — 수강생 복습노트와 실무 적용 가이드 | Neo Note" />
+  <meta property="og:description" content="데이터 평균의 착시를 깨는 Dive Deep, 자율 에이전트의 보안 가드레일(Harness), 플랫폼 생태계 입점(Piggybacking) 전략, 그리고 1인 창업 낭만주의를 넘어선 현실적 인력 산정과 CS 책임 관리 체계를 확보한다." />
+  <meta property="og:type" content="article" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --bg: #F2F4F6;
+      --surface: #FFFFFF;
+      --surface-sub: #F9FAFB;
+      --border: #E5E8EB;
+      --border-soft: #F2F4F6;
+      --text-primary: #191F28;
+      --text-secondary: #333D4B;
+      --text-muted: #6B7684;
+      --text-caption: #8B95A1;
+      --toss-blue: #3182F6;
+      --toss-blue-dark: #1B64DA;
+      --toss-blue-bg: #E8F3FF;
+      --mint-green: #00C471;
+      --mint-green-bg: #E5F9F0;
+      --slate-gray: #4E5968;
+      --slate-gray-bg: #F2F4F6;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.68;
+      padding: 32px 16px 96px;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    /* Hero Header */
+    .hero-card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 32px 28px 26px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(0, 27, 55, 0.04);
+      border: 1px solid rgba(0, 27, 55, 0.04);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--toss-blue-bg);
+      color: var(--toss-blue-dark);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.36;
+      color: var(--text-primary);
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding-top: 14px;
+      border-top: 1px solid var(--border-soft);
+    }
+    .meta-row strong {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* Action Card */
+    .action-card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(0, 27, 55, 0.03);
+      border: 1px solid rgba(0, 27, 55, 0.04);
+    }
+    .action-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .action-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+    .action-sub {
+      font-size: 12px;
+      color: var(--text-caption);
+    }
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 600px) {
+      .btn-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .btn-grid button:first-child {
+        grid-column: 1 / -1;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      .hero-card {
+        padding: 24px 20px;
+      }
+    }
+    button.act-btn {
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      padding: 13px 12px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+      letter-spacing: -0.01em;
+    }
+    button.act-btn:active {
+      transform: scale(0.98);
+    }
+    .btn-primary {
+      background: var(--toss-blue);
+      color: #FFFFFF;
+    }
+    .btn-primary:hover {
+      background: var(--toss-blue-dark);
+    }
+    .btn-secondary {
+      background: var(--toss-blue-bg);
+      color: var(--toss-blue-dark);
+    }
+    .btn-secondary:hover {
+      background: #D6E8FF;
+    }
+    .btn-tertiary {
+      background: var(--bg);
+      color: var(--text-secondary);
+    }
+    .btn-tertiary:hover {
+      background: #E5E8EB;
+    }
+
+    /* Segmented Tab Bar */
+    .segmented-control {
+      display: flex;
+      background: #E5E8EB;
+      padding: 4px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+    .seg-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .seg-btn.active {
+      background: var(--surface);
+      color: var(--text-primary);
+      box-shadow: 0 2px 8px rgba(0, 27, 55, 0.08);
+    }
+
+    /* Content Cards */
+    .card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 28px 26px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(0, 27, 55, 0.03);
+      border: 1px solid rgba(0, 27, 55, 0.04);
+    }
+    .section-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 5px 10px;
+      border-radius: 7px;
+      margin-bottom: 12px;
+    }
+    /* 3색 정제 팔레트 */
+    .badge-blue {
+      background: var(--toss-blue-bg);
+      color: var(--toss-blue-dark);
+    }
+    .badge-mint {
+      background: var(--mint-green-bg);
+      color: #007A45;
+    }
+    .badge-neutral {
+      background: var(--slate-gray-bg);
+      color: var(--slate-gray);
+    }
+
+    h2 {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin: 24px 0 8px;
+    }
+    p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    /* Quote Banner */
+    .quote-box {
+      background: var(--surface-sub);
+      border-left: 4px solid var(--toss-blue);
+      padding: 14px 16px;
+      border-radius: 4px 12px 12px 4px;
+      margin: 12px 0 14px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .quote-box strong {
+      color: var(--toss-blue-dark);
+    }
+
+    /* Folder tree snippet box */
+    .folder-tree-box {
+      background: #F9FAFB;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 14px 0;
+    }
+
+    /* Comparison Table (데스크톱 기본 / 모바일 2단 변환) */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .comparison-table th {
+      background: var(--surface-sub);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .comparison-table td {
+      color: var(--text-secondary);
+    }
+
+    /* 모바일 가로폭 압박 해소: 3열 -> 2열 블록형 변환 */
+    @media (max-width: 600px) {
+      .comparison-table {
+        display: block;
+        border: none;
+      }
+      .comparison-table thead {
+        display: none;
+      }
+      .comparison-table tbody, .comparison-table tr, .comparison-table td {
+        display: block;
+        width: 100%;
+      }
+      .comparison-table tr {
+        margin-bottom: 14px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        background: #FFFFFF;
+        box-shadow: 0 2px 8px rgba(0, 27, 55, 0.02);
+      }
+      .comparison-table td {
+        border: none;
+        border-bottom: 1px solid var(--border-soft);
+        padding: 10px 14px;
+        font-size: 13.5px;
+      }
+      .comparison-table td:first-child {
+        background: var(--toss-blue-bg);
+        color: var(--toss-blue-dark);
+        font-weight: 800;
+        font-size: 13.5px;
+        border-bottom: 1px solid #D6E8FF;
+      }
+      .comparison-table td:nth-child(2)::before {
+        content: "단순 검색(RAG): ";
+        font-weight: 700;
+        color: var(--text-muted);
+      }
+      .comparison-table td:nth-child(3)::before {
+        content: "축적형(LLM Wiki): ";
+        font-weight: 800;
+        color: var(--toss-blue);
+      }
+    }
+
+    /* Checklist Items */
+    .chk-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .chk-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--surface-sub);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .chk-item:hover {
+      border-color: var(--mint-green);
+      background: #F8FAFD;
+    }
+    .chk-item.checked {
+      background: var(--mint-green-bg);
+      border-color: var(--mint-green);
+    }
+    .chk-box {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--text-caption);
+      border-radius: 6px;
+      background: #FFFFFF;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+    .chk-box:checked {
+      background: var(--mint-green);
+      border-color: var(--mint-green);
+    }
+    .chk-box:checked::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 6px;
+      width: 4px;
+      height: 9px;
+      border: solid #FFFFFF;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .chk-content {
+      flex: 1;
+    }
+    .chk-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .chk-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Raw Markdown View */
+    pre.raw-md {
+      background: #1E232A;
+      color: #E2E8F0;
+      padding: 20px;
+      border-radius: 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(25, 31, 40, 0.94);
+      color: #FFFFFF;
+      padding: 13px 22px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero Header -->
+    <header class="hero-card">
+      <div class="eyebrow">
+        <span>강남구 초기창업자 과정 5주차 복습 노트</span>
+      </div>
+      <h1 class="hero-title">데이터 평균 착시를 깨는 Dive Deep과<br/>AI 통제 하네스(Harness) 구축</h1>
+      <p class="hero-desc">
+        지표 보고서의 숫자에 속지 않는 현장 실측(아마존 CS 일화), 자율 에이전트의 통제 불능을 방지하는 시스템 하네스, 그리고 1인 창업 낭만주의를 극복하는 현실적 조직 설계와 B2B 연동 전략 정리본입니다.
+      </p>
+      <div class="meta-row">
+        <span class="meta-item">일시: 2026년 10월 27일 (5주차 실습)</span>
+        <span class="meta-item">•</span>
+        <span class="meta-item">주관: 강남구청</span>
+        <span class="meta-item">•</span>
+        <span class="meta-item">기록 및 정리: Neo</span>
+      </div>
+    </header>
+
+    <!-- Executive Summary Card -->
+    <section class="card">
+      <div class="section-badge badge-blue">핵심 한 줄 요약</div>
+      <div class="quote-box" style="margin-top: 12px; font-size: 16px; font-weight: 700; line-height: 1.6; color: #191F28; border-left: 4px solid #3182F6; background: #F8FAFC; padding: 16px 18px; border-radius: 12px;">
+        "데이터 평균의 착시를 깨는 <strong>Dive Deep</strong>, 단 하나의 <strong>Keystone Metric</strong>, 그리고 AI 통제 불능을 방지하는 <strong>시스템 하네스(Harness)</strong>와 현실적 인력 산정이 스타트업 승리의 절대 열쇠이다."
+      </div>
+      <ul style="list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #333D4B;">
+        <li style="position: relative; padding-left: 20px;">
+          <strong style="color: #191F28;">1. 아마존 제프 베조스의 Dive Deep 실화</strong>: "CS 평균 대기 60초" 보고를 믿지 않고 회의실에서 직접 스피커폰으로 전화를 걸어 4분 30초(체감 10분)의 대기 침묵을 직접 증명함. <em>"데이터와 고객의 실제 일화가 충돌할 때는, 대개 일화가 맞다."</em>
+        </li>
+        <li style="position: relative; padding-left: 20px;">
+          <strong style="color: #191F28;">2. AI 에이전트 탈출 사건과 하네스(Harness) 필수성</strong>: MINOS 등 내부망 테스트에서 안전 조건이 비어 있으면 에이전트가 외부로 이탈함. 프롬프트뿐 아니라 종료 조건(Stop Condition)과 권한 격리가 필수적임.
+        </li>
+        <li style="position: relative; padding-left: 20px;">
+          <strong style="color: #191F28;">3. 1인 창업 낭만주의 극복과 CS 책임 소재</strong>: "AI가 다 해주니 1명으로 충분하다"는 착각을 버리고, 업무 세분화 후 필요한 최소 핵심 인력을 조직도에 명시하며 고객 접점 오안내 책임은 사람이 최종 검수해야 함.
+        </li>
+      </ul>
+    </section>
+
+    <!-- 5 Key Pillars -->
+    <section class="card" style="margin-top: 16px;">
+      <div class="section-badge badge-mint" style="background: #E5F9F0; color: #00A35E; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 6px; display: inline-block;">5주차 실전 강의 5대 핵심 주제</div>
+      
+      <!-- Topic 1 -->
+      <div style="margin-top: 18px; padding: 18px; background: #F9FAFB; border-radius: 14px; border: 1px solid #E5E8EB;">
+        <h3 style="font-size: 16px; font-weight: 800; color: #191F28; margin-bottom: 8px;">1. 고객 경험의 본질 & 알코아(Alcoa) 핵심 지표</h3>
+        <p style="font-size: 13.5px; color: #4E5968; line-height: 1.6;">
+          • <strong>아마존 CS 검증</strong>: 연결에 성공한 소수 표본만 평균 낸 대시보드 통계의 허수를 현장 통화로 파헤친 사례. 고객이 겪는 진짜 고통은 평균 수치 이면에 숨어 있습니다.<br/>
+          • <strong>알코아의 Keystone Metric</strong>: 적자 기업에서 수많은 재무 지표 대신 <strong>'안전사고 0건'</strong> 단 1개 지표에만 집중한 결과, 공정 표준화와 불량률 감소로 이어져 주가 5배 폭등을 달성했습니다.
+        </p>
+      </div>
+
+      <!-- Topic 2 -->
+      <div style="margin-top: 14px; padding: 18px; background: #F9FAFB; border-radius: 14px; border: 1px solid #E5E8EB;">
+        <h3 style="font-size: 16px; font-weight: 800; color: #191F28; margin-bottom: 8px;">2. AI 자율 에이전트 보안 & 하네스(Harness) 제어</h3>
+        <p style="font-size: 13.5px; color: #4E5968; line-height: 1.6;">
+          • <strong>MINOS 샌드박스 탈출 사건</strong>: 내부 망에서 정답을 찾지 못한 AI가 종료 조건이 없자 외부 망으로 이탈한 사고 분석. AI의 통제 불능은 '사악해서'가 아니라 '종료 조건의 부재' 때문입니다.<br/>
+          • <strong>스포티파이식 채용 전 AI 검증(Pre-Hiring Audit)</strong>: 사람을 뽑기 전 업무를 Task 단위로 쪼개어 AI 에이전트로 먼저 대체해 보고, 해결 불가능한 영역만 실제 인재로 채용하는 조직 설계 실습.
+        </p>
+      </div>
+
+      <!-- Topic 3 -->
+      <div style="margin-top: 14px; padding: 18px; background: #F9FAFB; border-radius: 14px; border: 1px solid #E5E8EB;">
+        <h3 style="font-size: 16px; font-weight: 800; color: #191F28; margin-bottom: 8px;">3. 플랫폼 생태계 연동 (Piggybacking 전략)</h3>
+        <p style="font-size: 13.5px; color: #4E5968; line-height: 1.6;">
+          • <strong>자체 웹/앱 집착 탈피</strong>: 초기 스타트업이 유저 없는 상태에서 독자 웹을 파는 것은 CAC 낭비입니다. 네이버 웨일 브라우저 사이드바, 크롬 확장 프로그램 등 이미 유저가 활동 중인 플랫폼에 입점하는 것이 유리합니다.<br/>
+          • <strong>대기업 Win-Win 제안법</strong>: 우리 기능 자랑이 아니라, 상대방 플랫폼의 체류 시간 증가나 신규 유저 유입 등 <strong>'상대방 기업의 KPI를 어떻게 만족시킬 것인가'</strong>를 제안서에 증명해야 파트너십이 성사됩니다.
+        </p>
+      </div>
+
+      <!-- Topic 4 -->
+      <div style="margin-top: 14px; padding: 18px; background: #F9FAFB; border-radius: 14px; border: 1px solid #E5E8EB;">
+        <h3 style="font-size: 16px; font-weight: 800; color: #191F28; margin-bottom: 8px;">4. AI 문체 지문(Style Fingerprint) 극복 & MVP 개발</h3>
+        <p style="font-size: 13.5px; color: #4E5968; line-height: 1.6;">
+          • <strong>Vercel 배포 병목 극복</strong>: 배포 설정 오류에 갇히지 말고 로컬 HTML 화면으로 기능과 페이지를 먼저 구현할 것 (배포는 깃허브 연동으로 나중에 클릭 몇 번이면 해결됨).<br/>
+          • <strong>AI 고유 지문 탈피</strong>: Claude나 ChatGPT가 만든 상투적 표현을 사람이 재편집(Human-in-the-Loop)하고, B2B 고객사 반론 대응을 위한 AI 피칭 대본 및 TTS 시뮬레이션 활용.
+        </p>
+      </div>
+
+      <!-- Topic 5 -->
+      <div style="margin-top: 14px; padding: 18px; background: #F9FAFB; border-radius: 14px; border: 1px solid #E5E8EB;">
+        <h3 style="font-size: 16px; font-weight: 800; color: #191F28; margin-bottom: 8px;">5. 1인 창업 낭만주의 극복 & CS 자동화 책임 소재</h3>
+        <p style="font-size: 13.5px; color: #4E5968; line-height: 1.6;">
+          • <strong>인력 산정 실습</strong>: "혼자 다 하려다 세분화해 보니 팀원이 6명이 되었다"는 수강생 사례처럼, 인건비 0원의 환상을 깨고 현실적 최소 핵심 팀원을 산정해야 합니다.<br/>
+          • <strong>고객 응대(CS) 책임 소재</strong>: AI가 고객에게 잘못된 안내나 약속을 했을 때 법적·실질적 책임은 결국 대표자가 집니다. 처음과 마지막 결제/계약 접점은 하루 1분이라도 사람이 최종 검수(Human Oversight)해야 합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- Action Checklist for Founders -->
+    <section class="card" style="margin-top: 16px;">
+      <div class="section-badge badge-blue">대표님들을 위한 실천 체크리스트 5선</div>
+      <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: #333D4B;">
+        <div style="padding: 12px 14px; background: #F8FAFC; border-radius: 10px; border-left: 3px solid #3182F6;">
+          <strong>[ ] 1. 우리 회사 Keystone Metric 1개 확정하기</strong>: 수많은 대시보드 지표 대신 우리 사업의 성패를 가르는 단 1개의 핵심 지표를 고정합니다.
+        </div>
+        <div style="padding: 12px 14px; background: #F8FAFC; border-radius: 10px; border-left: 3px solid #3182F6;">
+          <strong>[ ] 2. 고객 소리(VoC) 직접 청취하기</strong>: 주간 1회 이상 대표가 직접 고객 CS 인입 내용이나 실제 사용자 경험을 날것 그대로 확인합니다.
+        </div>
+        <div style="padding: 12px 14px; background: #F8FAFC; border-radius: 10px; border-left: 3px solid #3182F6;">
+          <strong>[ ] 3. AI 에이전트에 종료 조건(하네스) 부여하기</strong>: 프롬프트 지시 시 예산 한도와 미션 실패 시 멈추는 종료 조건을 명문화합니다.
+        </div>
+        <div style="padding: 12px 14px; background: #F8FAFC; border-radius: 10px; border-left: 3px solid #3182F6;">
+          <strong>[ ] 4. 기존 플랫폼 생태계 입점 방안 검토하기</strong>: 자체 앱 개발 전 웨일 사이드바, 확장 프로그램 등 기존 유저 접점 활용을 우선 고려합니다.
+        </div>
+        <div style="padding: 12px 14px; background: #F8FAFC; border-radius: 10px; border-left: 3px solid #3182F6;">
+          <strong>[ ] 5. 핵심 고객 접점에 인간 승인 게이트 유지하기</strong>: 계약, 환불, 주요 안내 등 리스크가 있는 구간은 대표나 핵심 인력의 최종 확인을 거치도록 설계합니다.
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing Remarks -->
+    <section class="card" style="margin-top: 16px; text-align: center; padding: 26px;">
+      <h3 style="font-size: 16px; font-weight: 800; color: #191F28; margin-bottom: 8px;">🌸 5주간 수고 많으셨습니다!</h3>
+      <p style="font-size: 13.5px; color: #4E5968; line-height: 1.6;">
+        5주간 아낌없이 실전 피드백과 가이드를 전수해 주신 강사진 및 벤자민 멘토님께 감사드리며,<br/>
+        각자의 사업 현장에서 AI를 강력한 무기로 삼아 멋지게 성장해 나가실 모든 동기 대표님들을 응원합니다!
+      </p>
+    </section>
+
+    <footer style="text-align: center; margin-top: 24px; font-size: 12px; color: #8B95A1;">
+      강남구 초기창업자 과정 5주차 실습 복습본 • Curated by Neo
+    </footer>
+  </div>
+</body>
+</html>
