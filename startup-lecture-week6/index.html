@@ -1,425 +1,424 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>강남구 초기창업자 과정 6주차(최종) — 내가 없어도 되는 회사와 B2B 세일즈 자동화 | Neo Note</title>
-  <meta name="robots" content="noindex, nofollow" />
-  <meta property="og:title" content="강남구 초기창업자 과정 6주차(최종) — 내가 없어도 되는 회사와 B2B 세일즈 자동화" />
-  <meta property="og:description" content="섹시함의 함정을 깨는 Utility First, 아마존 제프 베조스의 물음표(?) 리포트, 대표 병목 디스패치, AB180 이현중 이사의 GTM 세일즈 자동화 실전 분석." />
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <style>
-    :root {
-      --bg: #F2F4F6;
-      --surface: #FFFFFF;
-      --surface-sub: #F9FAFB;
-      --border: #E5E8EB;
-      --border-soft: #F2F4F6;
-      --text-main: #191F28;
-      --text-sub: #4E5968;
-      --text-muted: #8B95A1;
-      --toss-blue: #3182F6;
-      --toss-blue-light: #E8F3FF;
-      --toss-blue-dark: #1B64DA;
-      --mint: #00B884;
-      --mint-light: #E6F8F3;
-      --coral: #F04452;
-      --coral-light: #FEECEE;
-      --radius: 20px;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
-    body {
-      background-color: var(--bg);
-      color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, "Pretendard Variable", Pretendard, sans-serif;
-      line-height: 1.68;
-      word-break: keep-all;
-      padding: 24px 16px 100px;
-      display: flex;
-      justify-content: center;
-    }
-    .container {
-      width: 100%;
-      max-width: 680px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      box-shadow: 0 4px 16px rgba(0, 27, 55, 0.04);
-      border: 1px solid rgba(0, 27, 55, 0.04);
-    }
-    .hero-card {
-      border-bottom: 4px solid var(--toss-blue);
-    }
-    .badge-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-    .badge {
-      display: inline-block;
-      padding: 5px 11px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    .badge-blue { background: var(--toss-blue-light); color: var(--toss-blue-dark); }
-    .badge-mint { background: var(--mint-light); color: var(--mint); }
-    .badge-gray { background: #ECEFF1; color: #455A64; }
-    h1.hero-title {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-bottom: 10px;
-      line-height: 1.38;
-      letter-spacing: -0.02em;
-    }
-    .hero-meta {
-      font-size: 13px;
-      color: var(--text-muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      padding-top: 12px;
-      border-top: 1px solid var(--border-soft);
-    }
-    .card-title {
-      font-size: 17px;
-      font-weight: 800;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-main);
-    }
-    .summary-box {
-      background: #F8FAFC;
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 14px;
-      border-left: 4px solid var(--toss-blue);
-      font-weight: 700;
-      font-size: 15px;
-      color: #0F172A;
-      line-height: 1.6;
-    }
-    ul.takeaways {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    ul.takeaways li {
-      position: relative;
-      padding-left: 22px;
-      font-size: 14px;
-      color: var(--text-sub);
-      line-height: 1.65;
-    }
-    ul.takeaways li::before {
-      content: "•";
-      position: absolute;
-      left: 6px;
-      color: var(--toss-blue);
-      font-weight: 900;
-      font-size: 18px;
-      line-height: 1.2;
-    }
-    .topic-card {
-      background: #F9FAFB;
-      border-radius: 14px;
-      padding: 18px 20px;
-      border: 1px solid var(--border);
-      margin-bottom: 12px;
-    }
-    .topic-card:last-child { margin-bottom: 0; }
-    .topic-head {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .topic-desc {
-      font-size: 13.5px;
-      color: var(--text-sub);
-      line-height: 1.65;
-    }
-    .quote-box {
-      background: #FFFFFF;
-      border-left: 3px solid #64748B;
-      padding: 10px 14px;
-      margin-top: 10px;
-      font-size: 13px;
-      color: #334155;
-      border-radius: 4px 8px 8px 4px;
-      font-style: italic;
-    }
-    .proposal-item {
-      padding: 16px 18px;
-      border-radius: 14px;
-      margin-bottom: 10px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .proposal-item.recommended {
-      border: 2px solid var(--toss-blue);
-      background: #F0F7FF;
-      box-shadow: 0 4px 14px rgba(49, 130, 246, 0.12);
-    }
-    .proposal-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 4px 9px;
-      border-radius: 6px;
-      margin-bottom: 8px;
-    }
-    .tag-a { background: #E0E7FF; color: #4338CA; }
-    .tag-b { background: #FEF3C7; color: #92400E; }
-    .tag-c { background: #FEE2E2; color: #991B1B; }
-    .checklist-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 12px 14px;
-      background: #F8FAFC;
-      border-radius: 12px;
-      border-left: 3px solid var(--toss-blue);
-      margin-bottom: 8px;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.15s;
-    }
-    .checklist-row:hover { background: #F1F5F9; }
-    .checklist-row.checked {
-      background: #EDF2F7;
-      border-left-color: #94A3B8;
-      text-decoration: line-through;
-      color: #94A3B8;
-    }
-    .checklist-box {
-      margin-top: 3px;
-      width: 18px;
-      height: 18px;
-      accent-color: var(--toss-blue);
-    }
-    .checklist-text {
-      font-size: 13.5px;
-      line-height: 1.55;
-      color: var(--text-main);
-      flex: 1;
-    }
-    .checklist-row.checked .checklist-text {
-      color: #94A3B8;
-    }
-    .sticky-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 12px 20px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      z-index: 100;
-    }
-    .btn {
-      padding: 12px 22px;
-      border-radius: 14px;
-      font-size: 14px;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: transform 0.1s, opacity 0.2s;
-    }
-    .btn:active { transform: scale(0.98); }
-    .btn-primary { background: var(--toss-blue); color: white; }
-    .btn-secondary { background: #E5E8EB; color: var(--text-main); }
-    #toast {
-      position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(25, 31, 40, 0.9);
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-      z-index: 1000;
-    }
-  </style>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+ <title>강남구 초기창업자 과정 6주차(최종) — 내가 없어도 되는 회사와 B2B 세일즈 자동화 | Neo Note</title>
+ <meta name="robots" content="noindex, nofollow" />
+ <meta property="og:title" content="강남구 초기창업자 과정 6주차(최종) — 내가 없어도 되는 회사와 B2B 세일즈 자동화" />
+ <meta property="og:description" content="섹시함의 함정을 깨는 Utility First, 아마존 제프 베조스의 물음표(?) 리포트, 대표 병목 보고, AB180 이현중 이사의 GTM 세일즈 자동화 실전 분석." />
+ <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+ <style>
+  :root {
+   --bg: #F2F4F6;
+   --surface: #FFFFFF;
+   --surface-sub: #F9FAFB;
+   --border: #E5E8EB;
+   --border-soft: #F2F4F6;
+   --text-main: #191F28;
+   --text-sub: #4E5968;
+   --text-muted: #8B95A1;
+   --toss-blue: #3182F6;
+   --toss-blue-light: #E8F3FF;
+   --toss-blue-dark: #1B64DA;
+   --mint: #00B884;
+   --mint-light: #E6F8F3;
+   --coral: #F04452;
+   --coral-light: #FEECEE;
+   --radius: 20px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  body {
+   background-color: var(--bg);
+   color: var(--text-main);
+   font-family: -apple-system, BlinkMacSystemFont, "Pretendard Variable", Pretendard, sans-serif;
+   line-height: 1.68;
+   word-break: keep-all;
+   padding: 24px 16px 100px;
+   display: flex;
+   justify-content: center;
+  }
+  .container {
+   width: 100%;
+   max-width: 680px;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+  }
+  .card {
+   background: var(--surface);
+   border-radius: var(--radius);
+   padding: 28px 24px;
+   box-shadow: 0 4px 16px rgba(0, 27, 55, 0.04);
+   border: 1px solid rgba(0, 27, 55, 0.04);
+  }
+  .hero-card {
+   border-bottom: 4px solid var(--toss-blue);
+  }
+  .badge-row {
+   display: flex;
+   gap: 8px;
+   margin-bottom: 12px;
+   flex-wrap: wrap;
+  }
+  .badge {
+   display: inline-block;
+   padding: 5px 11px;
+   border-radius: 8px;
+   font-size: 12px;
+   font-weight: 700;
+  }
+  .badge-blue { background: var(--toss-blue-light); color: var(--toss-blue-dark); }
+  .badge-mint { background: var(--mint-light); color: var(--mint); }
+  .badge-gray { background: #ECEFF1; color: #455A64; }
+  h1.hero-title {
+   font-size: 22px;
+   font-weight: 800;
+   color: var(--text-main);
+   margin-bottom: 10px;
+   line-height: 1.38;
+   letter-spacing: -0.02em;
+  }
+  .hero-meta {
+   font-size: 13px;
+   color: var(--text-muted);
+   display: flex;
+   flex-wrap: wrap;
+   gap: 12px;
+   align-items: center;
+   padding-top: 12px;
+   border-top: 1px solid var(--border-soft);
+  }
+  .card-title {
+   font-size: 17px;
+   font-weight: 800;
+   margin-bottom: 14px;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   color: var(--text-main);
+  }
+  .summary-box {
+   background: #F8FAFC;
+   border-radius: 14px;
+   padding: 18px;
+   margin-bottom: 14px;
+   border-left: 4px solid var(--toss-blue);
+   font-weight: 700;
+   font-size: 15px;
+   color: #0F172A;
+   line-height: 1.6;
+  }
+  ul.takeaways {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+  }
+  ul.takeaways li {
+   position: relative;
+   padding-left: 22px;
+   font-size: 14px;
+   color: var(--text-sub);
+   line-height: 1.65;
+  }
+  ul.takeaways li::before {
+   content: "•";
+   position: absolute;
+   left: 6px;
+   color: var(--toss-blue);
+   font-weight: 900;
+   font-size: 18px;
+   line-height: 1.2;
+  }
+  .topic-card {
+   background: #F9FAFB;
+   border-radius: 14px;
+   padding: 18px 20px;
+   border: 1px solid var(--border);
+   margin-bottom: 12px;
+  }
+  .topic-card:last-child { margin-bottom: 0; }
+  .topic-head {
+   font-size: 15px;
+   font-weight: 800;
+   color: var(--text-main);
+   margin-bottom: 8px;
+   display: flex;
+   align-items: center;
+   gap: 6px;
+  }
+  .topic-desc {
+   font-size: 13.5px;
+   color: var(--text-sub);
+   line-height: 1.65;
+  }
+  .quote-box {
+   background: #FFFFFF;
+   border-left: 3px solid #64748B;
+   padding: 10px 14px;
+   margin-top: 10px;
+   font-size: 13px;
+   color: #334155;
+   border-radius: 4px 8px 8px 4px;
+   font-style: italic;
+  }
+  .proposal-item {
+   padding: 16px 18px;
+   border-radius: 14px;
+   margin-bottom: 10px;
+   border: 1px solid var(--border);
+   background: var(--surface);
+  }
+  .proposal-item.recommended {
+   border: 2px solid var(--toss-blue);
+   background: #F0F7FF;
+   box-shadow: 0 4px 14px rgba(49, 130, 246, 0.12);
+  }
+  .proposal-tag {
+   display: inline-block;
+   font-size: 11px;
+   font-weight: 800;
+   padding: 4px 9px;
+   border-radius: 6px;
+   margin-bottom: 8px;
+  }
+  .tag-a { background: #E0E7FF; color: #4338CA; }
+  .tag-b { background: #FEF3C7; color: #92400E; }
+  .tag-c { background: #FEE2E2; color: #991B1B; }
+  .checklist-row {
+   display: flex;
+   align-items: flex-start;
+   gap: 12px;
+   padding: 12px 14px;
+   background: #F8FAFC;
+   border-radius: 12px;
+   border-left: 3px solid var(--toss-blue);
+   margin-bottom: 8px;
+   cursor: pointer;
+   user-select: none;
+   transition: background 0.15s;
+  }
+  .checklist-row:hover { background: #F1F5F9; }
+  .checklist-row.checked {
+   background: #EDF2F7;
+   border-left-color: #94A3B8;
+   text-decoration: line-through;
+   color: #94A3B8;
+  }
+  .checklist-box {
+   margin-top: 3px;
+   width: 18px;
+   height: 18px;
+   accent-color: var(--toss-blue);
+  }
+  .checklist-text {
+   font-size: 13.5px;
+   line-height: 1.55;
+   color: var(--text-main);
+   flex: 1;
+  }
+  .checklist-row.checked .checklist-text {
+   color: #94A3B8;
+  }
+  .sticky-bar {
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background: rgba(255, 255, 255, 0.95);
+   backdrop-filter: blur(10px);
+   padding: 12px 20px;
+   border-top: 1px solid var(--border);
+   display: flex;
+   justify-content: center;
+   gap: 12px;
+   z-index: 100;
+  }
+  .btn {
+   padding: 12px 22px;
+   border-radius: 14px;
+   font-size: 14px;
+   font-weight: 700;
+   border: none;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   gap: 6px;
+   transition: transform 0.1s, opacity 0.2s;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--toss-blue); color: white; }
+  .btn-secondary { background: #E5E8EB; color: var(--text-main); }
+  #toast {
+   position: fixed;
+   top: 24px;
+   left: 50%;
+   transform: translateX(-50%);
+   background: rgba(25, 31, 40, 0.9);
+   color: #fff;
+   padding: 10px 20px;
+   border-radius: 20px;
+   font-size: 13px;
+   font-weight: 600;
+   opacity: 0;
+   transition: opacity 0.3s;
+   pointer-events: none;
+   z-index: 1000;
+  }
+ </style>
 </head>
 <body>
-  <div id="toast"></div>
-  <div class="container">
-    
-    <!-- Hero Card -->
-    <div class="card hero-card">
-      <div class="badge-row">
-        <span class="badge badge-blue">강남구청 초기창업자 6주차 최종</span>
-        <span class="badge badge-mint">Grade S 팩트 감사</span>
-        <span class="badge badge-gray">내가 없어도 되는 회사</span>
-      </div>
-      <h1 class="hero-title">강남구 초기창업자 과정 6주차 — 내가 없어도 되는 회사(Self-Running Company)와 B2B 세일즈 자동화</h1>
-      <div class="hero-meta">
-        <span>👤 강사진 및 벤자민 멘토</span>
-        <span>⏱️ 원본 음성 2시간 07분 완주</span>
-        <span>📅 2026-11-05</span>
-      </div>
-    </div>
-
-    <!-- Executive Summary -->
-    <div class="card">
-      <div class="card-title">💡 이것만 아시면 돼요 (핵심 요약)</div>
-      <div class="summary-box">
-        화려한 데모보다 작동하는 실질적 뼈대(Utility First)를 갖추고, 에이전트가 대표자의 3대 병목 업무를 아침마다 찔러주게 하며, 사내 지식을 AB180식 70점 스코어카드 기반 B2B 세일즈 엔진으로 직결해야 합니다.
-      </div>
-      <ul class="takeaways">
-        <li><strong>섹시함의 함정을 깨는 Utility First</strong>: 세그웨이(연 10만 대 공언했으나 20년간 13만 대), 주스로(1억 2천만 달러 유치 후 5개월 만에 폐업) 대비, 쓸모없는 물건 취급받다 글로벌 대히트를 친 셀카봉처럼 '작동하는 효용'에 집중할 것.</li>
-        <li><strong>아마존 제프 베조스의 물음표(?) 리포트</strong>: AI 직원에게 아무리 많은 작업을 위임하더라도 최종 책임은 대표자가 지며, 에이전트 감시와 SOP 보완을 향후 최소 2개월간 지속해야 시스템이 정착됨.</li>
-        <li><strong>자동화의 본질은 대표 병목 해소</strong>: 100% 무인화보다 대표가 확인해야 할 미처리 약속, 승인 대기 건을 아침 8시 브리핑으로 디스패치하는 구조 확립.</li>
-        <li><strong>AB180 이현중 이사의 GTM 세일즈 자동화</strong>: 인바운드 리드를 70점 스코어카드로 검증하여 상위 리드에만 맞춤 제안서와 답장을 자동 컴파일하는 매출 직결형 지식 활용.</li>
-        <li><strong>강사의 Threads 계정 정지 실패 교훈</strong>: 100% 무인 SNS 자동화는 1주일 만에 계정 폐쇄를 부르므로, 대외 발행 전 대표 최종 승인(D2 A안) 가드레일 엄수.</li>
-      </ul>
-    </div>
-
-    <!-- 6 Core Lecture Pillars -->
-    <div class="card">
-      <div class="card-title">🏛️ 실전 핵심 강의 내용 6선 (팩트 검증 완료)</div>
-
-      <div class="topic-card">
-        <div class="topic-head">1. 섹시함의 함정과 실질적 가치 (Segway vs Juicero vs Selfie Stick)</div>
-        <div class="topic-desc">
-          • <strong>세그웨이(Segway)의 거품</strong>: 연간 10만 대 판매 호언장담과 대규모 IR 투자에도 불구하고 20년간 총 13만 대 판매에 그침 (대표 사고사).<br/>
-          • <strong>주스로(Juicero)의 붕괴</strong>: 400달러짜리 주스기로 1억 2천만 달러를 펀딩받았으나, 손으로 짜도 나오는 양이 같다는 보도 5개월 만에 폐업.<br/>
-          • <strong>셀카봉(Selfie Stick)의 반전</strong>: 초기에 쓸모없는 엉뚱 발명품으로 조롱받았으나 타임지 올해의 발명품 등재 및 전 세계 메가 히트.
-        </div>
-        <div class="quote-box">
-          "섹시하지 않다고 해서 안 팔리는 것은 아니다. 반대로 섹시하다고 해서 팔리는 것도 아니다. 우리가 구축한 AI 지식 체계는 겉보기에 섹시하지 않지만, 비즈니스에 변함없이 쓰이는 가장 단단한 뼈대입니다."
-        </div>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-head">2. 아마존 제프 베조스의 물음표(?) 리포트와 대표의 최종 책임</div>
-        <div class="topic-desc">
-          • <strong>아마존 리더십 원칙 4 '오너십(Ownership)'</strong>: <em>Leaders are owners. They never say 'that's not my job'.</em><br/>
-          • <strong>베조스의 물음표("?") 이메일</strong>: 고객 불만 메일에 오직 물음표 하나만 적어 전달하면, 담당 임원은 원인, 데이터, 책임 소재, 재발 방지책을 완벽히 정리해 직보해야 했음.<br/>
-          • <strong>AI 위임의 최종 책임</strong>: AI 직원에게 작업을 위임하더라도 법적·실질적 책임은 대표자가 지므로, 매일 콘솔과 리포트로 누락과 오류를 점검하는 루틴을 최소 2개월간 지속해야 함.
-        </div>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-head">3. 자동화 스케줄링(Cron)과 모닝 디스패치</div>
-        <div class="topic-desc">
-          • <strong>AI 직원의 이름과 존댓말</strong>: 실명 페르소나와 직책을 부여하고(김춘수의 '꽃'), 정중한 존댓말로 지시할 때 맥락 유지력과 결과물 품질이 급상승함.<br/>
-          • <strong>대표 병목 디스패치</strong>: 자동화의 진짜 가치는 알아서 도는 것이 아니라, 대표가 직접 승인/결정해야 할 병목 업무(미처리 약속 3건, 결재 대기 등)를 아침에 찔러주는 것.<br/>
-          • <strong>상시 서버 구축</strong>: 노트북 절전 모드로 스케줄이 끊기지 않도록 중고 맥미니나 저전력 미니 PC를 상시 게이트웨이로 둘 것 권장.
-        </div>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-head">4. 상시 리서치 스케줄링(Research Scheduling)과 확증 편향 역이용 발굴</div>
-        <div class="topic-desc">
-          • <strong>AI의 빈칸 채우기 본능</strong>: 빠진 질문을 채우려는 AI의 특성을 활용해 시장 기회, 경쟁사 동향, 법령 빈틈을 리서치하도록 스케줄링하면 토큰 대비 최고 가치를 창출함.<br/>
-          • <strong>와이드 풀 생성 후 압축(Refine)</strong>: 처음부터 5개를 요구하지 말고, 10~30개의 넓은 풀을 뽑게 한 뒤 상위 5개를 고르게 할 때 정제된 고품질 인사이트가 도출됨.
-        </div>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-head">5. AB180 이현중 이사의 GTM 세일즈 AI 자동화 케이스 스터디</div>
-        <div class="topic-desc">
-          • <strong>인바운드 리드 4대 정량 채점 스코어카드</strong>: 회사 검증(35점) + 이메일 품질(25점) + 회사 실존성(20점) + 발신자명 유효성(20점).<br/>
-          • <strong>70점 기준선(Threshold) 자동화</strong>: 70점 이상 검증된 리드만 즉시 맞춤형 제안서 초안과 답장을 자동 생성하고, 미달 문의는 자동 배제하여 세일즈 효율 극대화.<br/>
-          • 사내 지식 체계는 내부 정리를 넘어 실제 매출을 창출하는 B2B 세일즈 엔진으로 직결되어야 함.
-        </div>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-head">6. SNS 완전 무인 자동화의 함정과 Human-in-the-Loop</div>
-        <div class="topic-desc">
-          • <strong>강사의 스레드 실패담</strong>: 잭스랩 계정을 100% 무인 자동화로 돌리다가 1주일 만에 플랫폼에 의해 계정이 강제 폐쇄(Force Closed)된 실제 사례 공유.<br/>
-          • <strong>EVS D2 A안 준수</strong>: AI가 고품질 콘텐츠를 생성하되 대외 발행 전에는 반드시 대표자가 최종 검수·승인하는 인간 개입 가드레일이 사업의 영속성을 지킴.
-        </div>
-      </div>
-
-    </div>
-
-    <!-- EVS 4 Business Proposals -->
-    <div class="card">
-      <div class="card-title">🎯 사내 4대 사업축 맞춤형 접목 방안 (Action Options)</div>
-      
-      <div class="proposal-item recommended">
-        <span class="proposal-tag tag-a">안 A (권장안) · 사업 연계 실행</span>
-        <div style="font-size: 14px; font-weight: 700; color: #0F172A; line-height: 1.6;">
-          모닝 디스패치 대표 병목 알림 정비, 제프 베조스식 물음표(?) 리포트 감사 루틴 구축, AB180식 70점 세일즈 스코어카드 탑재 및 차주 IR 모의 피칭 장표 준비
-        </div>
-      </div>
-
-      <div class="proposal-item">
-        <span class="proposal-tag tag-b">안 B · 단순 지식 보관</span>
-        <div style="font-size: 13.5px; color: var(--text-sub);">
-          사내 GBrain 지식 원장에 6주차 강의 핸드북 영구 색인 (별도 태스크 생성 없음)
-        </div>
-      </div>
-
-      <div class="proposal-item">
-        <span class="proposal-tag tag-c">안 C · 기각 및 완전 폐기</span>
-        <div style="font-size: 13.5px; color: var(--text-sub);">
-          볼트 및 리포트 파일 영구 삭제
-        </div>
-      </div>
-    </div>
-</div>
-
-  <div class="sticky-bar">
-    <button class="btn btn-secondary" onclick="copyUrl()">📋 링크 복사</button>
-    <button class="btn btn-primary" onclick="copyMarkdown()">⚡ 마크다운 복사</button>
+ <div id="toast"></div>
+ <div class="container">
+  
+  <!-- Hero Card -->
+  <div class="card hero-card">
+   <div class="badge-row">
+    <span class="badge badge-blue">강남구청 초기창업자 6주차 최종</span>
+    <span class="badge badge-mint">Grade S 팩트 감사</span>
+    <span class="badge badge-gray">내가 없어도 되는 회사</span>
+   </div>
+   <h1 class="hero-title">강남구 초기창업자 과정 6주차 — 내가 없어도 되는 회사(Self-Running Company)와 B2B 세일즈 자동화</h1>
+   <div class="hero-meta">
+    <span>👤 강남구청 전담 강사진</span>
+    <span>⏱️ 원본 음성 2시간 07분 완주</span>
+    <span>📅 2026-11-05</span>
+   </div>
   </div>
 
-  <script>
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.innerText = msg;
-      t.style.opacity = '1';
-      setTimeout(() => { t.style.opacity = '0'; }, 2200);
-    }
-    function copyUrl() {
-      navigator.clipboard.writeText(location.href);
-      showToast('링크가 복사되었습니다!');
-    }
-    function copyMarkdown() {
-      const md = `# 강남구 초기창업자 과정 6주차 최종 복습노트\n\n[GitHub Pages 원본 보기](${location.href})\n- 한 줄 결론: 화려한 데모보다 작동하는 실질적 뼈대(Utility First)를 갖추고, 에이전트가 대표자의 3대 병목 업무를 아침마다 찔러주게 하며, 사내 지식을 AB180식 70점 스코어카드 기반 B2B 세일즈 엔진으로 직결해야 한다.`;
-      navigator.clipboard.writeText(md);
-      showToast('마크다운 요약이 복사되었습니다!');
-    }
-    function toggleCheck(el) {
-      const cb = el.querySelector('input[type="checkbox"]');
-      cb.checked = !cb.checked;
-      if (cb.checked) {
-        el.classList.add('checked');
-      } else {
-        el.classList.remove('checked');
-      }
-    }
-  </script>
+  <!-- Executive Summary -->
+  <div class="card">
+   <div class="card-title">💡 이것만 아시면 돼요 (핵심 요약)</div>
+   <div class="summary-box">
+    겉보기에만 화려한 기능보다 실제로 쓸모 있는 기본기에 집중하고, AI가 아침마다 대표가 직접 챙겨야 할 핵심 업무(밀린 약속, 결재 등)를 콕 집어 알려주게 하며, 사내 지식을 활용해 고객의 이메일 문의를 자동으로 채점하고 맞춤 답장까지 보내주는 실전 영업 자동화로 연결해야 합니다.
+   </div>
+   <ul class="takeaways">
+    <li><strong>섹시함의 함정을 깨는 Utility First</strong>: 세그웨이(연 10만 대 공언했으나 20년간 13만 대), 주스로(1억 2천만 달러 유치 후 5개월 만에 폐업) 대비, 쓸모없는 물건 취급받다 글로벌 대히트를 친 셀카봉처럼 '작동하는 효용'에 집중할 것.</li>
+    <li><strong>아마존 제프 베조스의 물음표(?) 리포트</strong>: AI 직원에게 아무리 많은 작업을 위임하더라도 최종 책임은 대표자가 지며, 에이전트 감시와 SOP 보완을 향후 최소 2개월간 지속해야 시스템이 정착됨.</li>
+    <li><strong>자동화의 본질은 대표 병목 해소</strong>: 100% 무인화보다 대표가 확인해야 할 미처리 약속, 승인 대기 건을 아침 8시마다 대표가 직접 확인하고 결정해야 할 업무를 일목요연하게 보고받는 체계를 만듭니다.</li>
+    <li><strong>AB180 이현중 이사의 GTM 세일즈 자동화</strong>: 고객 문의를 70점 스코어카드로 검증하여 상위 리드에만 맞춤 제안서와 답장을 자동으로 작성해 보내는 매출 직결형 지식 활용.</li>
+    <li><strong>강사의 Threads 계정 정지 실패 교훈</strong>: 100% 무인 SNS 자동화는 1주일 만에 계정 폐쇄를 부르므로, 대외 발행 전 대표가 최종 확인하고 승인하는 안전장치를 두어야 합니다.</li>
+   </ul>
+  </div>
+
+  <!-- 6 Core Lecture Pillars -->
+  <div class="card">
+   <div class="card-title">🏛️ 실전 핵심 강의 내용 6선 (팩트 검증 완료)</div>
+
+   <div class="topic-card">
+    <div class="topic-head">1. 섹시함의 함정과 실질적 가치 (Segway vs Juicero vs Selfie Stick)</div>
+    <div class="topic-desc">
+     • <strong>세그웨이(Segway)의 거품</strong>: 연간 10만 대 판매 호언장담과 대규모 IR 투자에도 불구하고 20년간 총 13만 대 판매에 그침 (대표 사고사).<br/>
+     • <strong>주스로(Juicero)의 붕괴</strong>: 400달러짜리 주스기로 1억 2천만 달러를 펀딩받았으나, 손으로 짜도 나오는 양이 같다는 보도 5개월 만에 폐업.<br/>
+     • <strong>셀카봉(Selfie Stick)의 반전</strong>: 초기에 쓸모없는 엉뚱 발명품으로 조롱받았으나 타임지 올해의 발명품 등재 및 전 세계 메가 히트.
+    </div>
+    <div class="quote-box">
+     "섹시하지 않다고 해서 안 팔리는 것은 아니다. 반대로 섹시하다고 해서 팔리는 것도 아니다. 우리가 구축한 AI 지식 체계는 겉보기에 섹시하지 않지만, 비즈니스에 변함없이 쓰이는 가장 단단한 뼈대입니다."
+    </div>
+   </div>
+
+   <div class="topic-card">
+    <div class="topic-head">2. 아마존 제프 베조스의 물음표(?) 리포트와 대표의 최종 책임</div>
+    <div class="topic-desc">
+     • <strong>아마존 리더십 원칙 4 '오너십(Ownership)'</strong>: <em>Leaders are owners. They never say 'that's not my job'.</em><br/>
+     • <strong>베조스의 물음표("?") 이메일</strong>: 고객 불만 메일에 오직 물음표 하나만 적어 전달하면, 담당 임원은 원인, 데이터, 책임 소재, 재발 방지책을 완벽히 정리해 직보해야 했음.<br/>
+     • <strong>AI 위임의 최종 책임</strong>: AI 직원에게 작업을 위임하더라도 법적·실질적 책임은 대표자가 지므로, 매일 콘솔과 리포트로 누락과 오류를 점검하는 루틴을 최소 2개월간 지속해야 함.
+    </div>
+   </div>
+
+   <div class="topic-card">
+    <div class="topic-head">3. 자동화 스케줄링과 모닝 리포트(핵심 업무 보고)</div>
+    <div class="topic-desc">
+     • <strong>AI 직원의 이름과 존댓말</strong>: 실명 페르소나와 직책을 부여하고(김춘수의 '꽃'), 정중한 존댓말로 지시할 때 맥락 유지력과 결과물 품질이 급상승함.<br/>
+     • <strong>대표 병목 보고</strong>: 자동화의 진짜 가치는 알아서 도는 것이 아니라, 대표가 직접 승인/결정해야 할 병목 업무(미처리 약속 3건, 결재 대기 등)를 아침에 찔러주는 것.<br/>
+     • <strong>상시 서버 구축</strong>: 노트북 절전 모드로 스케줄이 끊기지 않도록 중고 맥미니나 저전력 미니 PC를 상시 게이트웨이로 둘 것 권장.
+    </div>
+   </div>
+
+   <div class="topic-card">
+    <div class="topic-head">4. 상시 리서치 스케줄링(Research Scheduling)과 확증 편향 역이용 발굴</div>
+    <div class="topic-desc">
+     • <strong>AI의 빈칸 채우기 본능</strong>: 빠진 질문을 채우려는 AI의 특성을 활용해 시장 기회, 경쟁사 동향, 법령 빈틈을 리서치하도록 스케줄링하면 토큰 대비 최고 가치를 창출함.<br/>
+     • <strong>와이드 풀 생성 후 압축(Refine)</strong>: 처음부터 5개를 요구하지 말고, 10~30개의 넓은 풀을 뽑게 한 뒤 상위 5개를 고르게 할 때 정제된 고품질 인사이트가 도출됨.
+    </div>
+   </div>
+
+   <div class="topic-card">
+    <div class="topic-head">5. AB180 이현중 이사의 GTM 세일즈 AI 자동화 케이스 스터디</div>
+    <div class="topic-desc">
+     • <strong>고객 문의 이메일 4대 정량 채점 기준</strong>: 회사 검증(35점) + 이메일 품질(25점) + 회사 실존성(20점) + 발신자명 유효성(20점).<br/>
+     • <strong>70점 기준선(Threshold) 자동화</strong>: 70점 이상 검증된 잠재 고객에게만 즉시 맞춤형 제안서 초안과 답장을 자동 생성하고, 미달 문의는 자동 배제하여 세일즈 효율 극대화.<br/>
+     • 사내 지식 체계는 내부 정리를 넘어 실제 매출을 창출하는 B2B 세일즈 엔진으로 직결되어야 함.
+    </div>
+   </div>
+
+   <div class="topic-card">
+    <div class="topic-head">6. SNS 완전 무인 자동화의 함정과 Human-in-the-Loop</div>
+    <div class="topic-desc">
+     • <strong>강사의 스레드 실패담</strong>: 잭스랩 계정을 100% 무인 자동화로 돌리다가 1주일 만에 플랫폼에 의해 계정이 강제 폐쇄(Force Closed)된 실제 사례 공유.<br/>
+         </div>
+   </div>
+
+  </div>
+
+  <!-- EVS 4 Business Proposals -->
+  <div class="card">
+   <div class="card-title">🎯 사내 4대 사업축 맞춤형 접목 방안 (Action Options)</div>
+   
+   <div class="proposal-item recommended">
+    <span class="proposal-tag tag-a">안 A (권장안) · 사업 연계 실행</span>
+    <div style="font-size: 14px; font-weight: 700; color: #0F172A; line-height: 1.6;">
+     모닝 리포트 대표 병목 알림 정비, 제프 베조스식 물음표(?) 리포트 감사 루틴 구축, AB180식 70점 세일즈 스코어카드 탑재 
+    </div>
+   </div>
+
+   <div class="proposal-item">
+    <span class="proposal-tag tag-b">안 B · 단순 지식 보관</span>
+    <div style="font-size: 13.5px; color: var(--text-sub);">
+     사내 GBrain 지식 원장에 6주차 강의 핸드북 영구 색인 (별도 태스크 생성 없음)
+    </div>
+   </div>
+
+   <div class="proposal-item">
+    <span class="proposal-tag tag-c">안 C · 기각 및 완전 폐기</span>
+    <div style="font-size: 13.5px; color: var(--text-sub);">
+     볼트 및 리포트 파일 영구 삭제
+    </div>
+   </div>
+  </div>
+</div>
+
+ <div class="sticky-bar">
+  <button class="btn btn-secondary" onclick="copyUrl()">📋 링크 복사</button>
+  <button class="btn btn-primary" onclick="copyMarkdown()">⚡ 마크다운 복사</button>
+ </div>
+
+ <script>
+  function showToast(msg) {
+   const t = document.getElementById('toast');
+   t.innerText = msg;
+   t.style.opacity = '1';
+   setTimeout(() => { t.style.opacity = '0'; }, 2200);
+  }
+  function copyUrl() {
+   navigator.clipboard.writeText(location.href);
+   showToast('링크가 복사되었습니다!');
+  }
+  function copyMarkdown() {
+   const md = `# 강남구 초기창업자 과정 6주차 최종 복습노트\n\n[GitHub Pages 원본 보기](${location.href})\n- 한 줄 결론: 겉보기에만 화려한 기능보다 실제로 쓸모 있는 기본기에 집중하고, AI가 아침마다 대표가 직접 챙겨야 할 핵심 업무(밀린 약속, 결재 등)를 콕 집어 알려주게 하며, 사내 지식을 활용해 고객의 이메일 문의를 자동으로 채점하고 맞춤 답장까지 보내주는 실전 영업 자동화로 연결해야 한다.`;
+   navigator.clipboard.writeText(md);
+   showToast('마크다운 요약이 복사되었습니다!');
+  }
+  function toggleCheck(el) {
+   const cb = el.querySelector('input[type="checkbox"]');
+   cb.checked = !cb.checked;
+   if (cb.checked) {
+    el.classList.add('checked');
+   } else {
+    el.classList.remove('checked');
+   }
+  }
+ </script>
 </body>
 </html>
